@@ -1,0 +1,115 @@
+
+<h1>Main#homepage</h1>
+<p>Find me in app/views/main/homepage.html.erb</p>
+
+
+
+<div class="container">
+  <div id="hiding">
+    <div class="col-md-5">
+      <div class="row table-bordered" id="image_area">
+        <%= image_tag "wallet.png" %>
+      </div>
+    </div>
+
+    <div class="col-md-6 move" >
+      <div>
+        <input type="radio" name="regtype" value="fiz">Физическое лицо<Br>
+        <div class="table-bordered" id="description_area">Описание про физ лицо</div>
+        <input type="radio" name="regtype" value="jur">Юридическое лицо<Br>
+        <div class="table-bordered" id="description_area">Описание про юр лицо</div>
+        <div class="actions">
+          <button name="continue" value="continue" id="show">Продолжить</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="Omurbek">
+  <div class="container">
+    <form id="msform">
+      <ul id="progressbar">
+        <li class="active">Номер Контакта</li>
+        <li>Потверждение</li>
+        <li>Завершение</li>
+      </ul>
+      <fieldset>
+        <h2 class="fs-title">Номер Контракта</h2>
+        <input type="text" name="" placeholder="Номер телефона" />
+        <input type="text" name="" placeholder="ИНН" />
+        <input type="text" name="" placeholder="Скан паспорта" />
+        <input type="text" name="" placeholder="Регистрационный номер" />
+        <input type="text" name="" placeholder="Страна" />
+        <input type="text" name="" placeholder="E-mail" />
+        <input type="text" name="" placeholder="пароль" />
+        <input type="text" name="" placeholder="потверждение пароля" />
+        <!-- <input type="button" name="previous" class="previous action-button" value="Previous" /> -->
+        <input type="button" name="next" class="next action-button" value="Next" />
+      </fieldset>
+      <fieldset>
+        <h2 class="fs-title">Подтверждение</h2>
+        <input type="text" name="" placeholder="Введите код" />
+        <input type="button" name="previous" class="previous action-button" value="Previous" />
+        <input type="button" name="next" class="next action-button" value="Next" />
+      </fieldset>
+      <fieldset>
+        <h2 class="fs-title">Завершение</h2>
+        <!-- <input type="button" name="previous" class="previous action-button" value="Previous" /> -->
+        <input type="submit" name="submit" class="submit action-button" value="Submit" />
+      </fieldset>
+    </form>
+  </div>
+</div>
+
+<div id="Maxim">
+  <div class="container">
+    <form id="msform">
+
+      <!-- progressbar -->
+      <ul id="progressbar">
+        <li class="active">Номер Телефона</li>
+        <li>Персональные данные</li>
+        <li>Потверждение</li>
+        <li>Завершение</li>
+      </ul>
+      <!-- fieldsets -->
+      <fieldset>
+        <h2 class="fs-title">Введите Номер Телефона</h2>
+        <!-- <h3 class="fs-subtitle">This is step 1</h3> -->
+        <input type="text" name="" placeholder="+" />
+        <!-- <input type="password" name="pass" placeholder="Password" />
+        <input type="password" name="cpass" placeholder="Confirm Password" /> -->
+        <input type="button" name="next" class="next action-button" value="Next" />
+      </fieldset>
+      <fieldset>
+        <h2 class="fs-title">Персональные данные</h2>
+        <!-- <h3 class="fs-subtitle">Your presence on the social network</h3> -->
+        <input type="text" name="" placeholder="Имя" />
+        <input type="text" name="" placeholder="Фамилия" />
+        <input type="text" name="" placeholder="дд/мм/гг" />
+        <input type="text" name="" placeholder="ИНН" />
+        <input type="text" name="" placeholder="Скан.паспорта" />
+        <input type="text" name="" placeholder="Страна" />
+        <input type="text" name="" placeholder="E-mail" />
+        <input type="text" name="" placeholder="пароль" />
+        <input type="text" name="" placeholder="потверждение пароля" />
+        <input type="button" name="previous" class="previous action-button" value="Previous" />
+        <input type="button" name="next" class="next action-button" value="Next" />
+      </fieldset>
+      <fieldset>
+        <h2 class="fs-title">Подтверждение</h2>
+        <!-- <h3 class="fs-subtitle">We will never sell it</h3> -->
+        <input type="text" name="" placeholder="Введите код" />
+        <!-- <input type="text" name="lname" placeholder="Last Name" />
+        <input type="text" name="phone" placeholder="Phone" />
+        <textarea name="address" placeholder="Address"></textarea> -->
+        <input type="button" name="previous" class="previous action-button" value="Previous" />
+        <input type="button" name="next" class="next action-button" value="Next" />
+      </fieldset>
+      <fieldset>
+        <input type="submit" name="submit" class="submit action-button" value="Submit" />
+      </fieldset>
+
+    </form>
+  </div>
+</div>
