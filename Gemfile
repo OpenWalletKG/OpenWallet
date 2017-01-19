@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'memory_test_fix'
-
+gem 'devise'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'rails', '~> 5.0.1'
 gem 'sqlite3'
