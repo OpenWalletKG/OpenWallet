@@ -5,7 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-# gem 'jquery-ui-rails', '5.0.5'
+gem 'memory_test_fix'
+
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'rails', '~> 5.0.1'
 gem 'sqlite3'
