@@ -1,2 +1,2 @@
-puts "SEEDS STARTED:"
-
+p
+p "SEEDS STARTED:"
