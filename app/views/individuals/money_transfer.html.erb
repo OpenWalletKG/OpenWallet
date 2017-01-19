@@ -1,29 +1,37 @@
 <%= form_for :получатель do |f| %>
-      <div >
-        <%= f.label :Получатель, "Номер кошелька получателя" %><br>
-        <%= f.text_field :Получатель %>
-      </div>
-
-      <div>
-        <%= f.label :сумма, "Сумма для отправления" %><br>
-        <%= f.text_field :сумма %>
-      </div>
-      <br>
-      <div >
-        <%= f.submit 'получить_код_OTP', class:"btn btn-success" %> <br>
-      </div>
-      <br>
-
-      <div>
-        <%= f.label 'сюда вводим OTP' %> <br>
-        <%= f.text_field :сюда_вводим_ОТP %>
-      </div>
-
-      <div>
-        <%= f.submit :отправить_код_повторно, class:"btn btn-success" %>
-      </div><br>
-
-    <div>
-      <%= f.submit 'Перевести', class:"btn btn-success" %>
+<div class="container">
+    <div class="col-md-5">
+      <%= render 'individuals/sidebar/sidebar' %>
     </div>
+
+    <div class="col-md-5">
+      <div >
+          <%= f.label :Получатель, "Номер кошелька получателя" %><br>
+          <%= f.text_field :Получатель %>
+        </div>
+
+        <div>
+          <%= f.label :сумма, "Сумма для отправления" %><br>
+          <%= f.text_field :сумма %>
+        </div>
+        <br>
+        <div >
+          <%= f.submit 'получить_код_OTP', class:"btn btn-success" %> <br>
+        </div>
+        <br>
+
+        <div>
+          <%= f.label 'сюда вводим OTP' %> <br>
+          <%= f.text_field :сюда_вводим_ОТP %>
+        </div>
+
+        <div>
+          <%= f.submit :отправить_код_повторно, class:"btn btn-success" %>
+        </div><br>
+
+      <div>
+        <%= f.submit 'Перевести', class:"btn btn-success" %>
+      </div>
+    </div>
+</div>
 <% end %>
