@@ -1,5 +1,78 @@
 ActiveRecord::Schema.define(version: 1) do
 
+  create_table "accounts", force: :cascade do |t|
+    t.string   "number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "actions", force: :cascade do |t|
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "clients", force: :cascade do |t|
+    t.string   "mobile"
+    t.string   "password"
+    t.string   "country"
+    t.string   "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "account_id"
+    t.integer  "role_id"
+    t.index ["account_id"], name: "index_clients_on_account_id"
+    t.index ["role_id"], name: "index_clients_on_role_id"
+  end
+
+  create_table "corporate_individuals", force: :cascade do |t|
+    t.integer  "corporate_id"
+    t.integer  "individual_id"
+    t.integer  "employee_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["corporate_id"], name: "index_corporate_individuals_on_corporate_id"
+    t.index ["employee_id"], name: "index_corporate_individuals_on_employee_id"
+    t.index ["individual_id"], name: "index_corporate_individuals_on_individual_id"
+  end
+
+  create_table "corporates", force: :cascade do |t|
+    t.string   "registration_number"
+    t.string   "bin"
+    t.string   "address"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  create_table "employees", force: :cascade do |t|
+    t.string   "position"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "individuals", force: :cascade do |t|
+    t.string   "last_name"
+    t.string   "first_name"
+    t.date     "dob"
+    t.string   "inn"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string   "definition"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "roles_actions", force: :cascade do |t|
+    t.integer  "role_id"
+    t.integer  "action_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["action_id"], name: "index_roles_actions_on_action_id"
+    t.index ["role_id"], name: "index_roles_actions_on_role_id"
+  end
 
 end
 
