@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   #ЛК физ.лица
   get '/individual_cabinet' => 'individuals#individual_cabinet', as: 'individual_cabinet'
+  get '/individual_payment' => 'individuals#payment', as: 'individual_payment'
 
 
   #ЛК юр.лица
