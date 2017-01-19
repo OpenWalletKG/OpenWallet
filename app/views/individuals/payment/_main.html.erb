@@ -1,55 +1,53 @@
-<div class="container">
-
-
-	<div class="col-xs-4">
-		<div class="thumbnail payment-blocks">
-			<h4>Мои счета</h4>
-			<div class="my-payment">
-				<span class="image">
-					<%= image_tag 'megacom.png', class: 'my-payment-img' %>
-				</span>
-				<span class="my-payment-name">
-					Моя мега
-				</span>
+<div class="row payment">
+	<div class="col-md-6">
+			<div class="thumbnail payment-blocks">
+				<h4>Мои счета</h4>
+				<div class="my-payment">
+					<span class="image">
+						<%= image_tag 'megacom.png', class: 'my-payment-img' %>
+					</span>
+					<span class="my-payment-name">
+						Моя мега
+					</span>
+				</div>
+				<div class="my-payment">
+					<span class="image">
+						<%= image_tag 'megacom.png', class: 'my-payment-img' %>
+					</span>
+					<span class="my-payment-name">
+						Твоя мега
+					</span>
+				</div>
+				<div class="my-payment">
+					<span class="image">
+						<%= image_tag 'megacom.png', class: 'my-payment-img' %>
+					</span>
+					<span class="my-payment-name">
+						Его мега
+					</span>
+				</div>
+				<div class="submit-button">
+					<%= link_to '+Добавить', 'individual_payment', class: 'btn btn-default' %>	
+				</div>
 			</div>
-			<div class="my-payment">
-				<span class="image">
-					<%= image_tag 'megacom.png', class: 'my-payment-img' %>
-				</span>
-				<span class="my-payment-name">
-					Твоя мега
-				</span>
-			</div>
-			<div class="my-payment">
-				<span class="image">
-					<%= image_tag 'megacom.png', class: 'my-payment-img' %>
-				</span>
-				<span class="my-payment-name">
-					Его мега
-				</span>
-			</div>
-			<div class="submit-button">
-				<%= link_to '+Добавить', 'individual_payment', class: 'btn btn-default' %>	
-			</div>
-		</div>
 	</div>
 
-	<div class="col-xs-4">
-		<div class="thumbnail payment-blocks">
-			<h4>Услуги</h4>
-			<div>
-				<%= link_to 'Коммунальные услуги', 'individual_payment', { class: 'services' } %>
-				<span class='services-count'>30</span>
+	<div class="col-md-6">
+			<div class="thumbnail payment-blocks">
+				<h4>Услуги</h4>
+				<div>
+					<%= link_to 'Коммунальные услуги', 'individual_payment', { class: 'services' } %>
+					<span class='services-count'>30</span>
+				</div>
+				<div>
+					<%= link_to 'Сотовая связь', 'individual_payment', { class: 'services' } %>
+					<span class='services-count'>4</span>
+				</div>
+				<div>
+					<%= link_to 'Интернет', 'individual_payment', { class: 'services' } %>
+					<span class='services-count'>8</span>
+				</div>
 			</div>
-			<div>
-				<%= link_to 'Сотовая связь', 'individual_payment', { class: 'services' } %>
-				<span class='services-count'>4</span>
-			</div>
-			<div>
-				<%= link_to 'Интернет', 'individual_payment', { class: 'services' } %>
-				<span class='services-count'>8</span>
-			</div>
-		</div>
 	</div>
-
-</div>
+</div>	
+	

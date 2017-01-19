@@ -7,11 +7,6 @@
   width: 250px;
 }
 
-.individual-sidebar {
-	float: left;
-	margin-right: 50px;
-}
-
 .my-payment-img	{
 	width: 50px;
 	height: auto;
@@ -29,6 +24,10 @@
 	height: 200px;
 }
 
+.row .payment {
+	min-height: 300px;
+}
+
 .thumbnail h4 {
 	text-align: center;
 }
@@ -40,4 +39,8 @@
 .services-count {
 	display: block;
 	text-align: right;
+}
+
+.service-url-img {
+	height: 60px;
 }
