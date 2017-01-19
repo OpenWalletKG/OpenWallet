@@ -6,4 +6,8 @@ class IndividualsController < ApplicationController
   def payment
   	
   end
+
+  def money_transfer
+    
+  end
 end
