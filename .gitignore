@@ -30,7 +30,7 @@
 !/tmp/.keep
 /public/assets
 /public/system/*
-.idea/
+*.idea
 .rvmrc
 
 # Ignore Byebug command history file.
