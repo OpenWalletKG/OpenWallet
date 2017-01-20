@@ -23,9 +23,6 @@ ActiveRecord::Schema.define(version: 2) do
     t.integer  "role_id"
     t.string   "entity_type"
     t.integer  "entity_id"
-    t.index ["entity_type", "entity_id"], name: "index_clients_on_entity_type_and_entity_id"
-    t.string   "entity_type"
-    t.integer  "entity_id"
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
