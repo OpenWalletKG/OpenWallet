@@ -1,0 +1,66 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <form class="form-horizontal payment-form" role="form">
+        <fieldset>
+
+          <!-- Form Name -->
+          <h3>Выбранная услуга</h3>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="textinput">Реквизит</label>
+            <div class="col-sm-10">
+              <input type="text" placeholder="Впишите реквизит" class="form-control">
+            </div>
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="textinput">Сумма оплаты</label>
+            <div class="col-sm-10">
+              <input type="text" placeholder="0" class="form-control">
+            </div>
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="textinput">Выбрать счет</label>
+            <div class="col-sm-4">
+              <select name="account" id="account">
+                <option value="1">
+                  Тенгри Банк
+                </option>
+                <option value="2">
+                  Не Тенгри Банк
+                </option>
+                <option value="3">
+                  Вообще Другой Банк
+                </option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="textinput"></label>
+            <div class="col-sm-10">
+              <input type="radio" placeholder="0">Добавить в мои платежи?
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <div class="pull-right">
+                <button type="submit" class="btn btn-primary">Оплатить</button>
+              </div>
+            </div>
+          </div>
+
+        </fieldset>
+      </form>
+    </div><!-- /.col-lg-12 -->
+</div><!-- /.row -->

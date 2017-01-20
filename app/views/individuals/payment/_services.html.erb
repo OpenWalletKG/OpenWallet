@@ -1,11 +1,17 @@
 <div class="row">
 	<div class="col-md-4">
-		<%= link_to (image_tag 'megacom.png', class: 'service-url-img' ), individual_payment_path %>
+		<%= link_to '#' do %>
+			<%= image_tag 'beeline.png', { class: 'service-url-img', 'data-toggle' => "modal", 'data-target' => "#myModal"} %>
+		<% end %>
 	</div>
 	<div class="col-md-4">
-		<%= link_to (image_tag 'beeline.png', class: 'service-url-img' ), individual_payment_path %>
+		<%= link_to '#' do %>
+			<%= image_tag 'megacom.png', { class: 'service-url-img', 'data-toggle' => "modal", 'data-target' => "#myModal"} %>
+		<% end %>
 	</div>
 	<div class="col-md-4">
-		<%= link_to (image_tag 'nurtelecom1.png', class: 'service-url-img' ), individual_payment_path %>
+		<%= link_to '#' do %>
+			<%= image_tag 'nurtelecom1.png', { class: 'service-url-img', 'data-toggle' => "modal", 'data-target' => "#myModal"} %>
+		<% end %>
 	</div>
 </div>
