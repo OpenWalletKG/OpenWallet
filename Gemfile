@@ -7,7 +7,12 @@ end
 
 gem 'memory_test_fix'
 gem 'devise'
+
+# frontend
+gem 'bootstrap3-datetimepicker-rails'
+gem 'momentjs-rails'
 gem 'bootstrap-sass', '~> 3.3.6'
+
 gem 'rails', '~> 5.0.1'
 gem 'sqlite3'
 gem 'puma', '~> 3.0'

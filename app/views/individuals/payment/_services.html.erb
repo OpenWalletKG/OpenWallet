@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row max-width">
 	<div class="col-md-4">
 		<%= link_to '#' do %>
 			<%= image_tag 'beeline.png', { class: 'service-url-img', 'data-toggle' => "modal", 'data-target' => "#myModal"} %>
@@ -14,4 +14,7 @@
 			<%= image_tag 'nurtelecom1.png', { class: 'service-url-img', 'data-toggle' => "modal", 'data-target' => "#myModal"} %>
 		<% end %>
 	</div>
+</div>
+<div class="row">
+	<%= render 'individuals/payment/reports' %>
 </div>

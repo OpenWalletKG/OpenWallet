@@ -17,5 +17,7 @@
 //= require perehod
 //= require 213jquery
 //= require easing
+//= require moment
+//= require bootstrap-datetimepicker
 //= require_tree .
 
