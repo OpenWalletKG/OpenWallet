@@ -8,9 +8,19 @@
   </head>
   <body>
     <%= render 'shared/navbar' %>
+    <div class="balance">
+      <%= render 'individuals/shared/current_balance' %>
+    </div>
     
+
     <div class="container">
-      <%= yield %>
+      <div class="col-md-3">
+        <%= render 'individuals/shared/sidebar' %>
+      </div>
+      <div class="col-md-9">
+        <%= yield %>
+      </div>
+      
     </div>
   </body>
 </html>

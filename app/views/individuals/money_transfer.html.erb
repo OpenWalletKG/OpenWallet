@@ -1,10 +1,6 @@
 <%= form_for :получатель do |f| %>
 <div class="container">
     <div class="col-md-5">
-      <%= render 'individuals/sidebar/sidebar' %>
-    </div>
-
-    <div class="col-md-5">
       <div >
           <%= f.label :Получатель, "Номер кошелька получателя" %><br>
           <%= f.text_field :Получатель %>
