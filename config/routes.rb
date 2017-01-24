@@ -22,16 +22,16 @@ Rails.application.routes.draw do
   #   #SignIn/SignOut[Sessions]
     get     'login', to: 'devise/sessions#new',      as: 'new_client_session'
     post    'login',  to: 'devise/sessions#create',   as: 'client_session'
-    delete  'logout', to: 'devise_sessions#destroy',  as: 'destroy_client_session'
+    delete  'logout', to: 'devise/sessions#destroy',  as: 'destroy_client_session'
 
     #Registration
-    get     'sign_up'   => 'devise_registrations#new',    as: 'new_client_registration'
-    get     'sign_up/cancel' => 'devise_registrations#cancel', as: 'cancel_client_registration'
-    get     'sign_up/edit'   => 'devise_registrations#edit', as: 'edit_client_registration'
-    post    'sign_up'   => 'devise_registrations#create', as: 'client_registration'
-    patch   'sign_up'   => 'devise_registrations#update'
-    put     'sign_up'   => 'devise_registrations#update'
-    delete  'sign_up'   => 'devise_registrations#destroy'
+    get     'sign_up'   => 'devise/registrations#new',    as: 'new_client_registration'
+    get     'sign_up/cancel' => 'devise/registrations#cancel', as: 'cancel_client_registration'
+    get     'sign_up/edit'   => 'devise/registrations#edit', as: 'edit_client_registration'
+    post    'sign_up'   => 'devise/registrations#create', as: 'client_registration'
+    patch   'sign_up'   => 'devise/registrations#update'
+    put     'sign_up'   => 'devise/registrations#update'
+    delete  'sign_up'   => 'devise/registrations#destroy'
 
     #Password
     get   'reset'                => 'devise_passwords#new',      as: 'new_client_password'
