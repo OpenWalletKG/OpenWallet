@@ -1,10 +1,7 @@
 <div class="row">
-	<div class="col-md-3">
-		<%= render 'individuals/sidebar/sidebar' %>		
-	</div>
-	<div class="col-md-9">
-		<%= render 'individuals/payment/main' %>
-		<%= render 'individuals/payment/services' %>
+	<div class="col-md-9 col-md-3-offset">
+		<%= render 'individuals/shared/payment/main' %>
+		<%= render 'individuals/shared/payment/services' %>
 	</div>
 </div>
 <div class="row">
@@ -15,7 +12,7 @@
 	    <div class="modal-content">
 	      <div class="modal-body">
 	        <!-- form start -->
-						<%= render 'individuals/payment/payment_form' %>
+						<%= render 'individuals/shared/payment/form' %>
 					<!-- form end -->
 	      </div>
 	    </div>
