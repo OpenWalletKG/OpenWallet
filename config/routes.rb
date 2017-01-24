@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   devise_for :clients
+ 
   root 'main#homepage'
   get 'main/multistep'
 
