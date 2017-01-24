@@ -25,18 +25,18 @@ Rails.application.routes.draw do
     delete  'logout', to: 'devise_sessions#destroy',  as: 'destroy_client_session'
 
     #Registration
-    get     'sign_up'   => 'devise_registrations#new',    as: 'new_user_registration'
-    get     'sign_up/cancel' => 'devise_registrations#cancel', as: 'cancel_user_registration'
-    get     'sign_up/edit'   => 'devise_registrations#edit', as: 'edit_user_registration'
-    post    'sign_up'   => 'devise_registrations#create', as: 'user_registration'
+    get     'sign_up'   => 'devise_registrations#new',    as: 'new_client_registration'
+    get     'sign_up/cancel' => 'devise_registrations#cancel', as: 'cancel_client_registration'
+    get     'sign_up/edit'   => 'devise_registrations#edit', as: 'edit_client_registration'
+    post    'sign_up'   => 'devise_registrations#create', as: 'client_registration'
     patch   'sign_up'   => 'devise_registrations#update'
     put     'sign_up'   => 'devise_registrations#update'
     delete  'sign_up'   => 'devise_registrations#destroy'
 
     #Password
-    get   'reset'                => 'devise_passwords#new',      as: 'new_user_password'
-    get   'reset/new_password'   => 'devise_passwords#edit',     as: 'edit_user_password'
-    post  'reset'                => 'devise_passwords#create',   as: 'user_password'
+    get   'reset'                => 'devise_passwords#new',      as: 'new_client_password'
+    get   'reset/new_password'   => 'devise_passwords#edit',     as: 'edit_client_password'
+    post  'reset'                => 'devise_passwords#create',   as: 'client_password'
     patch 'reset'                => 'devise_passwords#update'
     put   'reset'                => 'devise_passwords#update'
   end
