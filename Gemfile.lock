@@ -40,8 +40,10 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.0)
       public_suffix (~> 2.0, >= 2.0.2)
+    airbrussh (1.1.2)
+      sshkit (>= 1.6.1, != 1.7.0)
     arel (7.1.4)
-    autoprefixer-rails (6.6.1)
+    autoprefixer-rails (6.7.0)
       execjs
     bcrypt (3.1.11)
     bootstrap-sass (3.3.7)
@@ -51,6 +53,28 @@ GEM
       momentjs-rails (>= 2.8.1)
     builder (3.2.3)
     byebug (9.0.6)
+    capistrano (3.7.1)
+      airbrussh (>= 1.0.0)
+      capistrano-harrow
+      i18n
+      rake (>= 10.0.0)
+      sshkit (>= 1.9.0)
+    capistrano-bundler (1.2.0)
+      capistrano (~> 3.1)
+      sshkit (~> 1.2)
+    capistrano-harrow (0.5.3)
+    capistrano-rails (1.2.2)
+      capistrano (~> 3.1)
+      capistrano-bundler (~> 1.1)
+    capistrano-rails-console (2.2.0)
+      capistrano (>= 3.5.0, < 4.0.0)
+      sshkit-interactive (~> 0.2.0)
+    capistrano-rvm (0.1.2)
+      capistrano (~> 3.0)
+      sshkit (~> 1.2)
+    capistrano3-puma (1.2.1)
+      capistrano (~> 3.0)
+      puma (>= 2.6)
     capybara (2.11.0)
       addressable
       mime-types (>= 1.16)
@@ -58,7 +82,7 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    childprocess (0.5.9)
+    childprocess (0.6.1)
       ffi (~> 1.0, >= 1.0.11)
     coffee-rails (4.2.1)
       coffee-script (>= 2.2.0)
@@ -94,8 +118,17 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.3)
+    dotenv (2.1.2)
+    dotenv-rails (2.1.2)
+      dotenv (= 2.1.2)
+      railties (>= 3.2, < 5.1)
     erubis (2.7.0)
     execjs (2.7.0)
+    factory_girl (4.8.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.8.0)
+      factory_girl (~> 4.8.0)
+      railties (>= 3.0.0)
     ffi (1.9.17)
     gherkin (4.0.0)
     globalid (0.3.7)
@@ -125,6 +158,9 @@ GEM
       railties (>= 3.1)
     multi_json (1.12.1)
     multi_test (0.1.2)
+    net-scp (1.2.1)
+      net-ssh (>= 2.6.5)
+    net-ssh (4.0.1)
     nio4r (1.2.1)
     nokogiri (1.7.0.1)
       mini_portile2 (~> 2.1.0)
@@ -192,7 +228,9 @@ GEM
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
       websocket (~> 1.0)
-    spring (2.0.0)
+    shoulda-matchers (3.1.1)
+      activesupport (>= 4.0.0)
+    spring (2.0.1)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -205,6 +243,11 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     sqlite3 (1.3.13)
+    sshkit (1.11.5)
+      net-scp (>= 1.1.2)
+      net-ssh (>= 2.8.0)
+    sshkit-interactive (0.2.0)
+      sshkit (~> 1.9)
     thor (0.19.4)
     thread_safe (0.3.5)
     tilt (2.0.5)
@@ -223,7 +266,7 @@ GEM
       debug_inspector
       railties (>= 5.0)
     websocket (1.2.3)
-    websocket-driver (0.6.4)
+    websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
     xpath (2.0.0)
@@ -236,11 +279,19 @@ DEPENDENCIES
   bootstrap-sass (~> 3.3.6)
   bootstrap3-datetimepicker-rails
   byebug
+  capistrano
+  capistrano-bundler
+  capistrano-rails
+  capistrano-rails-console
+  capistrano-rvm
+  capistrano3-puma
   capybara
   coffee-rails (~> 4.2)
   cucumber-rails
   database_cleaner
   devise
+  dotenv-rails
+  factory_girl_rails
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
@@ -250,6 +301,7 @@ DEPENDENCIES
   rspec-rails (~> 3.5)
   sass-rails (~> 5.0)
   selenium-webdriver (= 2.53.4)
+  shoulda-matchers
   spring
   spring-watcher-listen (~> 2.0.0)
   sqlite3
@@ -259,4 +311,4 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 BUNDLED WITH
-   1.13.7
+   1.14.2

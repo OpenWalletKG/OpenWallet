@@ -32,12 +32,14 @@ Rails.application.routes.draw do
     patch   'sign_up'   => 'devise/registrations#update'
     put     'sign_up'   => 'devise/registrations#update'
     delete  'sign_up'   => 'devise/registrations#destroy'
+
     #Password
     get   'reset'                => 'devise/passwords#new',      as: 'new_client_password'
     get   'reset/new_password'   => 'devise/passwords#edit',     as: 'edit_client_password'
     post  'reset'                => 'devise/passwords#create',   as: 'client_password'
     patch 'reset'                => 'devise/passwords#update'
     put   'reset'                => 'devise/passwords#update'
+
   end
 
   get '/wallet' => 'wallet#show', as: 'show_wallet'

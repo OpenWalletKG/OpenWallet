@@ -103,3 +103,5 @@ ActiveRecord::Schema.define(version: 20170124095620) do
   end
 
 end
+
+load "#{Rails.root}/db/seeds.rb"
