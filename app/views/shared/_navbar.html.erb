@@ -14,10 +14,10 @@
       </ul>
       <ul class="navbar-nav navbar-right">
       <% unless client_signed_in? %>
-        <%= link_to 'Регистрация', main_multistep_path, class: 'btn btn-default navbar-btn' %>
+        <%= link_to 'Регистрация', new_client_registration_path, class: 'btn btn-default navbar-btn' %>
         <%= link_to 'Вход', root_path, class: 'btn btn-default navbar-btn' %>
       <% else %>
-        <%= link_to 'Выход', destroy_client_session, class: 'btn btn-default navbar-btn' %>
+        <%= link_to 'Выход', destroy_client_session_path, class: 'btn btn-default navbar-btn' %>
       <% end %>
       </ul>
     </div>

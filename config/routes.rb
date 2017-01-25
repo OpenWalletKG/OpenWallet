@@ -34,11 +34,11 @@ Rails.application.routes.draw do
     delete  'sign_up'   => 'devise/registrations#destroy'
 
     #Password
-    get   'reset'                => 'devise_passwords#new',      as: 'new_client_password'
-    get   'reset/new_password'   => 'devise_passwords#edit',     as: 'edit_client_password'
-    post  'reset'                => 'devise_passwords#create',   as: 'client_password'
-    patch 'reset'                => 'devise_passwords#update'
-    put   'reset'                => 'devise_passwords#update'
+    get   'reset'                => 'devise/passwords#new',      as: 'new_client_password'
+    get   'reset/new_password'   => 'devise/passwords#edit',     as: 'edit_client_password'
+    post  'reset'                => 'devise/passwords#create',   as: 'client_password'
+    patch 'reset'                => 'devise/passwords#update'
+    put   'reset'                => 'devise/passwords#update'
   end
 
   get '/wallet' => 'wallet#show', as: 'show_wallet'

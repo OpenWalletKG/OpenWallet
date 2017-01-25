@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170124095620) do
+ActiveRecord::Schema.define(version: 20170123095620) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "number"
@@ -43,12 +43,9 @@ ActiveRecord::Schema.define(version: 20170124095620) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "individual_type"
-    t.integer  "individual_id"
     t.index ["account_id"], name: "index_clients_on_account_id"
     t.index ["email"], name: "index_clients_on_email", unique: true
     t.index ["entity_type", "entity_id"], name: "index_clients_on_entity_type_and_entity_id"
-    t.index ["individual_type", "individual_id"], name: "index_clients_on_individual_type_and_individual_id"
     t.index ["reset_password_token"], name: "index_clients_on_reset_password_token", unique: true
     t.index ["role_id"], name: "index_clients_on_role_id"
   end
@@ -103,5 +100,3 @@ ActiveRecord::Schema.define(version: 20170124095620) do
   end
 
 end
-
-load "#{Rails.root}/db/seeds.rb"
