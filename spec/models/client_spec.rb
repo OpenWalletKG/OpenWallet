@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Client, :type => :model do
-  role = Role.new(id: 1, definition: 'Person')
-  individual = Individual.create(id: 1, first_name: 'Vasya')
-  account = Account.create(id: 1, number: '0557140446')
+  role = Role.create(definition: 'Person')
+  individual = Individual.create(first_name: 'Vasya', last_name: 'T', inn: '3242342', dob: DateTime.now)
+  account = Account.create(number: '0557140446')
   subject {
     described_class.create(mobile: '0556120732', country: 'Kyrgyzstan', account_id: account.id,
-    role_id: role.id, entity_type: "Individual", entity_id: individual.id, email: 'client@example.com'
+    role_id: role.id, email: 'client@example.com'
     )
   }
 

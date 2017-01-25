@@ -10,14 +10,18 @@
     </div>
     <div class="collapse navbar-collapse" id="navbar-collapse">
       <ul class="navbar-nav navbar-left">
-        <h1>OpenWalletKG</h1>
+        <% unless client_signed_in? %>
+          <%= link_to 'OpenWalletKG', root_path, class: 'navbar-brand' %>
+        <% else %>
+          <%= link_to 'OpenWalletKG', show_wallet_path, class: 'navbar-brand' %>
+        <% end %>
       </ul>
       <ul class="navbar-nav navbar-right">
       <% unless client_signed_in? %>
         <%= link_to 'Регистрация', new_client_registration_path, class: 'btn btn-default navbar-btn' %>
-        <%= link_to 'Вход', root_path, class: 'btn btn-default navbar-btn' %>
+        <%= link_to 'Вход', new_client_session_path, class: 'btn btn-default navbar-btn' %>
       <% else %>
-        <%= link_to 'Выход', destroy_client_session, class: 'btn btn-default navbar-btn' %>
+        <%= link_to 'Выход', destroy_client_session_path, class: 'btn btn-default navbar-btn' %>
       <% end %>
       </ul>
     </div>

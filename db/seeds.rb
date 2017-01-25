@@ -27,7 +27,7 @@ role_fiz.actions << action_sell
 
 person = Individual.create(first_name: 'Dima', last_name: 'Z', dob: Time.now, inn: 'I00001')
 person_account = Account.create(number: person.inn)
-Client.create(mobile:'996700007411', password:'asdfasdf', country: 'KGZ', entity_id: person.id, entity_type: "Individual" , role_id:3, account_id: person_account.id)
+Client.create(mobile:'996700007411', password:'asdfasdf', email: "email@example.com", country: 'KGZ', entity_id: person.id, entity_type: "Individual" , role_id:3, account_id: person_account.id)
 
 Employee.create(position: 'Директор')
 Employee.create(position: 'Бухгалтер')
@@ -41,9 +41,9 @@ CorporateIndividual.create(corporate_id: company.id, individual_id: vasya.id, em
 company_account = Account.create(number: company.bin)
 
 
-Client.create(mobile:'996999999999', password:'asdfasdf', country: 'KGZ', entity_id: company.id, entity_type: "Corporate" , role_id:2, account_id: company_account.id)
+Client.create(mobile:'996999999999', password:'asdfasdf', email: 'asdf@example.com', country: 'KGZ', entity_id: company.id, entity_type: "Corporate" , role_id:2, account_id: company_account.id)
 
-Client.create(mobile: '092029213321', password:'asdfasdf', country: 'KGZ', entity_id: vasya.id, entity_type:"Individual", role_id: 3, account_id: vasya_account.id)
+Client.create(mobile: '092029213321', password:'asdfasdf', email: 'fdsa@example.com', country: 'KGZ', entity_id: vasya.id, entity_type:"Individual", role_id: 3, account_id: vasya_account.id)
 
 #test for existance
 person = Individual.create(first_name: 'Dima', last_name: 'Z', dob: Time.now, inn: 'I00001')
