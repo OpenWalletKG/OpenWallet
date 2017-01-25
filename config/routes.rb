@@ -44,17 +44,19 @@ Rails.application.routes.draw do
   get '/wallet' => 'wallet#show', as: 'show_wallet'
 
   scope '/wallet' do
-    get    '/buy/new'      => 'buy#new',         as: 'new_buy'
-    post   '/buy'          => 'buy#create',      as: 'buy'
-    get    '/sell/new'     => 'sell#new',        as: 'new_sell'
-    post   '/sell'         => 'sell#create',     as: 'sell'
-    get    '/withdraw/new' => 'withdraw#new',    as: 'new_withdraw'
-    post   '/withdraw'     => 'withdraw#create', as: 'withdraw'
-    get    '/transfer/new' => 'transfer#new',    as: 'new_transfer'
-    post   '/transfer'     => 'transfer#create', as: 'transfer'
-    get    '/payment/new'  => 'paymentr#new',    as: 'new_payment'
-    post   '/payment'      => 'payment#create',  as: 'payment'
-    get    '/history'      => 'history#show',    as: 'history'
+    get    '/buy/new'         => 'buy#new',              as: 'new_buy'
+    post   '/buy'             => 'buy#create',           as: 'buy'
+    get    '/sell/new'        => 'sell#new',             as: 'new_sell'
+    post   '/sell'            => 'sell#create',          as: 'sell'
+    get    '/withdraw/new'    => 'withdraw#new',         as: 'new_withdraw'
+    post   '/withdraw'        => 'withdraw#create',      as: 'withdraw'
+    get    '/transfer/show'   => 'transfer#show',        as: 'show_transfers'
+    get    '/transfer/new'    => 'transfer#new',         as: 'new_transfer'
+    post   '/transfer'        => 'transfer#create',      as: 'transfer'
+    get    '/payment/show'    => 'payment#show',         as: 'show_payments'
+    get    '/payment/new'     => 'paymentr#new',         as: 'new_payment'
+    post   '/payment'         => 'payment#create',       as: 'payment'
+    get    '/history'         => 'history#show',         as: 'history'
   end
 
 end
