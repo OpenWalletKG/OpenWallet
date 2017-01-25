@@ -25,13 +25,13 @@ Rails.application.routes.draw do
     delete  'logout', to: 'devise/sessions#destroy',  as: 'destroy_client_session'
 
     #Registration
-    get     'sign_up'   => 'devise/registrations#new',    as: 'new_client_registration'
-    get     'sign_up/cancel' => 'devise/registrations#cancel', as: 'cancel_client_registration'
-    get     'sign_up/edit'   => 'devise/registrations#edit', as: 'edit_client_registration'
-    post    'sign_up'   => 'devise/registrations#create', as: 'client_registration'
-    patch   'sign_up'   => 'devise/registrations#update'
-    put     'sign_up'   => 'devise/registrations#update'
-    delete  'sign_up'   => 'devise/registrations#destroy'
+    get     'sign_up'   => 'devise_registrations#new',    as: 'new_client_registration'
+    get     'sign_up/cancel' => 'devise_registrations#cancel', as: 'cancel_client_registration'
+    get     'sign_up/edit'   => 'devise_registrations#edit', as: 'edit_client_registration'
+    post    'sign_up'   => 'devise_registrations#create', as: 'client_registration'
+    patch   'sign_up'   => 'devise_registrations#update'
+    put     'sign_up'   => 'devise_registrations#update'
+    delete  'sign_up'   => 'devise_registrations#destroy'
 
     #Password
     get   'reset'                => 'devise/passwords#new',      as: 'new_client_password'

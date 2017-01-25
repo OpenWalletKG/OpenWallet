@@ -19,5 +19,5 @@ class Client < ApplicationRecord
          :recoverable, :rememberable, :trackable
 
   # belongs_to :individual
-  # accepts_nested_attributes_for :individual
+  # accepts_nested_attributes_for :entity
 end
