@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20170123095620) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "accounts", force: :cascade do |t|
     t.string   "number"
     t.datetime "created_at", null: false
@@ -43,11 +46,11 @@ ActiveRecord::Schema.define(version: 20170123095620) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.index ["account_id"], name: "index_clients_on_account_id"
-    t.index ["email"], name: "index_clients_on_email", unique: true
-    t.index ["entity_type", "entity_id"], name: "index_clients_on_entity_type_and_entity_id"
-    t.index ["reset_password_token"], name: "index_clients_on_reset_password_token", unique: true
-    t.index ["role_id"], name: "index_clients_on_role_id"
+    t.index ["account_id"], name: "index_clients_on_account_id", using: :btree
+    t.index ["email"], name: "index_clients_on_email", unique: true, using: :btree
+    t.index ["entity_type", "entity_id"], name: "index_clients_on_entity_type_and_entity_id", using: :btree
+    t.index ["reset_password_token"], name: "index_clients_on_reset_password_token", unique: true, using: :btree
+    t.index ["role_id"], name: "index_clients_on_role_id", using: :btree
   end
 
   create_table "corporate_individuals", force: :cascade do |t|
@@ -56,9 +59,9 @@ ActiveRecord::Schema.define(version: 20170123095620) do
     t.integer  "employee_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.index ["corporate_id"], name: "index_corporate_individuals_on_corporate_id"
-    t.index ["employee_id"], name: "index_corporate_individuals_on_employee_id"
-    t.index ["individual_id"], name: "index_corporate_individuals_on_individual_id"
+    t.index ["corporate_id"], name: "index_corporate_individuals_on_corporate_id", using: :btree
+    t.index ["employee_id"], name: "index_corporate_individuals_on_employee_id", using: :btree
+    t.index ["individual_id"], name: "index_corporate_individuals_on_individual_id", using: :btree
   end
 
   create_table "corporates", force: :cascade do |t|
@@ -95,8 +98,15 @@ ActiveRecord::Schema.define(version: 20170123095620) do
     t.integer  "action_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["action_id"], name: "index_roles_actions_on_action_id"
-    t.index ["role_id"], name: "index_roles_actions_on_role_id"
+    t.index ["action_id"], name: "index_roles_actions_on_action_id", using: :btree
+    t.index ["role_id"], name: "index_roles_actions_on_role_id", using: :btree
   end
 
+  add_foreign_key "clients", "accounts"
+  add_foreign_key "clients", "roles"
+  add_foreign_key "corporate_individuals", "corporates"
+  add_foreign_key "corporate_individuals", "employees"
+  add_foreign_key "corporate_individuals", "individuals"
+  add_foreign_key "roles_actions", "actions"
+  add_foreign_key "roles_actions", "roles"
 end

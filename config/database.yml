@@ -23,11 +23,11 @@ test: &test
 production:
   adapter: postgresql
   encoding: utf8
-  database: ow_production
+  database: ENV['POSTGRES_DB']
   pool: 5
   timeout: 5000
-  username: openwallet
-  password: ow2017
+  username: ENV['POSTGRES_USER']
+  password: ENV['POSTGRES_PWD']
   host: localhost
   port: 5432
 
