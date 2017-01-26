@@ -11,4 +11,13 @@ class Individual < ApplicationRecord
   validates :dob, presence: true
 
 
+  def self.registration(individual_params)
+    individual_params = individual_params.permit(:first_name, :last_name, :inn, :dob)
+    Individual.create(individual_params)
+  end
+
+  def self.registration_employee
+
+  end
+
 end

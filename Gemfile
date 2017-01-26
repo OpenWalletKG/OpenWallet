@@ -13,6 +13,7 @@ gem 'pg'
 gem 'bootstrap3-datetimepicker-rails'
 gem 'momentjs-rails'
 gem 'bootstrap-sass', '~> 3.3.6'
+gem 'pry-byebug'
 
 gem 'rails', '~> 5.0.1'
 gem 'sqlite3'
