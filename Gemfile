@@ -7,6 +7,7 @@ end
 
 gem 'devise'
 gem 'dotenv-rails'
+gem 'pg'
 
 # frontend
 gem 'bootstrap3-datetimepicker-rails'
