@@ -16,9 +16,9 @@ RSpec.describe Account, :type => :model do
 
   it "is invalid with a duplicate number" do
     Account.create(number: '0556120732')
-    account = Account.new(number: '0556120732')
-    account.valid?
-    expect(account.errors[:number]).to include("has already been taken")
+    new_account = Account.new(number: '0556120732')
+    new_account.valid?
+    expect(new_account.errors[:number]).to include("has already been taken")
   end
 
   it { should have_one(:client) }
