@@ -4,8 +4,6 @@ $(document).on('ready',function () {
     var cardpayment = document.getElementById("Individual_registration_block");
     var internetpayment = document.getElementById("Corporate_registration_block");
     var show = document.getElementById("show");
-    var cardpayment = document.getElementById("Maxim");
-    var internetpayment = document.getElementById("Omurbek");
     var hiding = document.getElementById("hiding");
 
     for (var i = 0; i < radios.length; i++) {
