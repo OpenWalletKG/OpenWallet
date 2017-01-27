@@ -59,5 +59,32 @@ end
 # Possible values are :truncation and :transaction
 # The :transaction strategy is faster, but might give you threading problems.
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
+
 Cucumber::Rails::Database.javascript_strategy = :truncation
+
+#Capybara.default_driver = :selenium
+
+begin
+  require 'database_cleaner'
+  require 'database_cleaner/cucumber'
+  DatabaseCleaner.strategy = :truncation
+
+rescue NameError
+  raise "You need to add database_cleaner to your Gemfile (in the :test group) if you wish to use it."
+end
+
+# Before do
+#   DatabaseCleaner.start
+#   load "#{Rails.root}/db/test_seeds.rb"
+# end
+
+After do |scenario|
+  DatabaseCleaner.clean
+end
+# Possible values are :truncation and :transaction
+# The :transaction strategy is faster, but might give you threading problems.
+# See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
+Before do |scenario|
+  load Rails.root.join('features/seeds.rb')
+end
 

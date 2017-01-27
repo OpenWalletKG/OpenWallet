@@ -58,3 +58,38 @@ When(/^перехожу на другую вкладку браузера$/) do
   # last_handle = page.driver.browser.window_handles.last
   # page.driver.browser.switch_to.window(last_handle)
 end
+
+
+When(/^выбираю в радио батон "([^"]*)"$/) do |value|
+  choose(value)
+end
+
+When(/^пользователь вводит номер телефона$/) do |table|
+  # table is a table.hashes.keys # => [:field, :value]
+  pending
+end
+
+When(/^ввожу в поле номер телефона$/) do |table|
+  within('#new_client') do
+    for row in table.hashes
+      fill_in row[:field], :with => row[:value]
+    end
+  end
+end
+
+
+When(/^ввожу данные в поля форм$/) do |table|
+  within('#new_client') do
+    for row in table.hashes
+      fill_in row[:field], :with => row[:value]
+    end
+  end
+end
+
+When(/^вижу на странице "([^"]*)"$/) do |message|
+  page.assert_text message
+end
+
+When(/^нажимает на кнопку "([^"]*)"$/) do |button|
+  click_link(button)
+end
