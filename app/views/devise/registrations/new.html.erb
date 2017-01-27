@@ -8,9 +8,9 @@
 
     <div class="col-md-6 move" >
       <div>
-        <input type="radio" name="regtype" value="fiz">Физическое лицо<Br>
+        <input type="radio" name="regtype" value="fiz" id="fizik">Физическое лицо<Br>
         <div class="table-bordered" id="description_area">Описание про физ лицо</div>
-        <input type="radio" name="regtype" value="jur">Юридическое лицо<Br>
+        <input type="radio" name="regtype" value="jur" id="jurik">Юридическое лицо<Br>
         <div class="table-bordered" id="description_area">Описание про юр лицо</div>
         <div class="actions">
           <button name="continue" value="continue" id="show" class="registration_form_btn">Продолжить</button>
@@ -19,9 +19,9 @@
     </div>
   </div>
 </div>
-
+<div id="msform">
 <div id="Individual_registration_block">
-  <div class="container" id="msform">
+  <div class="container" >
     <!--<form >-->
 
     <ul id="progressbar">
@@ -87,7 +87,7 @@
 
 <div id="Corporate_registration_block">
   <div class="container">
-    <form id="msform">
+    <form >
       <ul id="progressbar">
         <li class="active">Номер Контакта</li>
         <li>Потверждение</li>
@@ -120,8 +120,7 @@
     </form>
   </div>
 </div>
-
-<script>
+</div><script>
 
 $('#dob_select').datepicker({
   locale: 'en',
