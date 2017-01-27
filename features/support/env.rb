@@ -7,6 +7,7 @@
 require 'cucumber/rails'
 require 'selenium-webdriver'
 
+include ActionController::Helpers
 Capybara.default_driver = :selenium
 Capybara.server_port = 3000
 

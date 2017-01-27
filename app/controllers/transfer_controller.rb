@@ -1,4 +1,6 @@
 class TransferController < WalletController
+  before_action :authenticate_client!
+
   def show
   end
 
