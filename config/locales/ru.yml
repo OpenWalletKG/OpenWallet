@@ -1,0 +1,6 @@
+# DatetimePicker formting
+ru:
+  datepicker:
+    dformat: '%d-%m-%Y'
+    pformat: 'DD-MM-YYYY'
+    weekstart: 1

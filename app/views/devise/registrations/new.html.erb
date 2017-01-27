@@ -1,8 +1,28 @@
-<h2>Sign up</h2>
-<div id="Maxim">
+<div class="container">
+  <div id="hiding">
+    <div class="col-md-5">
+      <div class="row registration_form_image_area" id="registration_form_image_area">
+        <%= image_tag "wallet.png" %>
+      </div>
+    </div>
+
+    <div class="col-md-6 move" >
+      <div>
+        <input type="radio" name="regtype" value="fiz">Физическое лицо<Br>
+        <div class="table-bordered" id="description_area">Описание про физ лицо</div>
+        <input type="radio" name="regtype" value="jur">Юридическое лицо<Br>
+        <div class="table-bordered" id="description_area">Описание про юр лицо</div>
+        <div class="actions">
+          <button name="continue" value="continue" id="show" class="registration_form_btn">Продолжить</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="Individual_registration_block">
   <div class="container" id="msform">
     <!--<form >-->
-
 
     <ul id="progressbar">
       <li class="active">Номер Телефона</li>
@@ -23,9 +43,9 @@
 
         <fieldset>
           <h2 class="fs-title">Введите </h2>
-          <%= f.label :email %><br />
+          <%= f.label :email, class: "form-label"%><br />
           <%= f.email_field :email, autofocus: true %>
-          <div>
+          <div class="individual_entity_form">
           <%= f.fields_for :entity_attributes do |entity| %>
             <%= entity.label :first_name %><br />
             <%= entity.text_field :first_name %>
@@ -34,7 +54,7 @@
             <%= entity.label :inn %><br />
             <%= entity.text_field :inn %>
             <%= entity.label :dob %><br />
-            <%= entity.text_field :dob %>
+            <%= entity.date_field :dob, :html => {:id => "dob_select"} %>
           <% end %>
           </div>
 
@@ -63,33 +83,9 @@
   </div>
 </div>
 
-<h1>Main#homepage</h1>
-<p>Find me in app/views/main/homepage.html.erb</p>
 
 
-
-<div class="container">
-  <div id="hiding">
-    <div class="col-md-5">
-      <div class="row table-bordered" id="image_area">
-        <%= image_tag "wallet.png" %>
-      </div>
-    </div>
-
-    <div class="col-md-6 move" >
-      <div>
-        <input type="radio" name="regtype" value="fiz">Физическое лицо<Br>
-        <div class="table-bordered" id="description_area">Описание про физ лицо</div>
-        <input type="radio" name="regtype" value="jur">Юридическое лицо<Br>
-        <div class="table-bordered" id="description_area">Описание про юр лицо</div>
-        <div class="actions">
-          <button name="continue" value="continue" id="show">Продолжить</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div id="Omurbek">
+<div id="Corporate_registration_block">
   <div class="container">
     <form id="msform">
       <ul id="progressbar">
@@ -124,4 +120,13 @@
     </form>
   </div>
 </div>
+
+<script>
+
+$('#dob_select').datepicker({
+  locale: 'en',
+  format: 'dd-mm-yyyy',
+  inline: true,
+  sideBySide: true});
+</script>
 

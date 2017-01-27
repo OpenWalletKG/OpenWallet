@@ -1,16 +1,11 @@
 
-<h1>Main#homepage</h1>
-<p>Find me in app/views/main/homepage.html.erb</p>
-
-
-
 <div class="container">
   <div id="hiding">
-    <div class="col-md-5">
+    <!-- <div class="col-md-5">
       <div class="row table-bordered" id="image_area">
         <%= image_tag "wallet.png" %>
       </div>
-    </div>
+    </div> -->
 
     <div class="col-md-6 move" >
       <div>

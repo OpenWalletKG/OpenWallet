@@ -1,8 +1,8 @@
 $(document).on('ready',function () {
     var radios = document.getElementsByName("regtype");
 // var show = document.getElementsById("show");
-    var cardpayment = document.getElementById("Maxim");
-    var internetpayment = document.getElementById("Omurbek");
+    var cardpayment = document.getElementById("Individual_registration_block");
+    var internetpayment = document.getElementById("Corporate_registration_block");
     var hiding = document.getElementById("hiding");
     for (var i = 0; i < radios.length; i++) {
         radios[i].onclick = function () {

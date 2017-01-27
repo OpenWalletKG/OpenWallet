@@ -19,13 +19,20 @@ html {
 .row {min-height: 500px}
 #description_area {min-height: 100px; max-width: 300px;}
 .actions {padding-top: 5%; padding-left: 20%;}
-#Maxim {display: none;}
-#Omurbek {display: none;}
+#Individual_registration_block {display: none;}
+#Corporate_registration_block {display: none;}
 
-#image_area img{
-    max-height: 100%;
-    max-width: 100%;
+.registration_form_image_area img{
+    box-sizing: border-box;
+    margin-top: 20px;
+    height: 235px;
+    width: 100%;
 }
+
+.registration_form_btn {
+
+}
+
 .move {
     float: right;
 }
@@ -38,11 +45,22 @@ body {
           url('http://thecodeplayer.com/uploads/media/gs.png');
 
 }
-/*form styles*/
+.main_page_block {
+  margin: 0 auto;
+  text-align: center;
+}
 
-/*.container {
-	background: url('http://thecodeplayer.com/uploads/media/gs.png');
-}*/
+.main_page_welcome {
+  margin: 0 auto;
+  padding: 0 0 10px 0;
+  color: #D4A190;
+
+}
+
+body .main_page_img {
+  /*padding: 0 10px;*/
+}
+
 #msform {
   width: 600px;
   margin: 50px auto;
@@ -81,7 +99,7 @@ body {
   font-size: 13px;
 }
 /*buttons*/
-#msform .action-button {
+#msform .action-button, .registration_form_btn {
   width: 100px;
   background: #27AE60;
   font-weight: bold;
@@ -91,6 +109,9 @@ body {
   cursor: pointer;
   padding: 10px 5px;
   margin: 10px 5px;
+}
+.registration_form_btn:hover, .registration_form_btn:focus {
+  box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
 }
 #msform .action-button:hover, #msform .action-button:focus {
   box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
