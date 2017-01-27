@@ -6,7 +6,8 @@ class Corporate < ApplicationRecord
   has_many :employees, through: :corporate_individuals
   has_many :individuals, through: :corporate_individuals
 
-  validates :registration_number, presence: true
+  validates :registration_number, presence: true,
+            uniqueness: true
 
   validates :bin, presence: true, 
             uniqueness: true
