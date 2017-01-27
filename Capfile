@@ -26,5 +26,6 @@ require 'capistrano/puma'
 require 'capistrano/rails/console'
 require 'airbrussh/capistrano'
 require 'capistrano/puma/nginx'
+require 'capistrano/rails/collection'
 
 Dir.glob("lib/capistrano/tasks/*.rake").each { |r| import r }
