@@ -17,6 +17,10 @@
              <p class="navbar-text">
                 Привет, <%= current_client.entity.first_name %>!
              </p>
+            <span class="glyphicon glyphicon-cog">
+              <%= link_to "Настройки аккаунта", edit_client_registration_path %>
+            </span>
+
         <% end %>
       </ul>
       <ul class="navbar-nav navbar-right">
