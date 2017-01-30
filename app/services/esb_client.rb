@@ -2,7 +2,7 @@ class EsbClient
   include HTTParty
   base_uri ENV['ESB_API_BASE_URI']
 
-  def getClient(client_id)
+  def self.getClient(client_id)
     response = post('/client/v1/getClient',
       { body:
         {
@@ -12,7 +12,7 @@ class EsbClient
       )
   end
 
-  def findClient(id_num, client_type)
+  def self.findClient(id_num, client_type)
     response = post('/client/v1/getClient',
       { body:
         {
@@ -23,7 +23,7 @@ class EsbClient
       )
   end
 
-  def findAccount(num, client_id)
+  def self.findAccount(num, client_id)
     response = post('/account/v1/findAccount',
       { body:
         {
@@ -34,7 +34,7 @@ class EsbClient
       )
   end
 
-  def getAccountSaldo(account_id)
+  def self.getAccountSaldo(account_id)
     response = post('/account/v1/getAccountSaldo',
       { body:
         {
@@ -44,7 +44,7 @@ class EsbClient
       )
   end
 
-  def getAccountStatementByPeriod(account_id, date_beg, date_end)
+  def self.getAccountStatementByPeriod(account_id, date_beg, date_end)
     response = post('/client/v1/getAccountStatement',
       { body:
         {
@@ -56,7 +56,7 @@ class EsbClient
       )
   end
 
-  def getAccountStatementByLimit(account_id, limit)
+  def self.getAccountStatementByLimit(account_id, limit)
     response = post('/client/v1/getAccountStatement',
       { body:
         {
@@ -67,7 +67,7 @@ class EsbClient
       )
   end
 
-  def findAgent(id_num, reg_num)
+  def self.findAgent(id_num, reg_num)
     response = post('/agent/v1/findAgent',
       { body:
         {
@@ -78,7 +78,7 @@ class EsbClient
       )
   end
 
-  def getAgent(agent_id)
+  def self.getAgent(agent_id)
     response = post('/agent/v1/getAgent',
       { body:
         {
@@ -88,7 +88,7 @@ class EsbClient
       )
   end
 
-  def getAccountCalendar(account_id, date_month, date_year)
+  def self.getAccountCalendar(account_id, date_month, date_year)
     response = post('/account/v1/getAccountCalendar',
       { body:
         {
@@ -100,19 +100,19 @@ class EsbClient
       )
   end
 
-  def addTransfer(agent_id, account_id, client_id, amount, tpay_document_id, target)
+  def self.addTransfer(agent_id, account_id, client_id, amount, tpay_document_id, target)
     params = transfer_params(agent_id, account_id, client_id, amount, tpay_document_id, target)
     path = '/document/v1/addTransfer'
     return transfer(path, { body: params.to_json} )
   end
 
-  def removeTransfer(agent_id, account_id, client_id, amount, tpay_document_id, target)
+  def self.removeTransfer(agent_id, account_id, client_id, amount, tpay_document_id, target)
     params = transfer_params(agent_id, account_id, client_id, amount, tpay_document_id, target)
     path = '/document/v1/removeTransfer'
     return transfer(path, { body: params.to_json})
   end
 
-  def addTransferCard(agent_id, client_id, amount, tpay_document_id, target, agent_id_provider)
+  def self.addTransferCard(agent_id, client_id, amount, tpay_document_id, target, agent_id_provider)
     path = '/document/v1/addTransferCard'
     params = {
         agentId: agent_id,
@@ -125,7 +125,7 @@ class EsbClient
     return transfer(path, { body: params.to_json })
   end
 
-  def removeTransferCard(amount, tpay_document_id, target, agent_id_provider)
+  def self.removeTransferCard(amount, tpay_document_id, target, agent_id_provider)
     path = '/document/v1/removeTransferCard'
     params = {
       agentIdProvider: agent_id_provider,
@@ -135,7 +135,7 @@ class EsbClient
     }
   end
 
-  def getStatus(document_id)
+  def self.getStatus(document_id)
     response = post('/document/v1/getStatus',
       { body:
         {
@@ -145,7 +145,7 @@ class EsbClient
       )
   end
 
-  def executeTransfer(document_id)
+  def self.executeTransfer(document_id)
     response = post('/document/v1/executeTransfer',
       { body:
         {
@@ -155,7 +155,7 @@ class EsbClient
       )
   end
 
-  def transfer_params(agent_id, account_id, client_id, amount, tpay_document_id, target)
+  def self.transfer_params(agent_id, account_id, client_id, amount, tpay_document_id, target)
     {
       'agentId': agent_id,
       'accountId': account_id,
@@ -166,7 +166,7 @@ class EsbClient
       }
   end
 
-  def transfer(path, params)
+  def self.transfer(path, params)
     response = post(path, params)
   end
 
