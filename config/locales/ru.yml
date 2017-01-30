@@ -4,3 +4,8 @@ ru:
     dformat: '%d-%m-%Y'
     pformat: 'DD-MM-YYYY'
     weekstart: 1
+
+
+ru:
+  individual:
+    dob: "Дата рождения"    

@@ -30,7 +30,14 @@ html {
 }
 
 .registration_form_btn {
+  
+}
 
+.individual_form_registration {
+  display: inline-block;
+  /*float:left;*/
+  width: 49%;
+  box-sizing: border-box;
 }
 
 .move {
@@ -73,7 +80,6 @@ body .main_page_img {
   border-radius: 3px;
   box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
   padding: 20px 30px;
-
   box-sizing: border-box;
   width: 80%;
   margin: 0 10%;
@@ -92,12 +98,13 @@ body .main_page_img {
   border: 1px solid #ccc;
   border-radius: 3px;
   margin-bottom: 10px;
-  width: 50%;
+  /*width: 50%;*/
   box-sizing: border-box;
   font-family: montserrat;
   color: #2C3E50;
   font-size: 13px;
 }
+
 /*buttons*/
 #msform .action-button, .registration_form_btn {
   width: 100px;
@@ -111,6 +118,10 @@ body .main_page_img {
   margin: 10px 5px;
 }
 .registration_form_btn:hover, .registration_form_btn:focus {
+  box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+}
+
+.sign_up_btn:hover, .sign_up_btn:focus {
   box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
 }
 #msform .action-button:hover, #msform .action-button:focus {
@@ -181,6 +192,20 @@ body .main_page_img {
 }
 
 
+.individual_form_control {
+  width: 100%;
+}
 
+.sign_up_btn {
+  width: 250px;
+  background: #27AE60;
+  font-weight: bold;
+  color: white;
+  border: 0 none;
+  border-radius: 1px;
+  cursor: pointer;
+  padding: 10px 5px;
+  margin: 10px 5px;
+}
 
 
