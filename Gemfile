@@ -8,6 +8,7 @@ end
 gem 'devise'
 gem 'dotenv-rails'
 gem 'pg'
+gem 'base58'
 gem 'httparty'
 
 # frontend

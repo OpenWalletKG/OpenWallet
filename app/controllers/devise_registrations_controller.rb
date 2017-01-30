@@ -3,7 +3,8 @@ class DeviseRegistrationsController < Devise::RegistrationsController
 # before_action :configure_account_update_params, only: [:update]
 
   def create
-    resource = Client.registration(params)
+
+    resource = Registration.new( params ).register_client
 
     yield resource if block_given?
     if resource.persisted?

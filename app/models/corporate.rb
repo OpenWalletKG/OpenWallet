@@ -9,7 +9,7 @@ class Corporate < ApplicationRecord
   validates :registration_number, presence: true,
             uniqueness: true
 
-  validates :bin, presence: true, 
+  validates :in, presence: true,
             uniqueness: true
 
   validates :address, presence: true

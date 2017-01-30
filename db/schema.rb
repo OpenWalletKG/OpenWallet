@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 20170123095620) do
 
   create_table "corporates", force: :cascade do |t|
     t.string   "registration_number"
-    t.string   "bin"
+    t.string   "in"
     t.string   "address"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(version: 20170123095620) do
     t.string   "last_name"
     t.string   "first_name"
     t.date     "dob"
-    t.string   "inn"
+    t.string   "in"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

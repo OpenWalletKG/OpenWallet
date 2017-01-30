@@ -45,6 +45,7 @@ GEM
     arel (7.1.4)
     autoprefixer-rails (6.7.0)
       execjs
+    base58 (0.1.0)
     bcrypt (3.1.11)
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
@@ -291,6 +292,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  base58
   bootstrap-sass (~> 3.3.6)
   bootstrap3-datetimepicker-rails
   byebug

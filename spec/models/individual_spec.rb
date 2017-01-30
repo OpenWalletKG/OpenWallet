@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Individual, :type => :model do
 
   subject {
-    described_class.create(first_name: 'Azamat', last_name: 'Djumabekov', inn: '987234985723',
+    described_class.create(first_name: 'Azamat', last_name: 'Djumabekov', in: '987234985723',
                            dob: Date.today
     )
   }
@@ -23,7 +23,7 @@ RSpec.describe Individual, :type => :model do
   end
 
   it "is not valid without an inn" do
-    subject.inn = nil
+    subject.in = nil
     expect(subject).to_not be_valid
   end
 
@@ -33,14 +33,14 @@ RSpec.describe Individual, :type => :model do
   end
 
   it "is invalid with a duplicate inn" do
-    Individual.create(first_name: 'Azamat', last_name: 'Djumabekov', inn: '987234985723',
+    Individual.create(first_name: 'Azamat', last_name: 'Djumabekov', in: '987234985723',
                       dob: Date.today
     )
-    new_inn = Individual.create(first_name: 'Dmitrii', last_name: 'Zagvoskin', inn: '987234985723',
+    new_inn = Individual.create(first_name: 'Dmitrii', last_name: 'Zagvoskin', in: '987234985723',
                                 dob: Date.today
     )
     new_inn.valid?
-    expect(new_inn.errors[:inn]).to include("has already been taken")
+    expect(new_inn.errors[:in]).to include("has already been taken")
   end
 
   it { should have_many(:clients) }

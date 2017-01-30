@@ -4,7 +4,7 @@ class CreateIndividuals < ActiveRecord::Migration[5.0]
       t.string :last_name
       t.string :first_name
       t.date :dob
-      t.string :inn
+      t.string :in
 
       t.timestamps
     end

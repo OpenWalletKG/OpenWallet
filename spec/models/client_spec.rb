@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Client, :type => :model do
 
   role = Role.create(definition: 'Person')
-  individual = Individual.create(first_name: 'Vasya', last_name: 'Tor', inn: '121212', dob: Time.now)
+  individual = Individual.create(first_name: 'Vasya', last_name: 'Tor', in: '121212', dob: Time.now)
   account = Account.create(number: '0557140446')
 
   subject {

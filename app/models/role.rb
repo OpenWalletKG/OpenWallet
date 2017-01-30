@@ -5,4 +5,5 @@ class Role < ApplicationRecord
 
   validates :definition, presence: true, 
             uniqueness: true
+
 end
