@@ -8,7 +8,7 @@
   И кликаю на "Продолжить"
   И ввожу в поле номер телефона
     | field                     | value     |
-    | client_client_mobile             | 996996996 |
+    | client_client_mobile      | 996996996 |
     | client_client_country     |  KGZ      |
   И кликаю на кнопку "Next"
   И ввожу данные в поля форм
