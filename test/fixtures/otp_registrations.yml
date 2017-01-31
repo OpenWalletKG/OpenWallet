@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  draft_first_registration: one
+  PIN: MyString
+  try_number: 1
+  succeeded: false
+
+two:
+  draft_first_registration: two
+  PIN: MyString
+  try_number: 1
+  succeeded: false

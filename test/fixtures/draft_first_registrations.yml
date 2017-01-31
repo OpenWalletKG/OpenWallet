@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  phone: MyString
+  end_of_ban: 2017-01-31
+
+two:
+  phone: MyString
+  end_of_ban: 2017-01-31

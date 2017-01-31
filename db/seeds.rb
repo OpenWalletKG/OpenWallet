@@ -22,9 +22,11 @@ role_agent.actions << action_sell
 role_fiz.actions << action_buy
 role_fiz.actions << action_sell
 
+
 # RolesAction.create(role_id: role_agent0, action_id: action_sell.id)
 image_path = "#{Rails.root}/app/assets/images/fixtures/no_photo.jpg"
 image_file = File.new(image_path)
+
 
 person = Individual.create(first_name: 'Dima', last_name: 'Z', dob: Time.now, in: 'I00001')
 person_account = Account.create(number: person.in)
