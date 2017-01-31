@@ -7,18 +7,19 @@
   И выбираю в радио батон "fizik"
   И кликаю на "Продолжить"
   И ввожу в поле номер телефона
-    | field                     | value  |
-    | client_mobile             | 996996996|
+    | field                     | value     |
+    | client_client_mobile             | 996996996 |
+    | client_client_country     |  KGZ      |
   И кликаю на кнопку "Next"
   И ввожу данные в поля форм
     | field                               | value           |
-    | client_email                        | jack@example.com|
-    | client_entity_attributes_first_name | Jack            |
-    | client_entity_attributes_last_name  | Doe             |
-    | client_entity_attributes_inn        | 44444555557     |
-    | client_entity_attributes_dob        | 12-10-1990      |
-    | client_password                     | 1515151515      |
-    | client_password_confirmation        | 1515151515      |
+    | client_client_email                 | jack@example.com|
+    | client_individual_first_name        | Jack            |
+    | client_individual_last_name         | Doe             |
+    | client_individual_in                | 44444555557     |
+    | client_individual_dob               | 12-10-1990      |
+    | client_client_password              | 1515151515      |
+    | client_client_password_confirmation | 1515151515      |
   И кликаю на кнопку "Sign up"
-  И вижу на странице "Привет,"
+  И вижу на странице "Привет"
   И нажимает на кнопку "Выход"
