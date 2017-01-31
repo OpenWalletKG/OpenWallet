@@ -9,7 +9,7 @@ class Registration
 
   def initialize( registration_params )
     unless registration_params[:registration].blank?
-      registration_params[:registration] = registration_params[:registration_params].capitalize
+      registration_params[:registration] = registration_params[:registration].capitalize
     end
 
     case registration_params[:registration]
