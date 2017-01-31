@@ -3,8 +3,22 @@ $(document).on('ready',function () {
     var current_fs, next_fs, previous_fs; //fieldsets
     var left, opacity, scale; //fieldset properties which we will animate
     var animating; //flag to prevent quick multi-click glitches
+    // var val=document.getElementById('client_mobile')
+    // $('.form').validate({ // initialize plugin
+    //     ignore:":not(:visible)",
+    //     rules: {
+    //         name : "required"
+    //     }
+    // });
 
     $(".next").click(function () {
+        // var val=document.getElementById('client_mobile');
+        // var val1=document.getElementById('client_email');
+
+
+
+        // if ($(".form").valid()){
+        // (val.value !== "" && val1.value !== ""){
         if (animating) return false;
         animating = true;
 
@@ -40,6 +54,14 @@ $(document).on('ready',function () {
             //this comes from the custom easing plugin
             easing: 'easeInOutBack'
         });
+        // }
+        //
+        // else
+        // {
+        //     alert("Поле не может быть пустым ")
+        //
+        // }
+
     });
 
     $(".previous").click(function () {

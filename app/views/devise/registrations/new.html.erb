@@ -31,24 +31,27 @@
       <li>Завершение</li>
     </ul>
     <%= form_for(resource, as: resource_name,  url: registration_path(resource_name)) do |f| %>
-        <%= f.hidden_field :registration_type, value: 'Individual' %>
+        <%= f.hidden_field :registration, value: 'Individual' %>
         <%= devise_error_messages! %>
         <fieldset>
           <h2 class="fs-title">Введите Номер Телефона</h2>
-
-          <%= f.text_field :mobile, placeholder: "+" %>
-
+          <%= f.fields_for :client do |client| %>
+          <%= client.text_field :mobile, placeholder: "+" %>
+          <%= client.text_field :country, placeholder: "country" %>
+          <%end%>
           <input type="button" name="next" class="next action-button" value="Next" />
         </fieldset>
 
         <fieldset>
           <h2 class="fs-title">Введите </h2>
           <div class="individual_form_registration">
-            <%= f.label :email, class: ""%><br />
-            <%= f.email_field :email, class: "individual_form_control", autofocus: true%>
+            <%= f.fields_for :client do |client| %>
+            <%= client.label :email, class: ""%><br />
+            <%= client.email_field :email, class: "individual_form_control", autofocus: true%>
+            <%end%>
           </div>
           <!-- <div class="individual_entity_form"> -->
-          <%= f.fields_for :entity_attributes do |entity| %>
+          <%= f.fields_for :individual do |entity| %>
           <div class="individual_form_registration"> 
             <%= entity.label :first_name %><br />
             <%= entity.text_field :first_name, class: "individual_form_control" %>
@@ -58,8 +61,8 @@
             <%= entity.text_field :last_name, class: "individual_form_control" %>
           </div>
           <div class="individual_form_registration">  
-            <%= entity.label :inn, 'INN' %><br />
-            <%= entity.text_field :inn, class: "individual_form_control" %>
+            <%= entity.label :in, 'INN' %><br />
+            <%= entity.text_field :in, class: "individual_form_control" %>
           </div>
           <div class="individual_form_registration">  
             <%= entity.label :dob, 'Date of birth' %><br />
@@ -70,22 +73,25 @@
           <!-- </div> -->
 
           <div class="individual_form_registration">
-          <%= f.label :password %>
+            <%= f.fields_for :client do |client| %>
+          <%= client.label :password %>
 
           <% if @minimum_password_length %>
               <em>(<%= @minimum_password_length %> characters minimum)</em>
           <% end %><br />
-          <%= f.password_field :password, class: "individual_form_control", autocomplete: "off" %>
+
+          <%= client.password_field :password, class: "individual_form_control", autocomplete: "off" %>
           </div>
 
           <div class="individual_form_registration">
-          <%= f.label :password_confirmation %><br />
-          <%= f.password_field :password_confirmation, autocomplete: "off" %><br/>
+          <%= client.label :password_confirmation %><br />
+          <%= client.password_field :password_confirmation, autocomplete: "off" %><br/>
           </div>
 
           <div class="actions">
-            <%= f.submit "Sign up", class: "sign_up_btn"%>
+            <%= client.submit "Sign up", class: "sign_up_btn"%>
           </div>
+            <% end %>
         </fieldset>
 
 
