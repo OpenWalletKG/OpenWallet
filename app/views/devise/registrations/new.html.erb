@@ -20,10 +20,75 @@
   </div>
 </div>
 <div id="msform">
-<div id="Individual_registration_block">
-  <div class="container" >
-    <!--<form >-->
+  <div id="Individual_registration_block">
+    <div class="container" >
+      <ul id="progressbar">
+        <li class="active">Номер Телефона</li>
+        <li>Персональные данные</li>
+        <li>Потверждение</li>
+        <li>Завершение</li>
+      </ul>
+      <%= form_for(resource, as: resource_name,  url: registration_path(resource_name)) do |f| %>
+          <%= f.hidden_field :registration, value: 'Individual' %>
+          <%= devise_error_messages! %>
+          <fieldset>
+            <h2 class="fs-title">Введите Номер Телефона</h2>
+            <%= f.fields_for :client do |client| %>
+            <%= client.text_field :mobile, placeholder: "+" %>
+            <%= client.text_field :country, placeholder: "country" %>
+            <%end%>
+            <input type="button" name="next" class="next action-button" value="Next" />
+          </fieldset>
 
+          <fieldset>
+            <h2 class="fs-title">Введите </h2>
+            <div class="individual_form_registration">
+              <%= f.fields_for :client do |client| %>
+              <%= client.label :email, class: ""%><br />
+              <%= client.email_field :email, class: "individual_form_control", autofocus: true%>
+              <%end%>
+            </div>
+            <%= f.fields_for :individual do |entity| %>
+            <div class="individual_form_registration">
+              <%= entity.label :first_name %><br/>
+              <%= entity.text_field :first_name, class: "individual_form_control" %>
+            </div>
+            <div class="individual_form_registration">
+              <%= entity.label :last_name %><br/>
+              <%= entity.text_field :last_name, class: "individual_form_control" %>
+            </div>
+            <div class="individual_form_registration">
+              <%= entity.label :in, 'INN' %><br/>
+              <%= entity.text_field :in, class: "individual_form_control" %>
+            </div>
+            <div class="individual_form_registration">
+              <%= entity.label :dob, 'Date of birth' %><br/>
+              <%= entity.date_field :dob, "data-provide" => 'datepicker', class: "individual_form_control" %>
+            </div>
+            <% end %>
+            <%= f.fields_for :client do |client| %>
+            <div class="individual_form_registration">
+            <%= client.label :password %>
+            <% if @minimum_password_length %>
+                <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %><br/>
+            <%= client.password_field :password, class: "individual_form_control", autocomplete: "off" %>
+            </div>
+            <div class="individual_form_registration">
+            <%= client.label :password_confirmation %><br />
+            <%= client.password_field :password_confirmation, autocomplete: "off" %><br/>
+            </div>
+            <div class="actions">
+              <%= client.submit "Sign up", class: "sign_up_btn"%>
+            </div>
+            <% end %>
+          </fieldset>
+          <%= render "devise/shared/links" %>
+      <% end %>
+    </div>
+  </div>
+  <div id="Corporate_registration_block">
+  <div class="container">
     <ul id="progressbar">
       <li class="active">Номер Телефона</li>
       <li>Персональные данные</li>
@@ -31,110 +96,59 @@
       <li>Завершение</li>
     </ul>
     <%= form_for(resource, as: resource_name,  url: registration_path(resource_name)) do |f| %>
-        <%= f.hidden_field :registration, value: 'Individual' %>
+        <%= f.hidden_field :registration, value: 'Corporate' %>
         <%= devise_error_messages! %>
         <fieldset>
           <h2 class="fs-title">Введите Номер Телефона</h2>
           <%= f.fields_for :client do |client| %>
-          <%= client.text_field :mobile, placeholder: "+" %>
-          <%= client.text_field :country, placeholder: "country" %>
+              <%= client.text_field :mobile, placeholder: "+" %>
+              <%= client.text_field :country, placeholder: "country" %>
           <%end%>
           <input type="button" name="next" class="next action-button" value="Next" />
         </fieldset>
 
         <fieldset>
           <h2 class="fs-title">Введите </h2>
-          <div class="individual_form_registration">
+          <div class="corporate_form_registration">
             <%= f.fields_for :client do |client| %>
-            <%= client.label :email, class: ""%><br />
-            <%= client.email_field :email, class: "individual_form_control", autofocus: true%>
+                <%= client.label :email, class: ""%><br />
+                <%= client.email_field :email, class: "corporate_form_control", autofocus: true%>
             <%end%>
           </div>
-          <!-- <div class="individual_entity_form"> -->
-          <%= f.fields_for :individual do |entity| %>
-          <div class="individual_form_registration"> 
-            <%= entity.label :first_name %><br />
-            <%= entity.text_field :first_name, class: "individual_form_control" %>
-          </div>
-          <div class="individual_form_registration">  
-            <%= entity.label :last_name %><br />
-            <%= entity.text_field :last_name, class: "individual_form_control" %>
-          </div>
-          <div class="individual_form_registration">  
-            <%= entity.label :in, 'INN' %><br />
-            <%= entity.text_field :in, class: "individual_form_control" %>
-          </div>
-          <div class="individual_form_registration">  
-            <%= entity.label :dob, 'Date of birth' %><br />
-            <%= entity.date_field :dob, "data-provide" => 'datepicker', class: "individual_form_control" %>
-           
+          <%= f.fields_for :corporate do |entity| %>
+              <div class="corporate_form_registration">
+                <%= entity.label :registration_number %><br />
+                <%= entity.text_field :registration_number, class: "corporate_form_control" %>
+              </div>
+              <div class="corporate_form_registration">
+                <%= entity.label :address %><br />
+                <%= entity.text_field :address, class: "corporate_form_control" %>
+              </div>
+              <div class="corporate_form_registration">
+                <%= entity.label :in, 'INN' %><br />
+                <%= entity.text_field :in, class: "corporate_form_control" %>
+              </div>
           <% end %>
-          </div> 
-          <!-- </div> -->
+          <%= f.fields_for :client do |client| %>
+          <div class="corporate_form_registration">
+                <%= client.label :password %>
 
-          <div class="individual_form_registration">
-            <%= f.fields_for :client do |client| %>
-          <%= client.label :password %>
+                <% if @minimum_password_length %>
+                    <em>(<%= @minimum_password_length %> characters minimum)</em>
+                <% end %><br/>
 
-          <% if @minimum_password_length %>
-              <em>(<%= @minimum_password_length %> characters minimum)</em>
-          <% end %><br />
-
-          <%= client.password_field :password, class: "individual_form_control", autocomplete: "off" %>
+                <%= client.password_field :password, class: "corporate_form_control", autocomplete: "off" %>
           </div>
-
-          <div class="individual_form_registration">
-          <%= client.label :password_confirmation %><br />
-          <%= client.password_field :password_confirmation, autocomplete: "off" %><br/>
-          </div>
-
+          <div class="corporate_form_registration">
+                  <%= client.label :password_confirmation %><br/>
+                  <%= client.password_field :password_confirmation, autocomplete: "off" %><br/>
+                </div>
           <div class="actions">
-            <%= client.submit "Sign up", class: "sign_up_btn"%>
-          </div>
+                  <%= client.submit "Sign up", class: "sign_up_btn"%>
+                </div>
             <% end %>
         </fieldset>
-
-
-        <%= render "devise/shared/links" %>
-
     <% end %>
-    <!--</form>-->
   </div>
 </div>
-
-
-
-<div id="Corporate_registration_block">
-  <div class="container">
-    <form >
-      <ul id="progressbar">
-        <li class="active">Номер Контакта</li>
-        <li>Потверждение</li>
-        <li>Завершение</li>
-      </ul>
-      <fieldset>
-        <h2 class="fs-title">Номер Контракта</h2>
-        <input type="text" name="" placeholder="Номер телефона" />
-        <input type="text" name="" placeholder="ИНН" />
-        <input type="text" name="" placeholder="Скан паспорта" />
-        <input type="text" name="" placeholder="Регистрационный номер" />
-        <input type="text" name="" placeholder="Страна" />
-        <input type="text" name="" placeholder="E-mail" />
-        <input type="text" name="" placeholder="пароль" />
-        <input type="text" name="" placeholder="потверждение пароля" />
-        <!-- <input type="button" name="previous" class="previous action-button" value="Previous" /> -->
-        <input type="button" name="next" class="next action-button" value="Next" />
-      </fieldset>
-      <fieldset>
-        <h2 class="fs-title">Подтверждение</h2>
-        <input type="text" name="" placeholder="Введите код" />
-        <input type="button" name="previous" class="previous action-button" value="Previous" />
-        <input type="button" name="next" class="next action-button" value="Next" />
-      </fieldset>
-      <fieldset>
-        <h2 class="fs-title">Завершение</h2>
-        <!-- <input type="button" name="previous" class="previous action-button" value="Previous" /> -->
-        <input type="submit" name="submit" class="submit action-button" value="Submit" />
-      </fieldset>
-    </form>
-  </div>
+</div>
