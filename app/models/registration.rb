@@ -8,7 +8,11 @@ class Registration
 
 
   def initialize( registration_params )
-    case registration_params[:registration].capitalize
+    unless registration_params[:registration].blank?
+      registration_params[:registration] = registration_params[:registration_params].capitalize
+    end
+
+    case registration_params[:registration]
 
       when "Individual"
         @klass = Individual
@@ -49,7 +53,7 @@ class Registration
 
     entity  = @klass.create( @entity_params )
 
-    account = Account.create( generate_account_number( entity.in.to_i ) )
+    account = Account.create( number: Account.encode( entity.in.to_i ) )
 
     @client = Client.create(  mobile:       @client_params[:mobile],
                               account_id:   account.id,
@@ -77,9 +81,6 @@ class Registration
 
   private
 
-  def generate_account_number( unique_identifier )
-    { number: Base58.encode( unique_identifier ) }
-  end
 
 end
 
