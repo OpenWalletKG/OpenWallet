@@ -4,7 +4,7 @@ class Registration
   include ActiveModel::Conversion
   extend ActiveModel::Naming
 
-  attr_reader :client
+  attr_reader :client, :entity, :account
 
 
   def initialize( registration_params )
@@ -15,7 +15,7 @@ class Registration
     case registration_params[:registration]
 
       when "Individual"
-        @klass = Individual
+        @entity_class = Individual
         @entity_params = registration_params.require("individual").permit( :first_name,
                                                                            :last_name,
                                                                            :dob,
@@ -24,7 +24,7 @@ class Registration
       # TODO: Role detect
 
       when "Corporate"
-        @klass = Corporate
+        @entity_class = Corporate
         @entity_params = registration_params.require("corporate").permit( :registration_number,
                                                                           :address,
                                                                           :in )
@@ -33,7 +33,7 @@ class Registration
       # TODO: Bank, get employees and registration as Individuals
 
       else
-        @klass = nil
+        @entity_class = nil
         @entity_params = nil
         @role = nil
         # TODO: exception
@@ -51,14 +51,16 @@ class Registration
 
   def register_client
 
-    entity  = @klass.create( @entity_params )
+    # TODO: if @client already exists
 
-    account = Account.create( number: Account.encode( entity.in.to_i ) )
+    @entity  = @entity_class.create( @entity_params )
+
+    @account = Account.create( number: Account.encode( @entity.in.to_i ) )
 
     @client = Client.create(  mobile:       @client_params[:mobile],
-                              account_id:   account.id,
-                              entity_id:    entity.id,
-                              entity_type:  @klass.to_s,
+                              account_id:   @account.id,
+                              entity_id:    @entity.id,
+                              entity_type:  @entity_class.to_s,
                               role_id:      @role.id,
                               password:               @client_params[:password],
                               password_confirmation:  @client_params[:password_confirmation],
@@ -66,12 +68,13 @@ class Registration
                               email:                  @client_params[:email]  )
 
 
+    @client.persisted?
     # TODO: rollback if !@client.persisted?
   end
 
 
   def persisted?
-    !!@client
+    @client.nil? ? false : @client.persisted?
   end
 
 

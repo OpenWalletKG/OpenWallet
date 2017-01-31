@@ -4,7 +4,10 @@ class DeviseRegistrationsController < Devise::RegistrationsController
 
   def create
     registration_params = params.require("client")
-    resource = Registration.new( registration_params ).register_client
+    registration = Registration.new( registration_params )
+    registration.register_client
+
+    resource = registration.client
 
     yield resource if block_given?
     if resource.persisted?
