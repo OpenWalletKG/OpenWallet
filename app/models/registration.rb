@@ -20,16 +20,15 @@ class Registration
                                                                            :last_name,
                                                                            :dob,
                                                                            :in  )
-        @role = Role.find(3)
-      # TODO: Role detect
+        @role = Role.get_individual
 
       when "Corporate"
         @entity_class = Corporate
         @entity_params = registration_params.require("corporate").permit( :registration_number,
                                                                           :address,
                                                                           :in )
-        @role = Role.find(1)
-      # TODO: Role detect
+        @role = Role.get_agent
+      # TODO: Bank, Role detect if AGENT OR SUPPLIER
       # TODO: Bank, get employees and registration as Individuals
 
       else
