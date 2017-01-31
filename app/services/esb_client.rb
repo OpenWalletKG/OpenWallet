@@ -13,7 +13,7 @@ class EsbClient
   end
 
   def self.findClient(id_num, client_type)
-    response = post('/client/v1/getClient',
+    response = post('/client/v1/findClient',
       { body:
         {
           'IN': id_num,
@@ -45,7 +45,7 @@ class EsbClient
   end
 
   def self.getAccountStatementByPeriod(account_id, date_beg, date_end)
-    response = post('/client/v1/getAccountStatement',
+    response = post('/account/v1/getAccountStatement',
       { body:
         {
           'accountId': account_id,
@@ -57,7 +57,7 @@ class EsbClient
   end
 
   def self.getAccountStatementByLimit(account_id, limit)
-    response = post('/client/v1/getAccountStatement',
+    response = post('/account/v1/getAccountStatement',
       { body:
         {
           'accountId': account_id,
