@@ -1,2 +1,2 @@
-<span>Номер счета: <%= "12312313" %></span>
+<span>Номер счета: <%= Account.encode(current_client.entity.in.to_i) %></span>
 <span>Баланс: <%= "1000" %></span>
