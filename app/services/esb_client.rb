@@ -2,6 +2,12 @@ class EsbClient
   include HTTParty
   base_uri ENV['ESB_API_BASE_URI']
 
+  INDIVIDUAL = 2
+  CORPORATE = 1
+
+  scope :individual,  -> { INDIVIDUAL }
+  scope :corporate,   -> { CORPORATE }
+
   def self.getClient(client_id)
     response = post('/client/v1/getClient',
       { body:
