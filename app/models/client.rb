@@ -16,7 +16,7 @@ class Client < ApplicationRecord
   validates :password_confirmation, presence: true
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable
+         :recoverable, :rememberable, :trackable, :confirmable
 
 end
 
