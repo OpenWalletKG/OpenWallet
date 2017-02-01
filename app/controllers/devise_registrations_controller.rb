@@ -25,9 +25,6 @@ class DeviseRegistrationsController < Devise::RegistrationsController
       set_minimum_password_length
       respond_with resource
     end
-    if registration.client.save
-      UserMailer.welcome(registration.client).deliver_now
-    end
   end
 
 end
