@@ -6,7 +6,7 @@
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true %>
-  </div>
+  </div><br>
 
     <div class="col-md-3">
       <% if Client.confirmation_required?(current_client.email) == true %>
@@ -15,6 +15,10 @@
           <div class="red"><%= "Ваша почта не подтверждена"%></div>
       <% end %>
     </div><br>
+
+    <div>
+      <%= link_to "Подтверждение почты", new_client_confirmation_path %>
+    </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
