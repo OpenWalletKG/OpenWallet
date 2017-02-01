@@ -18,11 +18,11 @@ class EsbClient
       )
   end
 
-  def self.findClient(id_num, client_type)
+  def self.findClient(inn, client_type)
     response = post('/client/v1/findClient',
       { body:
         {
-          'IN': id_num,
+          'IN': inn,
           'clientType': client_type
           }.to_json
         }
@@ -73,11 +73,11 @@ class EsbClient
       )
   end
 
-  def self.findAgent(id_num, reg_num)
+  def self.findAgent(inn, reg_num)
     response = post('/agent/v1/findAgent',
       { body:
         {
-          'IN': id_num,
+          'IN': inn,
           'regNum': reg_num
           }.to_json
         }
