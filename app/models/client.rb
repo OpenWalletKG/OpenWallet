@@ -18,6 +18,10 @@ class Client < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :confirmable
 
+  def self.confirmation_required?(email)
+    Client.find_by_email(email).confirmed?
+  end
+
 end
 
 

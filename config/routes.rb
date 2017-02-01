@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
 
   root 'main#homepage' # needs to be changed to main#show
-
-  devise_for :clients, path: '', skip: [:sessions, :registrations, :passwords]
+  devise_for :clients, path: '', :controllers => { :confirmations => "confirmations" }, skip: [:sessions, :registrations, :passwords]
   as :client do
   #   #SignIn/SignOut[Sessions]
     get     'login', to: 'devise/sessions#new',      as: 'new_client_session'
