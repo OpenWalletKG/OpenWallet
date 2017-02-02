@@ -21,6 +21,7 @@ end
 When(/^должен увидеть текст "([^"]*)"$/) do |text|
   sleep(0.5)
   page.assert_text(text)
+  sleep(0.5)
 end
 
 When(/^выбираю из списка "([^"]*)" в поле "([^"]*)"$/) do |value, field|
@@ -92,4 +93,14 @@ end
 
 When(/^нажимает на кнопку "([^"]*)"$/) do |button|
   click_link(button)
+end
+
+When(/^кликаю на письмо через xpath$/) do
+  find(:xpath, "//*[@id='messages']/table/tbody/tr[1]/td[2]").click
+  sleep(0.5)
+end
+
+When(/^перехожу на страницу письма уведомления для физического лица$/) do
+  visit 'http://127.0.0.1:1080/messages/1.html'
+  sleep(0.5)
 end
