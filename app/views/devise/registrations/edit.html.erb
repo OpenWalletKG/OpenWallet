@@ -9,7 +9,7 @@
   </div><br>
 
     <div class="col-md-3">
-      <% if Client.confirmation_required?(current_client.email) == true %>
+      <% if current_client.confirmed? %>
         <div class="green"><%="Ваша почта подтверждена"%></div>
       <% else %>
           <div class="red"><%= "Ваша почта не подтверждена"%></div>
