@@ -12,6 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20170202063916) do
 
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -84,6 +85,13 @@ ActiveRecord::Schema.define(version: 20170202063916) do
     t.datetime "image_updated_at"
   end
 
+  create_table "draft_phone_registrations", force: :cascade do |t|
+    t.string   "phone"
+    t.datetime "end_of_ban"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "employees", force: :cascade do |t|
     t.string   "position"
     t.datetime "created_at", null: false
@@ -101,6 +109,16 @@ ActiveRecord::Schema.define(version: 20170202063916) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+  end
+
+  create_table "otp_registrations", force: :cascade do |t|
+    t.integer  "draft_phone_registration_id"
+    t.string   "PIN"
+    t.integer  "try_count"
+    t.boolean  "succeeded"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.index ["draft_phone_registration_id"], name: "index_otp_registrations_on_draft_phone_registration_id", using: :btree
   end
 
   create_table "roles", force: :cascade do |t|
@@ -123,6 +141,7 @@ ActiveRecord::Schema.define(version: 20170202063916) do
   add_foreign_key "corporate_individuals", "corporates"
   add_foreign_key "corporate_individuals", "employees"
   add_foreign_key "corporate_individuals", "individuals"
+  add_foreign_key "otp_registrations", "draft_phone_registrations"
   add_foreign_key "roles_actions", "actions"
   add_foreign_key "roles_actions", "roles"
 end

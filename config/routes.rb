@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'otp_test', to: 'otp_registration#new', as: 'otp_registration'
+
+  # get 'otp_registration/new,'
+
+  # get 'otp_registration/create,'
+
+  # get 'otp_registration/update'
+
   root 'main#homepage' # needs to be changed to main#show
   devise_for :clients, path: '', :controllers => { :confirmations => "confirmations" }, skip: [:sessions, :registrations, :passwords]
   as :client do

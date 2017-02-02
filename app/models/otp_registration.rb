@@ -1,3 +1,3 @@
 class OtpRegistration < ApplicationRecord
-  belongs_to :draft_first_registration
+  belongs_to :draft_phone_registration
 end
