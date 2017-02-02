@@ -101,6 +101,6 @@ When(/^кликаю на письмо через xpath$/) do
 end
 
 When(/^перехожу на страницу письма уведомления для физического лица$/) do
-  visit 'http://127.0.0.1:1080/messages/1.html'
+  visit 'http://127.0.0.1:1080/messages/2.html'
   sleep(0.5)
 end
