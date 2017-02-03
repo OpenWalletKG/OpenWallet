@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170201052505) do
+ActiveRecord::Schema.define(version: 20170202063916) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,10 @@ ActiveRecord::Schema.define(version: 20170201052505) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
     t.index ["account_id"], name: "index_clients_on_account_id", using: :btree
     t.index ["confirmation_token"], name: "index_clients_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_clients_on_email", unique: true, using: :btree
@@ -74,6 +78,10 @@ ActiveRecord::Schema.define(version: 20170201052505) do
     t.string   "address"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "employees", force: :cascade do |t|
@@ -87,8 +95,12 @@ ActiveRecord::Schema.define(version: 20170201052505) do
     t.string   "first_name"
     t.date     "dob"
     t.string   "in"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "roles", force: :cascade do |t|

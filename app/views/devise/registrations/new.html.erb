@@ -34,8 +34,8 @@
           <fieldset>
             <h2 class="fs-title">Введите Номер Телефона</h2>
             <%= f.fields_for :client do |client| %>
-            <%= client.text_field :mobile, placeholder: "+" %>
-            <%= client.text_field :country, placeholder: "country" %>
+            <%= client.text_field :mobile, placeholder: "Mobile" %>
+            <%= client.text_field :country, placeholder: "Country" %>
             <%end%>
             <input type="button" name="next" class="next action-button" value="Next" />
           </fieldset>
@@ -44,39 +44,41 @@
             <h2 class="fs-title">Введите </h2>
             <div class="individual_form_registration">
               <%= f.fields_for :client do |client| %>
-              <%= client.label :email, class: ""%><br />
-              <%= client.email_field :email, class: "individual_form_control", autofocus: true%>
+              <%= client.email_field :email, class: "individual_form_control", autofocus: true, placeholder: "Email" %>
               <%end%>
             </div>
             <%= f.fields_for :individual do |entity| %>
             <div class="individual_form_registration">
-              <%= entity.label :first_name %><br/>
-              <%= entity.text_field :first_name, class: "individual_form_control" %>
+              <%= entity.text_field :first_name, class: "individual_form_control", placeholder: "First_name" %>
             </div>
             <div class="individual_form_registration">
-              <%= entity.label :last_name %><br/>
-              <%= entity.text_field :last_name, class: "individual_form_control" %>
+              <%= entity.text_field :last_name, class: "individual_form_control", placeholder: "Last_name" %>
             </div>
             <div class="individual_form_registration">
-              <%= entity.label :in, 'INN' %><br/>
-              <%= entity.text_field :in, class: "individual_form_control" %>
+              <%= entity.text_field :in, class: "individual_form_control", placeholder: "INN" %>
             </div>
             <div class="individual_form_registration">
-              <%= entity.label :dob, 'Date of birth' %><br/>
-              <%= entity.date_field :dob, "data-provide" => 'datepicker', class: "individual_form_control" %>
+              <%= entity.label :Date_of_birth %>
+              <%= entity.date_field :dob, "data-provide" => 'datepicker', class: "individual_form_control"%>
+            </div>
+            <div class="image_field_registration">
+                <%= entity.label :Passport %><br>
+                <%= entity.file_field :image, class: 'image_form_control' %>
             </div>
             <% end %>
             <%= f.fields_for :client do |client| %>
-            <div class="individual_form_registration">
-            <%= client.label :password %>
-            <% if @minimum_password_length %>
-                <em>(<%= @minimum_password_length %> characters minimum)</em>
-            <% end %><br/>
-            <%= client.password_field :password, class: "individual_form_control", autocomplete: "off" %>
+            <div class="image_field_registration">
+              <%= client.label :Avatar %>
+              <%= client.file_field :image, class: 'image_form_control' %>
             </div>
             <div class="individual_form_registration">
-            <%= client.label :password_confirmation %><br />
-            <%= client.password_field :password_confirmation, autocomplete: "off" %><br/>
+            <% if @minimum_password_length %>
+                <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %>
+            <%= client.password_field :password, class: "individual_form_control", autocomplete: "off", placeholder: "Password" %>
+            </div>
+            <div class="individual_form_registration">
+            <%= client.password_field :password_confirmation, autocomplete: "off", placeholder: "Password_confirmation" %>
             </div>
             <div class="actions">
               <%= client.submit "Sign up", class: "sign_up_btn"%>
@@ -101,8 +103,8 @@
         <fieldset>
           <h2 class="fs-title">Введите Номер Телефона</h2>
           <%= f.fields_for :client do |client| %>
-              <%= client.text_field :mobile, placeholder: "+" %>
-              <%= client.text_field :country, placeholder: "country" %>
+              <%= client.text_field :mobile, placeholder: "Mobile" %>
+              <%= client.text_field :country, placeholder: "Country" %>
           <%end%>
           <input type="button" name="next" class="next action-button" value="Next" />
         </fieldset>
@@ -111,42 +113,43 @@
           <h2 class="fs-title">Введите </h2>
           <div class="corporate_form_registration">
             <%= f.fields_for :client do |client| %>
-                <%= client.label :email, class: ""%><br />
-                <%= client.email_field :email, class: "corporate_form_control", autofocus: true%>
+                <%= client.email_field :email, class: "corporate_form_control", autofocus: true, placeholder: "Email"%>
             <%end%>
           </div>
           <%= f.fields_for :corporate do |entity| %>
               <div class="corporate_form_registration">
-                <%= entity.label :registration_number %><br />
-                <%= entity.text_field :registration_number, class: "corporate_form_control" %>
+                <%= entity.text_field :registration_number, class: "corporate_form_control", placeholder: "Registration_number" %>
               </div>
               <div class="corporate_form_registration">
-                <%= entity.label :address %><br />
-                <%= entity.text_field :address, class: "corporate_form_control" %>
+                <%= entity.text_field :address, class: "corporate_form_control", placeholder: "Address" %>
               </div>
               <div class="corporate_form_registration">
-                <%= entity.label :in, 'INN' %><br />
-                <%= entity.text_field :in, class: "corporate_form_control" %>
+                <%= entity.text_field :in, class: "corporate_form_control", placeholder: "INN" %>
               </div>
+              <div class="image_field_registration">
+                <%= entity.label :Passport %><br>
+                <%= entity.file_field :image, class: 'image_form_control' %>
+              </div>              
           <% end %>
           <%= f.fields_for :client do |client| %>
-          <div class="corporate_form_registration">
-                <%= client.label :password %>
+            <div class="image_field_registration">
+              <%= client.label :Avatar %><br>
+              <%= client.file_field :image, class: 'image_form_control' %>
+            </div>
+            <div class="corporate_form_registration">
+              <% if @minimum_password_length %>
+                  <em>(<%= @minimum_password_length %> characters minimum)</em>
+              <% end %>
 
-                <% if @minimum_password_length %>
-                    <em>(<%= @minimum_password_length %> characters minimum)</em>
-                <% end %><br/>
-
-                <%= client.password_field :password, class: "corporate_form_control", autocomplete: "off" %>
-          </div>
-          <div class="corporate_form_registration">
-                  <%= client.label :password_confirmation %><br/>
-                  <%= client.password_field :password_confirmation, autocomplete: "off" %><br/>
-                </div>
-          <div class="actions">
-                  <%= client.submit "Sign up", class: "sign_up_btn"%>
-                </div>
-            <% end %>
+              <%= client.password_field :password, class: "corporate_form_control", autocomplete: "off", placeholder: "Password" %>
+            </div>
+            <div class="corporate_form_registration">
+              <%= client.password_field :password_confirmation, autocomplete: "off", placeholder: "Password_confirmation" %>
+            </div>
+            <div class="actions">
+              <%= client.submit "Sign up", class: "sign_up_btn"%>
+            </div>
+          <% end %>
         </fieldset>
     <% end %>
   </div>

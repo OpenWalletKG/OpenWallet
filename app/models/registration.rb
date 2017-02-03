@@ -19,14 +19,16 @@ class Registration
         @entity_params = registration_params.require("individual").permit( :first_name,
                                                                            :last_name,
                                                                            :dob,
-                                                                           :in  )
+                                                                           :in, 
+                                                                           :image )
         @role = Role.get_individual
 
       when "Corporate"
         @entity_class = Corporate
         @entity_params = registration_params.require("corporate").permit( :registration_number,
                                                                           :address,
-                                                                          :in )
+                                                                          :in,
+                                                                          :image )
         @role = Role.get_agent
       # TODO: Bank, Role detect if AGENT OR SUPPLIER
       # TODO: Bank, get employees and registration as Individuals
@@ -43,7 +45,8 @@ class Registration
                                                                        :email,
                                                                        :password,
                                                                        :password_confirmation,
-                                                                       :country  )
+                                                                       :country,
+                                                                       :image  )
 
   end
 
@@ -64,7 +67,8 @@ class Registration
                               password:               @client_params[:password],
                               password_confirmation:  @client_params[:password_confirmation],
                               country:                @client_params[:country],
-                              email:                  @client_params[:email]  )
+                              email:                  @client_params[:email],
+                              image:                  @client_params[:image]  )
 
 
     @client.persisted?

@@ -1,7 +1,21 @@
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
+    <label>"Аватар"</label>
+    <div class="round-image-50">
+      <%= image_tag(current_client.image.url(:medium)) %>
+    </div><br>
+
+    <label>"Пасспорт"</label>
+    <div class="round-image-50">
+      <%= image_tag(current_client.entity.image.url(:medium)) %>
+    </div><br>   
+
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
+
+  <div class="field">
+    <%= f.file_field :image %>
+  </div><br>
 
   <div class="field">
     <%= f.label :email %><br />

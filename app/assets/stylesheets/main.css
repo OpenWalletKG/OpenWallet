@@ -33,11 +33,20 @@ html {
   
 }
 
-.individual_form_registration {
+.individual_form_registration, .corporate_form_registration {
   display: inline-block;
   /*float:left;*/
   width: 49%;
   box-sizing: border-box;
+}
+.image_field_registration {
+  display: inline-block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.image_form_control {
+  width: 100%;
 }
 
 .move {
@@ -192,7 +201,7 @@ body .main_page_img {
 }
 
 
-.individual_form_control {
+.individual_form_control, .corporate_form_control{
   width: 100%;
 }
 

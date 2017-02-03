@@ -23,11 +23,12 @@ role_fiz.actions << action_buy
 role_fiz.actions << action_sell
 
 # RolesAction.create(role_id: role_agent0, action_id: action_sell.id)
-
+image_path = "#{Rails.root}/app/assets/images/fixtures/no_photo.jpg"
+image_file = File.new(image_path)
 
 person = Individual.create(first_name: 'Dima', last_name: 'Z', dob: Time.now, in: 'I00001')
 person_account = Account.create(number: person.in)
-Client.create(mobile:'996700007411', password:'asdfasdf', email: "user@example.kg", country: 'KGZ', entity_id: person.id, entity_type: "Individual" , role_id:3, account_id: person_account.id)
+Client.create(mobile:'996700007411', password:'asdfasdf', email: "user@example.kg", country: 'KGZ', entity_id: person.id, entity_type: "Individual" , role_id:3, account_id: person_account.id, image: image_file)
 
 Employee.create(position: 'Директор')
 Employee.create(position: 'Бухгалтер')
@@ -41,9 +42,9 @@ CorporateIndividual.create(corporate_id: company.id, individual_id: vasya.id, em
 company_account = Account.create(number: company.in)
 
 
-Client.create(mobile:'996999999999', password:'asdfasdf', email: "company@example.kg", country: 'KGZ', entity_id: company.id, entity_type: "Corporate" , role_id:2, account_id: company_account.id)
+Client.create(mobile:'996999999999', password:'asdfasdf', email: "company@example.kg", country: 'KGZ', entity_id: company.id, entity_type: "Corporate" , role_id:2, account_id: company_account.id, image: image_file)
 
-Client.create(mobile: '092029213321', password:'asdfasdf', email: "user2@example.kg", country: 'KGZ', entity_id: vasya.id, entity_type:"Individual", role_id: 3, account_id: vasya_account.id)
+Client.create(mobile: '092029213321', password:'asdfasdf', email: "user2@example.kg", country: 'KGZ', entity_id: vasya.id, entity_type:"Individual", role_id: 3, account_id: vasya_account.id, image: image_file)
 
 #test for existance
 person = Individual.create(first_name: 'Dima', last_name: 'Z', dob: Time.now, in: 'I00001')
@@ -54,4 +55,4 @@ company = Corporate.create(registration_number: 'R11111', in: 'B1', address: 'as
 
 person = Individual.create(first_name: 'Azamat', last_name: 'J', dob: Time.now, in: '200001')
 person_account = Account.create(number: person.in)
-Client.create(mobile:'996-700-007411', password:'asdfasdf', country: 'KGZ', entity_id: person.id, entity_type: "Individual" , role_id:3, account_id: person_account.id)
+Client.create(mobile:'996-700-007411', password:'asdfasdf', country: 'KGZ', entity_id: person.id, entity_type: "Individual" , role_id:3, account_id: person_account.id, image: image_file)

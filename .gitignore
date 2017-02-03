@@ -33,6 +33,9 @@
 *.idea
 .rvmrc
 
+# Ignore all paperclip uploaded files.
+/public/system/*
+
 # Ignore Byebug command history file.
 .byebug_history
 

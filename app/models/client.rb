@@ -14,6 +14,11 @@ class Client < ApplicationRecord
   validates :email, presence: true
   validates :password, presence: true
   validates :password_confirmation, presence: true
+  has_attached_file :image,
+                    styles: { medium: '300x300>', thumb: '100x100>'},
+                    default_url: ":style/missing.png"
+  validates_attachment_content_type :image, 
+                    content_type: ['image/jpg', 'image/jpeg', 'image/gif', 'image/png']
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :confirmable
