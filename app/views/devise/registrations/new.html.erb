@@ -67,10 +67,6 @@
             </div>
             <% end %>
             <%= f.fields_for :client do |client| %>
-            <div class="image_field_registration">
-              <%= client.label :Avatar %>
-              <%= client.file_field :image, class: 'image_form_control' %>
-            </div>
             <div class="individual_form_registration">
             <% if @minimum_password_length %>
                 <em>(<%= @minimum_password_length %> characters minimum)</em>
@@ -132,10 +128,6 @@
               </div>              
           <% end %>
           <%= f.fields_for :client do |client| %>
-            <div class="image_field_registration">
-              <%= client.label :Avatar %><br>
-              <%= client.file_field :image, class: 'image_form_control' %>
-            </div>
             <div class="corporate_form_registration">
               <% if @minimum_password_length %>
                   <em>(<%= @minimum_password_length %> characters minimum)</em>
