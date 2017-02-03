@@ -4,12 +4,12 @@ module MessageSender
     auth_token = ENV['TWILIO_AUTH_TOKEN']
     client = Twilio::REST::Client.new(account_sid, auth_token)
     
-    client.account.messages.create({
+    message = client.account.messages.create({
       from: ENV['TWILIO_PHONE_NUMBER'],
       to:   phone,
       body: otp_code
       })
 
-    # message.status == 'queued'
+    message
   end
 end

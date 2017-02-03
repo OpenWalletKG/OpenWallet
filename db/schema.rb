@@ -113,7 +113,7 @@ ActiveRecord::Schema.define(version: 20170202063916) do
 
   create_table "otp_registrations", force: :cascade do |t|
     t.integer  "draft_phone_registration_id"
-    t.string   "PIN"
+    t.string   "pin"
     t.integer  "try_count"
     t.boolean  "succeeded"
     t.datetime "created_at",                  null: false

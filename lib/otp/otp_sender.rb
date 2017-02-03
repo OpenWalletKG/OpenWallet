@@ -1,31 +1,36 @@
-class OtpRegistrationController < ApplicationController
+class OtpSender
+  OTP_CODE_TTL = 120
+  OTP_CODE_RESEND_TIME = 30
 
-  def initialize(phone)
-    @phone = phone
-    @phone.insert(0, "+")
-    DraftPhoneRegistration.create(phone: @phone) if !DraftPhoneRegistration.find_by(phone: @phone).present? 
-    @phone_registration = DraftPhoneRegistration.find_by(phone: @phone)
-    @otp_code_ttl = 120
-    @otp_code_resend_time = 30
-  end  
+  def initialize(phone_number)
+    @phone_number = phone_number
+    phone_registration
+  end
+
+  def phone_registration
+    @phone_registration ||= begin
+      pr = DraftPhoneRegistration.find_by(phone: @phone_number)
+      pr = DraftPhoneRegistration.create(phone: @phone_number) if pr.nil?
+      pr
+    end
+  end
 
   def send_otp_code
     @try_counts = get_try_counts
-    if is_phone_banned && (@try_counts < 5)
+    if !is_phone_banned && (@try_counts < 5)
       @otp_code = OtpCodeGenerator.generate
       @try_counts += 1
       OtpRegistration.create( draft_phone_registration_id: @phone_registration.id, 
                               pin: @otp_code, 
                               try_count: @try_counts)
-      twilio_response = MessageSender.send_otp_code(@phone, @otp_code)
+      twilio_response = MessageSender.send_otp_code(@phone_number, @otp_code)
       puts twilio_response.status
       success_message = "A PIN code was successfully sent to your phone."
       # flash[:success] = success_message
     else
       set_phone_banned
       reset_phone_try_counts
-      @ban_end = TimeDifference.between(Time.now, DraftPhoneRegistration.find_by(phone: @phone).end_of_ban).humanize
-      redirect_to root_path
+      @ban_end = TimeDifference.between(Time.now, DraftPhoneRegistration.find_by(phone: @phone_number).end_of_ban).humanize
       error_message = <<-HEREDOC 
         We're sorry this phone number is banned in the system.
         You can try again in #{@ban_end}.
@@ -34,34 +39,20 @@ class OtpRegistrationController < ApplicationController
     end 
   end
 
-  def verify_otp_code(otp_code)
-    current_registration = OtpRegistration.where(draft_phone_registration_id: @phone_registration.id).last
-    current_registration.try_count += 1
-    if current_registration.pin == otp_code && is_otp_code_active
-      current_registration.succeeded = true
-      current_registration.save
-      return true
-    else
-      current_registration.succeeded = false
-      current_registration.save
-      return false
-    end
-  end  
-
-  # private 
-
-  def resend_otp_code 
-    if Time.now > (OtpRegistration.where(draft_phone_registration_id: @phone_registration.id).last.created_at + (@otp_code_ttl - @otp_code_resend_time))
+  def resend_otp_code
+    if Time.now > (OtpRegistration.where(draft_phone_registration_id: @phone_registration.id).last.created_at + (OTP_CODE_TTL - OTP_CODE_RESEND_TIME))
       @otp_code = OtpCodeGenerator.generate
       current_registration = OtpRegistration.where(draft_phone_registration_id: @phone_registration.id).last
       current_registration.update_attribute(:pin, @otp_code)
     end
-    twilio_response = MessageSender.send_otp_code(@phone, @otp_code)
+    twilio_response = MessageSender.send_otp_code(@phone_number, @otp_code)
     puts twilio_response.status
   end
 
+  private 
+
   def is_otp_code_active
-    if Time.now < (OtpRegistration.where(draft_phone_registration_id: @phone_registration.id).last.created_at + @otp_code_ttl)
+    if Time.now < (OtpRegistration.where(draft_phone_registration_id: @phone_registration.id).last.created_at + OTP_CODE_TTL)
       return true
     else
       return false
@@ -78,10 +69,12 @@ class OtpRegistrationController < ApplicationController
   end
 
   def is_phone_banned
-    if @phone_registration.end_of_ban.nil? || @phone_registration.end_of_ban <= Time.now
-      return true
-    else 
+    if @phone_registration.end_of_ban.nil?
       return false
+    elsif @phone_registration.end_of_ban <= Time.now
+      return false
+    else
+      return true
     end
   end
 
