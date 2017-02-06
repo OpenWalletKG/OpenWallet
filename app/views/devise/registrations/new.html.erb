@@ -76,11 +76,19 @@
             <div class="individual_form_registration">
             <%= client.password_field :password_confirmation, autocomplete: "off", placeholder: "Password_confirmation" %>
             </div>
+                <input type="button" name="next" class="next action-button" value="Next" />
+          </fieldset>
+
+            <fieldset>
+            <h2 class="fs-title">Подтверждение</h2>
+            <h3 class="fs-subtitle">Проверка ОТП</h3>
+            <input type="text" name="" placeholder="Введите код" />
+            <input type="button" name="otp" value="Отправить повторно" />
             <div class="actions">
-              <%= client.submit "Sign up", class: "sign_up_btn"%>
+            <%= client.submit "Sign up", class: "sign_up_btn"%>
             </div>
             <% end %>
-          </fieldset>
+            </fieldset>
           <%= render "devise/shared/links" %>
       <% end %>
     </div>
@@ -138,12 +146,20 @@
             <div class="corporate_form_registration">
               <%= client.password_field :password_confirmation, autocomplete: "off", placeholder: "Password_confirmation" %>
             </div>
-            <div class="actions">
-              <%= client.submit "Sign up", class: "sign_up_btn"%>
-            </div>
-          <% end %>
+              <input type="button" name="next" class="next action-button" value="Next" />
         </fieldset>
-    <% end %>
+
+          <fieldset>
+          <h2 class="fs-title">Подтверждение</h2>
+          <h3 class="fs-subtitle">Проверка ОТП</h3>
+          <input type="text" name="" placeholder="Введите код" />
+          <input type="button" name="otp" value="Отправить повторно" />
+          <div class="actions">
+          <%= client.submit "Sign up", class: "sign_up_btn"%>
+          </div>
+          <% end %>
+  <% end %>
+    </fieldset>
   </div>
 </div>
 </div>
