@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
     #Registration
     get     'sign_up'   => 'devise_registrations#new',    as: 'new_client_registration'
+    get     'sign_up/show_licence' => 'devise_registrations#show_licence', as: 'show_licence'
     get     'sign_up/cancel' => 'devise_registrations#cancel', as: 'cancel_client_registration'
     get     'sign_up/edit'   => 'devise_registrations#edit', as: 'edit_client_registration'
     post    'sign_up'   => 'devise_registrations#create', as: 'client_registration'

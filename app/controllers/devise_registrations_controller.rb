@@ -27,4 +27,12 @@ class DeviseRegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def show_licence
+    send_file("#{Rails.root}/app/assets/files/dogovor.pdf",
+              filename: "dogovor.pdf",
+              type: "application/pdf",
+              disposition: "inline"
+    )
+  end
+
 end

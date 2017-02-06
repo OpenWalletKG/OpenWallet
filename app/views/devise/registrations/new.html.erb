@@ -139,6 +139,10 @@ function stop(){
             <input type="text" name="" placeholder="Введите код" />
             <input type="button" id="bot" name="otp" onclick="testTimer (10)" value="Получить ОТП повторно"/>
             <input type="button" name="otp" value="Подтвердить"/>
+            <div>
+              <%= link_to 'Лицензионное соглашение', show_licence_path, target: '_blank' %>
+            </div>
+            <h6>Нажимая "Sign up" вы соглашаетесь с условиями лицензионного соглашения</h6>
             <div class="actions">
             <%= client.submit "Sign up", class: "sign_up_btn"%>
             </div>
