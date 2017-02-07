@@ -10,7 +10,6 @@ end
 
 When(/^кликаю на кнопку "([^"]*)"$/) do |button|
   click_button button
-  sleep(3)
 end
 
 When(/^ввожу в поле "([^"]*)" текст "([^"]*)"$/) do |field, value|
@@ -90,6 +89,7 @@ end
 When(/^вижу на странице "([^"]*)"$/) do |message|
   page.assert_text message
 end
+
 
 When(/^нажимает на кнопку "([^"]*)"$/) do |button|
   click_link(button)

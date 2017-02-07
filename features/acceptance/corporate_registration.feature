@@ -12,9 +12,6 @@
       | field                     | value       |
       | client_client_mobile      | 77085434234 |
       | client_client_country     |  KAZ        |
-    И кликаю на кнопку "Next"
-    И ввожу данные в поля форм
-      | field                                       | value                  |
       | client_client_email                         | info@tengri.kz         |
       | client_corporate_registration_number        | KZT00123344R           |
       | client_corporate_address                    | Almaty, R.Bakieva 232  |
@@ -22,8 +19,8 @@
       | client_client_password                      | 1515151515             |
       | client_client_password_confirmation         | 1515151515             |
     И прикрепляю скан паспорта юр.лица
-    И кликаю на кнопку "Next"
-    И вижу на странице "Привет"
+    И кликаю на кнопку "Зарегестрироваться"
+    И вижу на странице "Выход"
     И кликаю на ссылку "Настройки аккаунта"
     И должен увидеть текст "Ваша почта не подтверждена"
     И я перехожу на страницу почты mailcatcher
