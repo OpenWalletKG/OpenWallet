@@ -37,7 +37,7 @@ Employee.create(position: 'Бухгалтер')
 
 vasya = Individual.create(first_name: 'Vasya', last_name: 'T', dob: Time.now, in: 'I00002')
 vasya_account = Account.create(number: vasya.in)
-company = Corporate.create(registration_number: 'R11111', in: 'B1', address: 'asdfasdf')
+company = Corporate.create(registration_number: 'R11111', in: 'B1')
 
 CorporateIndividual.create(corporate_id: company.id, individual_id: person.id, employee_id: 1)
 CorporateIndividual.create(corporate_id: company.id, individual_id: vasya.id, employee_id: 2)
@@ -51,7 +51,7 @@ Client.create(mobile: '092029213321', password:'asdfasdf', email: "user2@example
 #test for existance
 person = Individual.create(first_name: 'Dima', last_name: 'Z', dob: Time.now, in: 'I00001')
 Client.create(mobile: '092-029-213321', password:'asdfasdf', country: 'KGZ', entity_id: vasya.id, entity_type:"Individual", role_id: 3)
-company = Corporate.create(registration_number: 'R11111', in: 'B1', address: 'asdfasdf')
+company = Corporate.create(registration_number: 'R11111', in: 'B1')
 
 # test for mobile phone entries
 

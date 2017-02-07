@@ -4,9 +4,9 @@
       <%= f.hidden_field :registration, value: 'Individual' %>
       <%= devise_error_messages! %>
         <%= f.fields_for :client do |client| %>
-            <%= client.text_field :mobile, class: "corporate_form_control", placeholder: "Mobile" %>
+            <%= client.text_field :mobile, class: "corporate_form_control", autofocus: true, placeholder: "Mobile" %>
             <%= client.text_field :country, class: "corporate_form_control", placeholder: "Country" %>
-            <%= client.email_field :email, class: "individual_form_control", autofocus: true, placeholder: "Email" %>
+            <%= client.email_field :email, class: "individual_form_control", placeholder: "Email" %>
             <%= f.fields_for :individual do |entity| %>
                   <%= entity.text_field :first_name, class: "individual_form_control", placeholder: "First_name" %>
                   <%= entity.text_field :last_name, class: "individual_form_control", placeholder: "Last_name" %>

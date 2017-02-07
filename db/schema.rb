@@ -12,7 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20170202063916) do
 
-
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -76,7 +75,6 @@ ActiveRecord::Schema.define(version: 20170202063916) do
   create_table "corporates", force: :cascade do |t|
     t.string   "registration_number"
     t.string   "in"
-    t.string   "address"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.string   "image_file_name"

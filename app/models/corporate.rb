@@ -12,8 +12,6 @@ class Corporate < ApplicationRecord
   validates :in, presence: true,
             uniqueness: true
 
-  validates :address, presence: true
-
   has_attached_file :image,
                     styles: { medium: '300x300>', thumb: '100x100>'},
                     default_url: ":style/missing.png"

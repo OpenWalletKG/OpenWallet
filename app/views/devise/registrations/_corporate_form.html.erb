@@ -4,12 +4,11 @@
       <%= f.hidden_field :registration, value: 'Corporate' %>
       <%= devise_error_messages! %>
         <%= f.fields_for :client do |client| %>
-            <%= client.text_field :mobile, class: "corporate_form_control", placeholder: "Mobile" %>
+            <%= client.text_field :mobile, class: "corporate_form_control", autofocus: true, placeholder: "Mobile" %>
             <%= client.text_field :country, class: "corporate_form_control", placeholder: "Country" %>
-            <%= client.email_field :email, class: "corporate_form_control", autofocus: true, placeholder: "Email"%>
+            <%= client.email_field :email, class: "corporate_form_control", placeholder: "Email"%>
             <%= f.fields_for :corporate do |entity| %>
                   <%= entity.text_field :registration_number, class: "corporate_form_control", placeholder: "Registration_number" %>
-                  <%= entity.text_field :address, class: "corporate_form_control", placeholder: "Address" %>
                   <%= entity.text_field :in, class: "corporate_form_control", placeholder: "INN" %>
                   <%= entity.label :Passport %><br>
                   <%= entity.file_field :image, class: 'image_form_control' %>
