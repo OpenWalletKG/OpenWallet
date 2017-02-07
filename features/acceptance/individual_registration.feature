@@ -11,9 +11,9 @@
   И выбираю в радио батон "fizik"
   И кликаю на "Продолжить"
   И ввожу в поле номер телефона
-    | field                     | value     |
-    | client_client_mobile      | 996996996 |
-    | client_client_country     |  KGZ      |
+    | field                               | value           |
+    | client_client_mobile                | 996996996       |
+    | client_client_country               |  KGZ            |
     | client_client_email                 | jack@example.com|
     | client_individual_first_name        | Jack            |
     | client_individual_last_name         | Doe             |

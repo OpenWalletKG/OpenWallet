@@ -12,12 +12,11 @@
     И выбираю в радио батон "jurik"
     И кликаю на "Продолжить"
     И ввожу в поле номер телефона
-      | field                     | value       |
-      | client_client_mobile      | 77085434234 |
-      | client_client_country     |  KAZ        |
+      | field                                       | value                  |
+      | client_client_mobile                        | 77085434234            |
+      | client_client_country                       |  KAZ                   |
       | client_client_email                         | info@tengri.kz         |
       | client_corporate_registration_number        | KZT00123344R           |
-      | client_corporate_address                    | Almaty, R.Bakieva 232  |
       | client_corporate_in                         | 2344444334325          |
       | client_client_password                      | 1515151515             |
       | client_client_password_confirmation         | 1515151515             |
