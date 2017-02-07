@@ -15,6 +15,8 @@
             <% end %>
             <%= client.password_field :password, class: "corporate_form_control", autocomplete: "off", placeholder: "Password" %>
             <%= client.password_field :password_confirmation, class: "corporate_form_control", autocomplete: "off", placeholder: "Password_confirmation" %>
+          <h2>Перед регистрацией ознакомтесь с лицензионным соглашением</h2>
+          <h2><%= link_to 'Лицензионное соглашение', show_licence_path, target: '_blank' %></h2>
           <div class="actions">
             <%= client.submit "Зарегистрироваться", class: "sign_up_btn"%>
           </div>
