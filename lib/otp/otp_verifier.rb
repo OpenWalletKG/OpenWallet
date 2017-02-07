@@ -4,7 +4,6 @@ class OtpVerifier
   def initialize(phone_number)
     @phone_number = phone_number
     phone_registration
-    current_registration
   end
 
   def phone_registration
@@ -15,31 +14,28 @@ class OtpVerifier
     end
   end
 
-  def current_registration 
-    return @current_registration if defined? @current_registration
-    @current_registration = OtpRegistration.where(draft_phone_registration_id: @phone_registration.id).last
-  end
-
   def phone_number
     @phone_number
   end
 
   def verify_otp_code(otp_code)
-    if (@current_registration.pin == otp_code) && is_otp_code_active && (get_try_counts <= 5) && !is_phone_banned
+    current_registration = OtpRegistration.where(draft_phone_registration_id: @phone_registration.id).last
+    return true if current_registration.succeeded
+    if (current_registration.pin == otp_code) && is_otp_code_active && (get_try_counts <= 5) && !is_phone_banned
       current_registration.succeeded = true
-      # current_registration.save
+      current_registration.save
       return true
     else
       current_registration.succeeded = false
-      # current_registration.save
+      current_registration.save
       return false
     end
   end  
 
-  def get_verified_otp(phone_number)
-    if !is_phone_banned
-      # current_registration = OtpRegistration.where(draft_phone_registration_id: @phone_registration.id).last
-      return @current_registration.pin
+  def get_verified_otp
+    current_registration = OtpRegistration.where(draft_phone_registration_id: @phone_registration.id).last
+    if !is_phone_banned && current_registration.succeeded
+      return current_registration.pin
     else
       return '0000' #phone is not verified.
     end    

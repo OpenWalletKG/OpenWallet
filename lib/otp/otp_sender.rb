@@ -39,18 +39,9 @@ class OtpSender
     end 
   end
 
-  # def resend_otp_code
-  #   if Time.now > (OtpRegistration.where(draft_phone_registration_id: @phone_registration.id).last.created_at + (OTP_CODE_TTL - OTP_CODE_RESEND_TIME))
-  #     @otp_code = OtpCodeGenerator.generate
-  #     current_registration = OtpRegistration.where(draft_phone_registration_id: @phone_registration.id).last
-  #     current_registration.update_attribute(:pin, @otp_code)
-  #   end
-  #   update_try_counts
-  #   twilio_response = MessageSender.send_otp_code(@phone_number, @otp_code)
-  #   puts twilio_response.status
-  # end
+  alias :resend_otp_code :send_otp_code
 
-   def get_try_counts
+  def get_try_counts
     last_otp = OtpRegistration.where(draft_phone_registration_id: @phone_registration.id).last
     if last_otp.nil?
       return 0
