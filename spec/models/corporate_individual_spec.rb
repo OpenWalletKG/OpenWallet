@@ -2,9 +2,7 @@ require 'rails_helper'
 
 RSpec.describe CorporateIndividual, :type => :model do
 
-  corporate = Corporate.create(registration_number: '98324697268', in: '7689356',
-                               address: 'ул. Орловская, д. 14, кв. 12'
-  )
+  corporate = Corporate.create(registration_number: '98324697268', in: '7689356')
   employee = Employee.create(position: 'Директор')
   individual = Individual.create(first_name: 'Omurbek', last_name: 'Choibekov', in: '121212', dob: Time.now)
 

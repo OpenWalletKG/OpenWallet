@@ -102,5 +102,6 @@ When(/^открываю pdf "([^"]*)"$/) do |arg|
   temp_pdf.close
   pdf_text = PDF::PdfToText.new(temp_pdf.path)
   page.driver.instance_variable_set('@body', pdf_text.get_text)
+  sleep(3)
   switch_to_window(windows.first)
 end
