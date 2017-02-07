@@ -43,6 +43,7 @@ group :test do
   gem 'selenium-webdriver','2.53.4'
   gem 'factory_girl_rails'
   gem 'shoulda-matchers'
+  gem 'pdf-reader'
 end
 
 group :development do

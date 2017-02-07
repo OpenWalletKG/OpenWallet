@@ -94,3 +94,13 @@ end
 When(/^нажимает на кнопку "([^"]*)"$/) do |button|
   click_link(button)
 end
+
+When(/^открываю pdf "([^"]*)"$/) do |arg|
+  click_link(arg)
+  temp_pdf = Tempfile.new('pdf')
+  temp_pdf << page.source.force_encoding('UTF-8')
+  temp_pdf.close
+  pdf_text = PDF::PdfToText.new(temp_pdf.path)
+  page.driver.instance_variable_set('@body', pdf_text.get_text)
+  switch_to_window(windows.first)
+end

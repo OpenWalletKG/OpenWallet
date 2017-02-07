@@ -6,6 +6,8 @@
 
 require 'cucumber/rails'
 require 'selenium-webdriver'
+require 'pdf_to_text'
+require 'simple_page_text_receiver'
 
 include ActionController::Helpers
 Capybara.default_driver = :selenium
