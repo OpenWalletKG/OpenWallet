@@ -5,6 +5,8 @@ role_agent = Role.create(definition: "Агент")
 role_fiz = Role.create(definition: "Физ.лицо")
 role_supplier = Role.create(definition: "Поставщик")
 
+Bank.create!(name: "Tengri", plugin: "EsbClient")
+
 action_emission = Action.create(description: "Ввод денег на СЭД агента")
 action_buy = Action.create(description: "Покупка")
 action_sell = Action.create(description: "Продажа")
