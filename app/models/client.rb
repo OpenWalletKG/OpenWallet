@@ -1,9 +1,9 @@
 class Client < ApplicationRecord
-  belongs_to :account
+  belongs_to :account, dependent: :destroy
 
   belongs_to :role
 
-  belongs_to :entity, polymorphic: true
+  belongs_to :entity, polymorphic: true, dependent: :destroy
 
   validates :mobile, presence: true,
             uniqueness: true,

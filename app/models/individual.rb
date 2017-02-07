@@ -3,7 +3,6 @@ class Individual < ApplicationRecord
 
   has_many :corporate_individuals
   has_many :corporates, through: :corporate_individuals
-
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :in, presence: true,
