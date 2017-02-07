@@ -1,27 +1,31 @@
 <div class="container" >
+<div class="col-md-5">
   <%= form_for(resource, as: resource_name,  url: registration_path(resource_name)) do |f| %>
       <%= f.hidden_field :registration, value: 'Individual' %>
       <%= devise_error_messages! %>
         <%= f.fields_for :client do |client| %>
-            <%= client.text_field :mobile, placeholder: "Mobile" %>
-            <%= client.text_field :country, placeholder: "Country" %>
+            <%= client.text_field :mobile, class: "corporate_form_control", placeholder: "Mobile" %>
+            <%= client.text_field :country, class: "corporate_form_control", placeholder: "Country" %>
             <%= client.email_field :email, class: "individual_form_control", autofocus: true, placeholder: "Email" %>
             <%= f.fields_for :individual do |entity| %>
                   <%= entity.text_field :first_name, class: "individual_form_control", placeholder: "First_name" %>
                   <%= entity.text_field :last_name, class: "individual_form_control", placeholder: "Last_name" %>
                   <%= entity.text_field :in, class: "individual_form_control", placeholder: "INN" %>
                   <%= entity.label :Date_of_birth %>
-                  <%= entity.date_field :dob, "data-provide" => 'datepicker', class: "individual_form_control"%>
+                  <%= entity.date_field :dob, "data-provide" => 'datepicker', class: "individual_form_control"%><br>
                   <%= entity.label :Passport %><br>
                   <%= entity.file_field :image, class: 'image_form_control' %>
             <% end %>
             <%= client.password_field :password, class: "individual_form_control", autocomplete: "off", placeholder: "Password" %>
-            <%= client.password_field :password_confirmation, autocomplete: "off", placeholder: "Password_confirmation" %>
+            <%= client.password_field :password_confirmation, class: "individual_form_control", autocomplete: "off", placeholder: "Password_confirmation" %>
             <%= link_to 'Лицензионное соглашение', show_licence_path, target: '_blank' %>
           <div class="actions">
             <%= client.submit "Sign up", class: "sign_up_btn"%>
           </div>
       <%end%>
+      <div class="col-md-12">
         <%= render "devise/shared/links" %>
+      </div>
   <% end %>
+</div>
 </div>
