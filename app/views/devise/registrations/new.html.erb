@@ -80,9 +80,8 @@
             </div>
             <h6>Нажимая "Next" вы соглашаетесь с условиями лицензионного соглашения</h6>
             </div>
-                <input type="button" name="next" onclick="testTimer (30)" class="next action-button" value="Next" />
+            <input type="button" name="next" onclick="testTimer (10)" class="next action-button" value="Next" />
           </fieldset>
-
             <fieldset>
             <h2 class="fs-title">Подтверждение</h2>
             <h3 class="fs-subtitle">Проверка ОТП</h3>
@@ -154,20 +153,25 @@
             <div class="corporate_form_registration">
               <%= client.password_field :password_confirmation, autocomplete: "off", placeholder: "Password_confirmation" %>
             </div>
-              <input type="button" name="next" class="next action-button" value="Next" />
+              <!-- <input type="button" name="next" class="next action-button" value="Next" /> -->
+            <input type="button" name="next" onclick="testTimer1 (10)" class="next action-button" value="Next" />
         </fieldset>
 
-          <fieldset>
-          <h2 class="fs-title">Подтверждение</h2>
-          <h3 class="fs-subtitle">Проверка ОТП</h3>
-          <input type="text" name="" placeholder="Введите код" />
-          <input type="button" id="bot" name="otp" value="Отправить повторно" />
-          <div class="actions">
-          <%= client.submit "Sign up", class: "sign_up_btn"%>
-          </div>
-          <% end %>
+        <fieldset>
+            <h2 class="fs-title">Подтверждение</h2>
+            <h3 class="fs-subtitle">Проверка ОТП</h3>
+            <p id = "time1"></p>
+            <p id = "rezult1"></p>
+            <p>Осталось попыток "5"</p>
+            <input type="text" name="" placeholder="Введите код" />
+            <input type="button" id="bot1" name="otp" onclick="testTimer1 (10)" value="Получить ОТП повторно"/>
+            <input type="button" name="otp" value="Подтвердить"/>
+            <div class="actions">
+            <%= client.submit "Sign up", class: "sign_up_btn"%>
+            </div>
+            <% end %>
+            </fieldset>
   <% end %>
-    </fieldset>
   </div>
 </div>
 </div>
