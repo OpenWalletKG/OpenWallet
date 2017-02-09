@@ -1,5 +1,5 @@
 class Corporate < ApplicationRecord
-  has_many :clients, as: :entity
+  has_one :client, dependent: :destroy, as: :entity
 
   has_many :corporate_individuals
 

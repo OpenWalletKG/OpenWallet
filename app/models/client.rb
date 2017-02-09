@@ -1,9 +1,12 @@
 class Client < ApplicationRecord
+  ENTITY = [:individual, :corporate]
   belongs_to :account, dependent: :destroy
+  accepts_nested_attributes_for :account
 
   belongs_to :role
 
   belongs_to :entity, polymorphic: true, dependent: :destroy
+  accepts_nested_attributes_for :entity
 
   validates :mobile, presence: true,
             uniqueness: true,
@@ -21,7 +24,85 @@ class Client < ApplicationRecord
                     content_type: ['image/jpg', 'image/jpeg', 'image/gif', 'image/png']
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :confirmable
+         :recoverable, :rememberable, :trackable, :confirmable, :validatable
+
+  def entity_attributes=(attributes)
+    if ENTITY.include?(entity_type.underscore.to_sym)
+      self.entity ||= self.entity_type.constantize.new
+      self.entity.assign_attributes(attributes)
+    end
+  end
+
+  def self.register( registration_params )
+    case get_registration_type(registration_params)
+      when "Individual"
+        client_attributes = get_client_params( registration_params )
+        individual_attributes = get_individual_params( registration_params )
+        client = Client.create(  mobile: client_attributes[:mobile],
+                                 email: client_attributes[:email],
+                                 password: client_attributes[:password],
+                                 password_confirmation: client_attributes[:password_confirmation],
+                                 country: client_attributes[:country],
+                                 image: client_attributes[:image],
+                                 role: Role.get_individual,
+                                 entity_type: 'Individual',
+                                 entity_attributes: individual_attributes.to_h,
+                                 account_attributes: { number: individual_attributes[:in] })
+      when "Corporate"
+        client_attributes = get_client_params( registration_params )
+        corporate_attributes = get_corporate_params( registration_params )
+        role = Role.get_agent_0
+        client = Client.create(  mobile: client_attributes[:mobile],
+                                 email: client_attributes[:email],
+                                 password: client_attributes[:password],
+                                 password_confirmation: client_attributes[:password_confirmation],
+                                 country: client_attributes[:country],
+                                 image: client_attributes[:image],
+                                 role: role,
+                                 entity_type: 'Corporate',
+                                 entity_attributes: corporate_attributes.to_h,
+                                 account_attributes: { number: corporate_attributes[:in] })
+      else
+        raise "Получены неверные параметры"
+    end
+    raise "Ошибка регистрации/валидации" if defined?(client) && client.errors.messages.size != 0
+    client
+  end
+
+
+  private
+
+  def self.get_individual_params( registration_params )
+    registration_params.require("individual").permit( :first_name,
+                                                      :last_name,
+                                                      :dob,
+                                                      :in,
+                                                      :image )
+  end
+
+  def self.get_corporate_params( registration_params )
+    registration_params.require("corporate").permit( :registration_number,
+                                                     :address,
+                                                     :in,
+                                                     :image )
+  end
+
+  def self.get_client_params( registration_params )
+    registration_params.require("client").permit( :mobile,
+                                                  :email,
+                                                  :password,
+                                                  :password_confirmation,
+                                                  :country,
+                                                  :image  )
+  end
+
+  def self.get_registration_type( registration_params )
+    if registration_params[:registration].blank?
+      raise "Неверные поля формы" if get_registration_type(registration_params).blank?
+    else
+      registration_params[:registration].capitalize
+    end
+  end
 
 end
 

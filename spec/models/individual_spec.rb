@@ -43,7 +43,7 @@ RSpec.describe Individual, :type => :model do
     expect(new_inn.errors[:in]).to include("has already been taken")
   end
 
-  it { should have_many(:clients) }
+  it { should have_one(:client) }
   it { should have_many(:corporate_individuals) }
   it { should have_many(:corporates) }
 
