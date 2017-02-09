@@ -26,7 +26,6 @@ class Registration
       when "Corporate"
         @entity_class = Corporate
         @entity_params = registration_params.require("corporate").permit( :registration_number,
-                                                                          :address,
                                                                           :in,
                                                                           :image )
         @role = Role.get_agent

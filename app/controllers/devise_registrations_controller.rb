@@ -7,9 +7,27 @@ class DeviseRegistrationsController < Devise::RegistrationsController
     registration = Registration.new( registration_params )
     registration.register_client
 
+    if registration.client.entity_type == 'Corporate'
+      client_inn = params[:client][:corporate][:in]
+        request = EsbClient.findClient(client_inn, '1')
+          if request['clientId'] == nil
+            flash[:danger] = "Инн клиента не найден"
+           redirect_to root_path and return 
+          elsif
+            request1 = EsbClient.getClient(request['clientId'])
+            unless params[:client][:corporate][:registration_number] == request1['client'].first['registrationNumber']
+             flash[:danger] = "Регистрационный номер не совпадает с номером в банке"
+             redirect_to root_path and return
+            end
+        end
+
+    else registration.client.entity_type == 'Individual'
+    end
+    
     resource = registration.client
 
     yield resource if block_given?
+    
     if resource.persisted?
       if resource.active_for_authentication?
         set_flash_message! :notice, :signed_up
@@ -25,7 +43,9 @@ class DeviseRegistrationsController < Devise::RegistrationsController
       set_minimum_password_length
       respond_with resource
     end
+  
   end
+  
 
   def show_licence
     send_file("#{Rails.root}/app/assets/files/dogovor.pdf",
@@ -34,5 +54,4 @@ class DeviseRegistrationsController < Devise::RegistrationsController
               disposition: "inline"
     )
   end
-
 end
