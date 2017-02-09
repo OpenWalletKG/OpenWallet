@@ -1,0 +1,14 @@
+<%= form_tag confirm_otp_path, remote: true, method: :post do |f| %>
+  <%= otp.get_try_counts %>
+
+  <%= submit_tag "Send" %>
+  <!-- <h1>OTP cde has been sent to your phone</h1>
+  <h2 class="fs-title">Подтверждение</h2>
+  <h3 class="fs-subtitle">Проверка ОТП</h3>
+  <p id = "time1"></p>
+  <p id = "rezult1"></p>
+  <p>Осталось попыток "5"</p>
+  <input type="text" name="" placeholder="Введите код" />
+  <input type="button" id="bot1" name="otp" onclick="testTimer1 (10)" value="Получить ОТП повторно"/>
+  <input type="button" name="otp" value="Подтвердить"/> -->
+<% end %>

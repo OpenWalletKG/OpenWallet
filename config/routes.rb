@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   get 'otp_test', to: 'otp_registration#new', as: 'otp_registration'
+  post 'confirm_otp', to: 'otp_registration#confirm', as: 'confirm_otp'
 
   # get 'otp_registration/new,'
 

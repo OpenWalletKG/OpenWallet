@@ -12,11 +12,13 @@ $(document).on('ready',function () {
             if (val == 'fiz') {  // Assuming your value for radio buttons is radio1, radio2 and radio3.
                 cardpayment.style.display = 'block';   // show
                 hiding.style.display = 'none';// hide
+                internetpayment.innerHTML = "";
                 internetpayment.style.display = 'none';// hide
             }
             else if (val == 'jur') {
                 hiding.style.display = 'none';
                 cardpayment.style.display = 'none';
+                cardpayment.innerHTML = "";
                 internetpayment.style.display = 'block';
             }
 

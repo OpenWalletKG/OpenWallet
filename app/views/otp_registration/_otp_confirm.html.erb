@@ -1,0 +1,32 @@
+<h4> <%= @message %> </h4>
+<%= form_tag(confirm_otp_path, method: 'post', remote: true) do  %>
+  <h2 class="fs-title">Подтверждение</h2>
+  <h3 class="fs-subtitle">Проверка ОТП</h3>
+  <p id = "time1"></p>
+  <p id = "rezult1"></p>
+  <p> Осталось попыток <%= 5-@try_counts %></p>
+  <!-- <input type="button" id="bot1" name="otp" onclick="testTimer1 (10)" value="Получить ОТП повторно"/> -->
+  <input type="button" id="bot1" name="otp" onclick="get_otp_again()" value="Получить ОТП повторно"/>
+  <%= text_field_tag :pin, nil, placeholder: "Введите код" %>
+  <%= hidden_field_tag :mobile, @mobile  %>
+  <%= submit_tag "Подтвердить", name: 'confirm' %>
+<%end%>
+
+<script type="text/javascript">
+  function get_otp_again() {
+    var mob = document.getElementById("client_client_mobile").value;
+    $.ajax({
+      type: 'get',
+      url: "/otp_test",
+      data: {mobile: mob},
+      response: 'text',
+      success: function(){
+        
+           },
+      error: function () {
+        alert('Ошибка отправки');
+      }
+    });
+  }
+
+</script>

@@ -10,13 +10,13 @@
 html {
   height: 100%;
   /*Image only BG fallback*/
-  background: url('http://thecodeplayer.com/uploads/media/gs.png');
+ /* background: url('http://thecodeplayer.com/uploads/media/gs.png');
   /*background = gradient + image pattern combo*/
-  background:
+ /* background:
           linear-gradient(rgba(196, 102, 0, 0.2), rgba(155, 89, 182, 0.2)),
-          url('http://thecodeplayer.com/uploads/media/gs.png');
-}
-.row {min-height: 500px}
+          url('http://thecodeplayer.com/uploads/media/gs.png');*/
+  }
+.row {min-height: 500px;}
 #description_area {min-height: 100px; max-width: 300px;}
 .actions {padding-top: 5%; padding-left: 20%;}
 #Individual_registration_block {display: none;}
@@ -50,15 +50,16 @@ html {
 }
 
 .move {
-    float: right;
+  float: right;
 }
 body {
   font-family: montserrat, arial, verdana;
-  background: url('http://thecodeplayer.com/uploads/media/gs.png');
+  /*background: url('http://thecodeplayer.com/uploads/media/gs.png');*/
   /*background = gradient + image pattern combo*/
-  background:
-          linear-gradient(rgba(196, 102, 0, 0.2), rgba(155, 89, 182, 0.2)),
-          url('http://thecodeplayer.com/uploads/media/gs.png');
+  /*background: #B1B2B4;*/
+  background: grey;
+         /* linear-gradient(rgba(196, 102, 0, 0.2), rgba(155, 89, 182, 0.2)),
+          url('http://thecodeplayer.com/uploads/media/gs.png');*/
 
 }
 .main_page_block {
@@ -216,5 +217,3 @@ body .main_page_img {
   padding: 10px 5px;
   margin: 10px 5px;
 }
-
-

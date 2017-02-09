@@ -17,7 +17,7 @@ class OtpSender
 
   def send_otp_code
     @try_counts = get_try_counts
-    if !is_phone_banned && (@try_counts <= 5)
+    if !is_phone_banned && (@try_counts < 5)
       @otp_code = OtpCodeGenerator.generate
       @try_counts += 1
       OtpRegistration.create( draft_phone_registration_id: @phone_registration.id, 
