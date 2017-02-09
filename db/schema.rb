@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170208084250) do
+ActiveRecord::Schema.define(version: 20170209044449) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,16 @@ ActiveRecord::Schema.define(version: 20170208084250) do
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "bank_accounts", force: :cascade do |t|
+    t.integer  "account_id"
+    t.integer  "bank_id"
+    t.string   "bank_account_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["account_id"], name: "index_bank_accounts_on_account_id", using: :btree
+    t.index ["bank_id"], name: "index_bank_accounts_on_bank_id", using: :btree
   end
 
   create_table "banks", force: :cascade do |t|
@@ -142,6 +152,8 @@ ActiveRecord::Schema.define(version: 20170208084250) do
     t.index ["role_id"], name: "index_roles_actions_on_role_id", using: :btree
   end
 
+  add_foreign_key "bank_accounts", "accounts"
+  add_foreign_key "bank_accounts", "banks"
   add_foreign_key "clients", "accounts"
   add_foreign_key "clients", "roles"
   add_foreign_key "corporate_individuals", "corporates"
