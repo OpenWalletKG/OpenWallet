@@ -24,12 +24,10 @@
               <%= client.submit "Зарегистрироваться", class: "sign_up_btn"%>
             </div>
         <%end%>
-        <%= link_to "Send OTP", '#', class: "btn btn-primary", id: "otp", remote: true %>
+        <%= link_to "Получить OTP код", '#', class: "btn btn-primary", id: "send_otp_link", remote: true %>
         <div class="col-md-12">
           <%= render "devise/shared/links" %>
         </div>
     <% end %>
   </div>
 </div>
-
-

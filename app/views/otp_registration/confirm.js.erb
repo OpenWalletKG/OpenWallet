@@ -1,1 +1,8 @@
+<% if @pin_verified %>send_otp_link
+$('#otp_modal').modal('hide');
+$('#send_otp_link').hide();
+$('#registr').show();
+$('#client_messages').html("<h4><%= @message %></h4>")
+<% else %>
 $('#otp_confirmation').html("<%= escape_javascript(render partial: 'otp_confirm') %>");
+<% end %>

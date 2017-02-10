@@ -1,4 +1,5 @@
 <div class="container">
+  <div id="client_messages"></div>
   <div id="hiding">
     <div class="col-md-5">
       <div class="row registration_form_image_area" id="registration_form_image_area">
@@ -18,22 +19,14 @@
     </div>
   </div>
 </div>
-<div id="msform">
-  <!--<div id="Individual_registration_block">-->
-    <!--<%#= render 'individual_form' %>-->
-  <!--</div>-->
-  <!--<div id="Corporate_registration_block">-->
-    <!--<%#= render 'corporate_form' %>-->
-  <!--</div>-->
-
-</div>
-
+<div id="msform"></div>
+  
   <div class="modal fade" tabindex="-1" role="dialog" id="otp_modal">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title">Modal title</h4>
+          <h4 class="modal-title">Проверка ОТП</h4>
         </div>
         <div class="modal-body">
           <div id="otp_confirmation"> </div>
@@ -80,7 +73,7 @@
           hiding.style.display = 'none';// hide
 
           $('#msform').html('<%=j render :partial => "individual_form" %>')
-          $("#otp").click(function() {
+          $("#send_otp_link").click(function() {
             var mob = document.getElementById("client_client_mobile").value;
             $('#otp_modal').modal('show');
             $.ajax({
@@ -89,8 +82,9 @@
               data: {mobile: mob},
               response: 'text',
               success: function(){
-                var reg = document.getElementById("registr");
-                reg.style.display = 'block';
+                // var reg = document.getElementById("registr");
+                // reg.style.display = 'block';
+                testTimer (20);
               },
               error: function () {
                 alert('Ошибка отправки');
@@ -106,7 +100,7 @@
           // // cardpayment.style.display = 'none';
           // cardpayment.remove();
           // internetpayment.style.display = 'block';
-          $("#otp").click(function() {
+          $("#send_otp_link").click(function() {
             var mob = document.getElementById("client_client_mobile").value;
             $('#otp_modal').modal('show');
             $.ajax({
@@ -115,8 +109,9 @@
               data: {mobile: mob},
               response: 'text',
               success: function(){
-                var reg = document.getElementById("registr");
-                reg.style.display = 'block';
+                // var reg = document.getElementById("registr");
+                // reg.style.display = 'block';
+                testTimer (20);
               },
               error: function () {
                 alert('Ошибка отправки');

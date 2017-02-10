@@ -25,9 +25,13 @@ class OtpRegistrationController < ApplicationController
     check = OtpVerifier.new(@mobile)
     @try_counts = check.get_try_counts
     entered_pin = params[:pin]
-    if check.verify_otp_code(entered_pin)
-      flash[:success] = "Your phone is confirmed"
-      render js: "window.location = '#{root_path}'"
+    @pin_verified = check.verify_otp_code(entered_pin)
+    if @pin_verified
+      @message = "Ваш номер телефона был подтвержден"
+      # render js: "window.location = '#{root_path}'"
+      respond_to do |format|
+        format.js {}
+      end
     elsif @try_counts < 5
       @message = <<-HEREDOC
         Неверный код!
