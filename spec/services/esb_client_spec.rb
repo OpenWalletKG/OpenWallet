@@ -93,7 +93,7 @@ RSpec.describe EsbClient do
   describe '.findAgent' do
     it 'should return agentId' do
       response = EsbClient.findAgent('950740000130', '16585812')
-      expect(response['agentId']).to eq('1658704002')
+      expect(response).to eq('1658704002')
     end
   end
 

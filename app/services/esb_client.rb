@@ -2,6 +2,11 @@ class EsbClient
   include HTTParty
   base_uri ENV['ESB_API_BASE_URI']
 
+  AGENT0 = 'AGENT0'
+  AGENT = 'AGENT'
+  SUPPLIER = 'PROVIDER'
+  CARD_PROVIDER = 'CARD_PROVIDER'
+
   CORPORATE  = '1'
   INDIVIDUAL = '2'
 
@@ -79,6 +84,8 @@ class EsbClient
   end
 
   def self.findAgent(inn, reg_num)
+    raise ArgumentError.new("Аргумент IN не задан") if inn.empty?
+    raise ArgumentError.new("Аргумент regNum не задан") if reg_num.empty?
     response = post('/agent/v1/findAgent',
       { body:
         {
@@ -87,17 +94,23 @@ class EsbClient
           }.to_json
         }
       )
+    raise ESBError.new(response) if ESBError.hasError(response)
+    response['agentId']
   end
 
   def self.getAgent(agent_id)
+    raise ArgumentError.new("Аргумент agentId не задан") if agent_id.empty?
     response = post('/agent/v1/getAgent',
       { body:
         {
           'agentId': agent_id
-          }.to_json 
+          }.to_json
         }
       )
+    raise ESBError.new(response) if ESBError.hasError(response)
+    response
   end
+
 
   def self.getAccountCalendar(account_id, date_month, date_year)
     response = post('/account/v1/getAccountCalendar',
@@ -106,7 +119,7 @@ class EsbClient
           'accountId': account_id,
           'dtMonth': date_month,
           'dtYear': date_year
-          }.to_json 
+          }.to_json
         }
       )
   end
@@ -187,6 +200,46 @@ class EsbClient
     options[:headers] = { 'Content-Type' => 'application/json' }
 
     self.class.post(path, options)
+  end
+
+end
+
+class RegCorporateAPI < EsbClient
+  ROLES_MAP = {
+      EsbClient::AGENT0 => Role::AGENT_0,
+      EsbClient::AGENT => Role::AGENT,
+      EsbClient::SUPPLIER => Role::SUPPLIER
+  }
+
+  def initialize( inn, reg_number)
+    @inn = inn
+    @reg_number = reg_number
+  end
+
+  def get_corporate_role_id
+    agent_id = EsbClient.findAgent( @inn, @reg_number )
+    agent = EsbClient.getAgent(agent_id)
+    agent_type = agent['agentType']
+    return ROLES_MAP[agent_type] if ROLES_MAP.has_key?(agent_type)
+    raise ESBError.new( "Неопределен тип Corporate - #{agent_type}" )
+  end
+end
+
+
+class ESBError < Exception
+  attr_reader :msg
+
+  def initialize(msg)
+    if msg.class == Hash
+      @msg = msg['ErrText']
+    else
+      @msg = msg
+    end
+  end
+
+  def self.hasError( response )
+    return true if response['ErrCode'] != '0'
+    false
   end
 
 end

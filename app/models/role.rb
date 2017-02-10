@@ -15,4 +15,5 @@ class Role < ApplicationRecord
   scope :get_agent,     -> { where(id: AGENT).first }
   scope :get_individual,-> { where(id: INDIVIDUAL).first }
   scope :get_supplier,  -> { where(id: SUPPLIER).first }
+
 end

@@ -34,10 +34,10 @@ class Client < ApplicationRecord
   end
 
   def self.register( registration_params )
-    case get_registration_type(registration_params)
+    case RegistrationParams.get_registration_type(registration_params)
       when "Individual"
-        client_attributes = get_client_params( registration_params )
-        individual_attributes = get_individual_params( registration_params )
+        client_attributes = RegistrationParams.get_client_params( registration_params )
+        individual_attributes = RegistrationParams.get_individual_params( registration_params )
         client = Client.create(  mobile: client_attributes[:mobile],
                                  email: client_attributes[:email],
                                  password: client_attributes[:password],
@@ -49,16 +49,17 @@ class Client < ApplicationRecord
                                  entity_attributes: individual_attributes.to_h,
                                  account_attributes: { number: individual_attributes[:in] })
       when "Corporate"
-        client_attributes = get_client_params( registration_params )
-        corporate_attributes = get_corporate_params( registration_params )
-        role = Role.get_agent_0
+        client_attributes = RegistrationParams.get_client_params( registration_params )
+        corporate_attributes = RegistrationParams.get_corporate_params( registration_params )
+        esb_corporate = RegCorporateAPI.new(corporate_attributes[:in], corporate_attributes[:registration_number])
+        role_id = esb_corporate.get_corporate_role_id
         client = Client.create(  mobile: client_attributes[:mobile],
                                  email: client_attributes[:email],
                                  password: client_attributes[:password],
                                  password_confirmation: client_attributes[:password_confirmation],
                                  country: client_attributes[:country],
                                  image: client_attributes[:image],
-                                 role: role,
+                                 role_id: role_id,
                                  entity_type: 'Corporate',
                                  entity_attributes: corporate_attributes.to_h,
                                  account_attributes: { number: corporate_attributes[:in] })
@@ -68,10 +69,11 @@ class Client < ApplicationRecord
     raise "Ошибка регистрации/валидации" if defined?(client) && client.errors.messages.size != 0
     client
   end
+end
 
 
-  private
 
+class RegistrationParams
   def self.get_individual_params( registration_params )
     registration_params.require("individual").permit( :first_name,
                                                       :last_name,
@@ -103,7 +105,5 @@ class Client < ApplicationRecord
       registration_params[:registration].capitalize
     end
   end
-
 end
-
 
