@@ -48,8 +48,8 @@ Rails.application.routes.draw do
     get    '/transfer/new'    => 'transfer#new',         as: 'new_transfer'
     post   '/transfer'        => 'transfer#create',      as: 'transfer'
     get    '/payment/show'    => 'payment#show',         as: 'show_payments'
-    get    '/payment/new'     => 'paymentr#new',         as: 'new_payment'
-    post   '/payment'         => 'payment#create',       as: 'payment'
+    get    '/payment/new'     => 'payment#new',          as: 'new_payment'
+    post   '/payment/new'     => 'payment#create',       as: 'payment_create_path'
     get    '/history'         => 'history#show',         as: 'history'
   end
 

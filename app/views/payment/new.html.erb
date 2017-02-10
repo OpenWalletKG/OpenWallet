@@ -1,2 +1,17 @@
-<h1>Payment#new</h1>
-<p>Find me in app/views/payment/new.html.erb</p>
+<h1>Добавление банковского счета</h1>
+<%= form_for :account, url: {action: "new"} do |f| %>
+
+    <div>
+      <%= f.label :number, "Введите номер счета" %> <br>
+      <%= f.text_field :number %>
+    </div>
+
+    <div>
+      <%= f.label :title, "Название счета" %> <br>
+      <%= f.text_field :title %>
+    </div>
+
+    <div>
+      <%= f.submit "Cохранить" %>
+    </div>
+<% end %>
