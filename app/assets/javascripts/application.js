@@ -11,12 +11,10 @@
 // about supported directives.
 //
 //= require jquery
-//= require bootstrap-sprockets
+
 //= require jquery_ujs
-//= require core
+//= require bootstrap-sprockets
 //= require perehod
-//= require 213jquery
-//= require easing
 //= require moment
 //= require bootstrap-datetimepicker
 //= require_tree .

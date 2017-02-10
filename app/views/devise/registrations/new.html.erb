@@ -26,9 +26,8 @@
     <%= render 'corporate_form' %>
   </div>
 
-   
 
-  <div class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal fade" tabindex="-1" role="dialog" id="otp_modal">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -36,10 +35,10 @@
           <h4 class="modal-title">Modal title</h4>
         </div>
         <div class="modal-body">
-          <p>One fine body&hellip;</p>
+          <div id="otp_confirmation"> </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal" onclick="">Close</button>
           <button type="button" class="btn btn-primary">Save changes</button>
         </div>
       </div><!-- /.modal-content -->
@@ -48,20 +47,22 @@
 </div>
 
  <script type="text/javascript">
-  function otp_click() {
-    var mob = document.getElementById("client_client_mobile").value;
-    $.ajax({
-      type: 'get',
-      url: "/otp_test",
-      data: {mobile: mob},
-      response: 'text',
-      success: function(){
-        
-           },
-      error: function () {
-        alert('Ошибка отправки');
-      }
-    });
-  }
+    function otp_click() {
+      var mob = document.getElementById("client_client_mobile").value;
+      $('#otp_modal').modal('show');
+      $.ajax({
+        type: 'get',
+        url: "/otp_test",
+        data: {mobile: mob},
+        response: 'text',
+        success: function(){
+          
+             },
+        error: function () {
+          alert('Ошибка отправки');
+        }
+      });
+    };  
+ 
 
 </script>
