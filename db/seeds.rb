@@ -29,34 +29,3 @@ role_fiz.actions << action_sell
 image_path = "#{Rails.root}/app/assets/images/fixtures/no_photo.jpg"
 image_file = File.new(image_path)
 
-
-person = Individual.create(first_name: 'Dima', last_name: 'Z', dob: Time.now, in: 'I00001')
-person_account = Account.create(number: person.in)
-Client.create(mobile:'996700007411', password:'asdfasdf', email: "user@example.kg", country: 'KGZ', entity_id: person.id, entity_type: "Individual" , role_id:3, account_id: person_account.id, image: image_file)
-
-Employee.create(position: 'Директор')
-Employee.create(position: 'Бухгалтер')
-
-vasya = Individual.create(first_name: 'Vasya', last_name: 'T', dob: Time.now, in: 'I00002')
-vasya_account = Account.create(number: vasya.in)
-company = Corporate.create(registration_number: 'R11111', in: 'B1')
-
-CorporateIndividual.create(corporate_id: company.id, individual_id: person.id, employee_id: 1)
-CorporateIndividual.create(corporate_id: company.id, individual_id: vasya.id, employee_id: 2)
-company_account = Account.create(number: company.in)
-
-
-Client.create(mobile:'996999999999', password:'asdfasdf', email: "company@example.kg", country: 'KGZ', entity_id: company.id, entity_type: "Corporate" , role_id:2, account_id: company_account.id, image: image_file)
-
-Client.create(mobile: '092029213321', password:'asdfasdf', email: "user2@example.kg", country: 'KGZ', entity_id: vasya.id, entity_type:"Individual", role_id: 3, account_id: vasya_account.id, image: image_file)
-
-#test for existance
-person = Individual.create(first_name: 'Dima', last_name: 'Z', dob: Time.now, in: 'I00001')
-Client.create(mobile: '092-029-213321', password:'asdfasdf', country: 'KGZ', entity_id: vasya.id, entity_type:"Individual", role_id: 3)
-company = Corporate.create(registration_number: 'R11111', in: 'B1')
-
-# test for mobile phone entries
-
-person = Individual.create(first_name: 'Azamat', last_name: 'J', dob: Time.now, in: '200001')
-person_account = Account.create(number: person.in)
-Client.create(mobile:'996-700-007411', password:'asdfasdf', country: 'KGZ', entity_id: person.id, entity_type: "Individual" , role_id:3, account_id: person_account.id, image: image_file)
