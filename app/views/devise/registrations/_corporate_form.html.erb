@@ -4,53 +4,27 @@
         <%= f.hidden_field :registration, value: 'Corporate' %>
         <%= devise_error_messages! %>
           <%= f.fields_for :client do |client| %>
-              <%= client.text_field :mobile, class: "corporate_form_control", placeholder: "Mobile" %>
+              <%= client.text_field :mobile, class: "corporate_form_control", autofocus: true, placeholder: "Mobile" %>
               <%= client.text_field :country, class: "corporate_form_control", placeholder: "Country" %>
-              <%= client.email_field :email, class: "corporate_form_control", autofocus: true, placeholder: "Email"%>
+              <%= client.email_field :email, class: "corporate_form_control", placeholder: "Email"%>
               <%= f.fields_for :corporate do |entity| %>
                     <%= entity.text_field :registration_number, class: "corporate_form_control", placeholder: "Registration_number" %>
-                    <%= entity.text_field :address, class: "corporate_form_control", placeholder: "Address" %>
                     <%= entity.text_field :in, class: "corporate_form_control", placeholder: "INN" %>
                     <%= entity.label :Passport %><br>
                     <%= entity.file_field :image, class: 'image_form_control' %>
               <% end %>
               <%= client.password_field :password, class: "corporate_form_control", autocomplete: "off", placeholder: "Password" %>
               <%= client.password_field :password_confirmation, class: "corporate_form_control", autocomplete: "off", placeholder: "Password_confirmation" %>
+            <h2>Перед регистрацией ознакомтесь с лицензионным соглашением</h2>
+            <h2><%= link_to 'Лицензионное соглашение', show_licence_path, target: '_blank' %></h2>
             <div class="actions">
               <%= client.submit "Зарегистрироваться", class: "sign_up_btn"%>
             </div>
           <% end %>
-        <%= link_to "Send OTP", '#', class: "btn btn-primary", onclick: 'javascript:otp_click()', remote: true %>
+          <%= link_to "Send OTP", '#', class: "btn btn-primary", onclick: 'javascript:otp_click()', remote: true %>
         <div class="col-md-12">
           <%= render "devise/shared/links" %>
         </div>
     <% end %>
   </div>
-<div class="col-md-5">
-  <%= form_for(resource, as: resource_name,  url: registration_path(resource_name)) do |f| %>
-      <%= f.hidden_field :registration, value: 'Corporate' %>
-      <%= devise_error_messages! %>
-        <%= f.fields_for :client do |client| %>
-            <%= client.text_field :mobile, class: "corporate_form_control", autofocus: true, placeholder: "Mobile" %>
-            <%= client.text_field :country, class: "corporate_form_control", placeholder: "Country" %>
-            <%= client.email_field :email, class: "corporate_form_control", placeholder: "Email"%>
-            <%= f.fields_for :corporate do |entity| %>
-                  <%= entity.text_field :registration_number, class: "corporate_form_control", placeholder: "Registration_number" %>
-                  <%= entity.text_field :in, class: "corporate_form_control", placeholder: "INN" %>
-                  <%= entity.label :Passport %><br>
-                  <%= entity.file_field :image, class: 'image_form_control' %>
-            <% end %>
-            <%= client.password_field :password, class: "corporate_form_control", autocomplete: "off", placeholder: "Password" %>
-            <%= client.password_field :password_confirmation, class: "corporate_form_control", autocomplete: "off", placeholder: "Password_confirmation" %>
-          <h2>Перед регистрацией ознакомтесь с лицензионным соглашением</h2>
-          <h2><%= link_to 'Лицензионное соглашение', show_licence_path, target: '_blank' %></h2>
-          <div class="actions">
-            <%= client.submit "Зарегистрироваться", class: "sign_up_btn"%>
-          </div>
-        <% end %>
-      <div class="col-md-12">
-        <%= render "devise/shared/links" %>
-      </div>
-  <% end %>
-</div>
 </div>
