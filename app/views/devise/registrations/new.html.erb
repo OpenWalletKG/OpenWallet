@@ -19,13 +19,14 @@
   </div>
 </div>
 <div id="msform">
-  <div id="Individual_registration_block">
-    <%= render 'individual_form' %>
-  </div>
-  <div id="Corporate_registration_block">
-    <%= render 'corporate_form' %>
-  </div>
+  <!--<div id="Individual_registration_block">-->
+    <!--<%#= render 'individual_form' %>-->
+  <!--</div>-->
+  <!--<div id="Corporate_registration_block">-->
+    <!--<%#= render 'corporate_form' %>-->
+  <!--</div>-->
 
+</div>
 
   <div class="modal fade" tabindex="-1" role="dialog" id="otp_modal">
     <div class="modal-dialog" role="document">
@@ -43,25 +44,102 @@
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
-</div>
+
 
  <script type="text/javascript">
-    function otp_click() {
-      var mob = document.getElementById("client_client_mobile").value;
-      $('#otp_modal').modal('show');
-      $.ajax({
-        type: 'get',
-        url: "/otp_test",
-        data: {mobile: mob},
-        response: 'text',
-        success: function(){
-          
-             },
-        error: function () {
-          alert('Ошибка отправки');
+//    $("#otp").click(function() {
+//      var mob = document.getElementById("client_client_mobile").value;
+//      $('#otp_modal').modal('show');
+//      $.ajax({
+//        type: 'get',
+//        url: "/otp_test",
+//        data: {mobile: mob},
+//        response: 'text',
+//        success: function(){
+//
+//             },
+//        error: function () {
+//          alert('Ошибка отправки');
+//        }
+//      });
+//    });
+
+
+    var radios = document.getElementsByName("regtype");
+    // var show = document.getElementsById("show");
+//    var cardpayment = document.getElementById("Individual_registration_block");
+//    var internetpayment = document.getElementById("Corporate_registration_block");
+    var show = document.getElementById("show");
+    var hiding = document.getElementById("hiding");
+
+    for (var i = 0; i < radios.length; i++) {
+      $(document).on('click','#show',function () {
+        var val = getRadioVal( 'regtype');
+        if (val == 'fiz') {  // Assuming your value for radio buttons is radio1, radio2 and radio3.
+          // cardpayment.style.display = 'block';   // show
+          hiding.style.display = 'none';// hide
+
+          $('#msform').html('<%=j render :partial => "individual_form" %>')
+          $("#otp").click(function() {
+            var mob = document.getElementById("client_client_mobile").value;
+            $('#otp_modal').modal('show');
+            $.ajax({
+              type: 'get',
+              url: "/otp_test",
+              data: {mobile: mob},
+              response: 'text',
+              success: function(){
+                var reg = document.getElementById("registr");
+                reg.style.display = 'block';
+              },
+              error: function () {
+                alert('Ошибка отправки');
+              }
+            });
+          });
+          // internetpayment.remove();
+          // internetpayment.style.display = 'none';// hide
         }
-      });
-    };  
- 
+        else if (val == 'jur') {
+          hiding.style.display = 'none';
+          $('#msform').html('<%=j render :partial => "corporate_form" %>')
+          // // cardpayment.style.display = 'none';
+          // cardpayment.remove();
+          // internetpayment.style.display = 'block';
+          $("#otp").click(function() {
+            var mob = document.getElementById("client_client_mobile").value;
+            $('#otp_modal').modal('show');
+            $.ajax({
+              type: 'get',
+              url: "/otp_test",
+              data: {mobile: mob},
+              response: 'text',
+              success: function(){
+                var reg = document.getElementById("registr");
+                reg.style.display = 'block';
+              },
+              error: function () {
+                alert('Ошибка отправки');
+              }
+            });
+          });
+        }
+
+      })
+    }
+    function getRadioVal(name) {
+      var val;
+      for (var i=0, len=radios.length; i<len; i++) {
+        if ( radios[i].checked ) {
+          val = radios[i].value;
+          break;
+        }
+      }
+      return val;
+    }
+
+
+
+
 
 </script>

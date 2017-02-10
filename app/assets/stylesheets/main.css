@@ -32,6 +32,9 @@ html {
 .registration_form_btn {
   
 }
+#registr {
+    display: none;
+}
 
 .individual_form_registration, .corporate_form_registration {
   display: inline-block;

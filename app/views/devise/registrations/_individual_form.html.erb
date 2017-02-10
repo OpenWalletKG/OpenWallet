@@ -20,14 +20,16 @@
               <%= client.password_field :password_confirmation, class: "individual_form_control", autocomplete: "off", placeholder: "Password_confirmation" %>
             <h2>Перед регистрацией ознакомтесь с лицензионным соглашением</h2>
             <h2><%= link_to 'Лицензионное соглашение', show_licence_path, target: '_blank' %></h2>
-            <div class="actions">
+            <div class="actions" id="registr">
               <%= client.submit "Зарегистрироваться", class: "sign_up_btn"%>
             </div>
         <%end%>
-        <%= link_to "Send OTP", '#', class: "btn btn-primary", onclick: 'javascript:otp_click()', remote: true %>
+        <%= link_to "Send OTP", '#', class: "btn btn-primary", id: "otp", remote: true %>
         <div class="col-md-12">
           <%= render "devise/shared/links" %>
         </div>
     <% end %>
   </div>
 </div>
+
+
