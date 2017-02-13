@@ -28,3 +28,8 @@
     <% end %>
   </div>
 </div>
+<script>
+<% if Rails.env=='test' %>
+      $('#registr').show();
+<% end %>
+</script>
