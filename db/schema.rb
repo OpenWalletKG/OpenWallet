@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170213050728) do
+ActiveRecord::Schema.define(version: 20170213100601) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,6 +104,19 @@ ActiveRecord::Schema.define(version: 20170213050728) do
     t.datetime "image_updated_at"
   end
 
+  create_table "documents", force: :cascade do |t|
+    t.string   "agent_id"
+    t.string   "client_id"
+    t.string   "account_id"
+    t.decimal  "sum"
+    t.string   "target"
+    t.string   "status"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "operation_id"
+    t.index ["operation_id"], name: "index_documents_on_operation_id", using: :btree
+  end
+
   create_table "draft_phone_registrations", force: :cascade do |t|
     t.string   "phone"
     t.datetime "end_of_ban"
@@ -128,6 +141,13 @@ ActiveRecord::Schema.define(version: 20170213050728) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+  end
+
+  create_table "operations", force: :cascade do |t|
+    t.string   "description"
+    t.string   "status"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "otp_registrations", force: :cascade do |t|
@@ -163,6 +183,7 @@ ActiveRecord::Schema.define(version: 20170213050728) do
   add_foreign_key "corporate_individuals", "corporates"
   add_foreign_key "corporate_individuals", "employees"
   add_foreign_key "corporate_individuals", "individuals"
+  add_foreign_key "documents", "operations"
   add_foreign_key "otp_registrations", "draft_phone_registrations"
   add_foreign_key "roles_actions", "actions"
   add_foreign_key "roles_actions", "roles"
