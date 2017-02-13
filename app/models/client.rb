@@ -62,7 +62,11 @@ class Client < ApplicationRecord
                                  role_id: role_id,
                                  entity_type: 'Corporate',
                                  entity_attributes: corporate_attributes.to_h,
-                                 account_attributes: { number: corporate_attributes[:in] })
+                                 account_attributes: { number: corporate_attributes[:in]} )
+
+                                 if client.save
+                                   Account.last.update_attributes(client_id: client.id)
+                                 end
       else
         raise "Получены неверные параметры"
     end

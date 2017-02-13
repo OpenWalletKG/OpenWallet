@@ -25,7 +25,7 @@ class PaymentController < WalletController
   private
 
   def account_params
-    params.require(:account).permit(:number, :type_money, :title)
+    params.require(:account).permit(:number, :type_money, :title, :client_id)
   end
 
 end

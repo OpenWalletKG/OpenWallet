@@ -21,13 +21,12 @@ class DeviseRegistrationsController < Devise::RegistrationsController
     else registration_params[:registration] == 'Individual'
     end
 
-
-    begin
+    # begin
       client = Client.register( registration_params )
-    rescue Exception => e
-      redirect_to root_path
-      return
-    end
+    # rescue Exception => e
+    #   redirect_to root_path
+    #   return
+    # end
 
     resource = client
 
