@@ -11,6 +11,7 @@ class PaymentController < WalletController
     request = EsbClient.findClient(current_client.entity.in, '1')
     request_2 = EsbClient.findAccount(account_params['number'], request['clientId'])
     if request_2['ErrCode'] == '0'
+      @account.assign_attributes(client_id: current_client.id)
       @account.save
     else
       flash[:danger] = "Номер банковского счета не найден"
