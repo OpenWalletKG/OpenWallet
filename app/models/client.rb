@@ -38,21 +38,39 @@ class Client < ApplicationRecord
       when "Individual"
         client_attributes = RegistrationParams.get_client_params( registration_params )
         individual_attributes = RegistrationParams.get_individual_params( registration_params )
-        client = Client.create(  mobile: client_attributes[:mobile],
-                                 email: client_attributes[:email],
-                                 password: client_attributes[:password],
-                                 password_confirmation: client_attributes[:password_confirmation],
-                                 country: client_attributes[:country],
-                                 image: client_attributes[:image],
-                                 role: Role.get_individual,
-                                 entity_type: 'Individual',
-                                 entity_attributes: individual_attributes.to_h,
-                                 account_attributes: { number: individual_attributes[:in] })
+        if CorporateIndividual.is_employee?( individual_attributes[:in] )
+          individual = Individual.find_by_in( individual_attributes[:in] )
+          client = Client.create( mobile: client_attributes[:mobile],
+                                  email: client_attributes[:email],
+                                  password: client_attributes[:password],
+                                  password_confirmation: client_attributes[:password_confirmation],
+                                  country: client_attributes[:country],
+                                  image: client_attributes[:image],
+                                  role: Role.get_individual,
+                                  entity_type: 'Individual',
+                                  entity_id: individual.id,
+                                  account_attributes: { number: individual_attributes[:in] })
+          raise "Ошибка регистрации/валидации" if defined?(client) && client.errors.messages.size != 0
+          individual.update_attributes( individual_attributes.to_h )
+        else
+          client = Client.create(  mobile: client_attributes[:mobile],
+                                   email: client_attributes[:email],
+                                   password: client_attributes[:password],
+                                   password_confirmation: client_attributes[:password_confirmation],
+                                   country: client_attributes[:country],
+                                   image: client_attributes[:image],
+                                   role: Role.get_individual,
+                                   entity_type: 'Individual',
+                                   entity_attributes: individual_attributes.to_h,
+                                   account_attributes: { number: individual_attributes[:in] })
+        end
+
       when "Corporate"
         client_attributes = RegistrationParams.get_client_params( registration_params )
         corporate_attributes = RegistrationParams.get_corporate_params( registration_params )
-        esb_corporate = RegCorporateAPI.new(corporate_attributes[:in], corporate_attributes[:registration_number])
+        esb_corporate = EsbClient::RegCorporateAPI.new(corporate_attributes[:in], corporate_attributes[:registration_number])
         role_id = esb_corporate.get_corporate_role_id
+        director = esb_corporate.get_corporate_head
         client = Client.create(  mobile: client_attributes[:mobile],
                                  email: client_attributes[:email],
                                  password: client_attributes[:password],
@@ -62,11 +80,9 @@ class Client < ApplicationRecord
                                  role_id: role_id,
                                  entity_type: 'Corporate',
                                  entity_attributes: corporate_attributes.to_h,
-                                 account_attributes: { number: corporate_attributes[:in]} )
-
-                                 if client.save
-                                   Account.last.update_attributes(client_id: client.id)
-                                 end
+                                 account_attributes: { number: corporate_attributes[:in] })
+        director[:corporate_id] = client.entity_id
+        CorporateIndividual.register_head(director)
       else
         raise "Получены неверные параметры"
     end

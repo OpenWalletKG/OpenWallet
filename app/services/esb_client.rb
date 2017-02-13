@@ -19,6 +19,7 @@ class EsbClient
   end
 
   def self.getClient(client_id)
+    raise ArgumentError.new("Аргумент client_id не задан") if client_id.empty?
     response = post('/client/v1/getClient',
       { body:
         {
@@ -26,6 +27,8 @@ class EsbClient
           }.to_json
         }
       )
+    raise ESBError.new(response) if ESBError.hasError(response)
+    response['client'].first
   end
 
   def self.findClient(inn, client_type)
@@ -110,7 +113,6 @@ class EsbClient
     raise ESBError.new(response) if ESBError.hasError(response)
     response
   end
-
 
   def self.getAccountCalendar(account_id, date_month, date_year)
     response = post('/account/v1/getAccountCalendar',
@@ -206,8 +208,8 @@ end
 
 class RegCorporateAPI < EsbClient
   ROLES_MAP = {
-      EsbClient::AGENT0 => Role::AGENT_0,
-      EsbClient::AGENT => Role::AGENT,
+      EsbClient::AGENT0   => Role::AGENT_0,
+      EsbClient::AGENT    => Role::AGENT,
       EsbClient::SUPPLIER => Role::SUPPLIER
   }
 
@@ -217,11 +219,26 @@ class RegCorporateAPI < EsbClient
   end
 
   def get_corporate_role_id
-    agent_id = EsbClient.findAgent( @inn, @reg_number )
-    agent = EsbClient.getAgent(agent_id)
-    agent_type = agent['agentType']
+    @agent_id ||= EsbClient.findAgent( @inn, @reg_number )
+    @agent    ||= EsbClient.getAgent(@agent_id)
+    agent_type = @agent['agentType']
     return ROLES_MAP[agent_type] if ROLES_MAP.has_key?(agent_type)
     raise ESBError.new( "Неопределен тип Corporate - #{agent_type}" )
+  end
+
+  def get_corporate_head
+    @agent_id ||= EsbClient.findAgent( @inn, @reg_number )
+    @agent    ||= EsbClient.getAgent(@agent_id)
+    @client   ||= EsbClient.getClient(@agent['clientId'])
+    @head     ||= EsbClient.getClient(@client['faseID'])
+    {
+        in: @head['IN'],
+        first_name: @head['firstName'],
+        last_name: @head['surName'],
+        dob: @head['birthDate'],
+        position: @head['Range']
+        # TODO: add gender
+    }
   end
 end
 

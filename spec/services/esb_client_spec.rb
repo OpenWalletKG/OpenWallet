@@ -4,7 +4,7 @@ RSpec.describe EsbClient do
   describe '.getClient' do
     it 'should return client info' do
       response = EsbClient.getClient('1595036601')
-      expect(response['client']).to eq([{
+      expect(response).to eq({
         'typeClient' => '2',
         'clientId' => '1595036601',
         'IN' => '890507302284',
@@ -25,7 +25,7 @@ RSpec.describe EsbClient do
         'legalForm' => nil,
         'registrationNumber' => nil,
         'registrationDate' => nil
-        }])
+        })
     end
   end
 

@@ -5,31 +5,15 @@ class DeviseRegistrationsController < Devise::RegistrationsController
   def create
     registration_params = params.require("client")
 
-    if registration_params[:registration] == 'Corporate'
-      client_inn = params[:client][:corporate][:in]
-      request = EsbClient.findClient(client_inn, '1')
-      if request['clientId'] == nil
-        flash[:danger] = "Инн клиента не найден"
-        redirect_to root_path and return
-      else
-      request1 = EsbClient.getClient(request['clientId'])
-        unless params[:client][:corporate][:registration_number] == request1['client'].first['registrationNumber']
-          flash[:danger] = "Регистрационный номер не совпадает с номером в банке"
-          redirect_to root_path and return
-        end
-      end
-    else registration_params[:registration] == 'Individual'
+    begin
+      client = Client.register( registration_params )
+    rescue Exception => e
+      puts e
+      redirect_to root_path
+      return
     end
 
-    # begin
-      client = Client.register( registration_params )
-    # rescue Exception => e
-    #   redirect_to root_path
-    #   return
-    # end
-
     resource = client
-
 
     yield resource if block_given?
     if resource.persisted?
