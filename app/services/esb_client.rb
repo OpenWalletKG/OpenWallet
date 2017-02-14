@@ -126,19 +126,19 @@ class EsbClient
       )
   end
 
-  def self.addTransfer(agent_id, account_id, client_id, amount, tpay_document_id, target)
+  def self.addTransfer(agent_id, account_id, client_id, amount, target, tpay_document_id="")
     params = transfer_params(agent_id, account_id, client_id, amount, tpay_document_id, target)
     path = '/document/v1/addTransfer'
     return transfer(path, { body: params.to_json} )
   end
 
-  def self.removeTransfer(agent_id, account_id, client_id, amount, tpay_document_id, target)
+  def self.removeTransfer(agent_id, account_id, client_id, amount, target, tpay_document_id)
     params = transfer_params(agent_id, account_id, client_id, amount, tpay_document_id, target)
     path = '/document/v1/removeTransfer'
     return transfer(path, { body: params.to_json})
   end
 
-  def self.addTransferCard(agent_id, client_id, amount, tpay_document_id, target, agent_id_provider)
+  def self.addTransferCard(agent_id, client_id, amount, target, agent_id_provider, tpay_document_id="")
     path = '/document/v1/addTransferCard'
     params = {
         agentId: agent_id,
@@ -151,7 +151,7 @@ class EsbClient
     return transfer(path, { body: params.to_json })
   end
 
-  def self.removeTransferCard(amount, tpay_document_id, target, agent_id_provider)
+  def self.removeTransferCard(amount, target, agent_id_provider, tpay_document_id)
     path = '/document/v1/removeTransferCard'
     params = {
       agentIdProvider: agent_id_provider,
@@ -181,14 +181,14 @@ class EsbClient
       )
   end
 
-  def self.transfer_params(agent_id, account_id, client_id, amount, tpay_document_id, target)
+  def self.transfer_params(agent_id, account_id, client_id, amount, target, tpay_document_id)
     {
       'agentId': agent_id,
       'accountId': account_id,
       'clientId': client_id,
       'summ': amount,
-      'transId': tpay_document_id,
-      'nazn': target
+      'nazn': target,
+      'transId': tpay_document_id
       }
   end
 
