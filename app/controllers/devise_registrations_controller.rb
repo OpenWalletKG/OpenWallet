@@ -7,10 +7,10 @@ class DeviseRegistrationsController < Devise::RegistrationsController
 
     begin
       client = Client.register( registration_params )
-    rescue Exception => e
-      puts e
-      redirect_to root_path
-      return
+    # rescue Exception => e
+    #   puts e
+    #   redirect_to root_path
+    #   return
     end
 
     resource = client

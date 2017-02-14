@@ -1,28 +1,36 @@
-<h1>Добавление банковского счета</h1>
+  <div class="col-md-8 show-book">
+<% flash.each do |name, msg| %>
+  <%= content_tag :div, msg, class: "alert alert-info" %>
+<% end %>
+
+<h1> Мои счета: </h1>
 
 <% @accounts_all.each do |account| %>
-    <div><%= account.number %> <%= account.title %> <%= account.type_money %>
-    <%= link_to "Удалить", delete_path(account), method: :delete  %></div>
+  <div><%= account.number %> <%= account.title %> <%= account.type_money %>  
+  <%= link_to "Удалить", delete_path(account), method: :delete, class: 'btn btn-default navbar-btn'  %></div>
 <% end %>
+
+<h1>Добавление банковского счета</h1>
 
 <%= form_for :account, url: {action: "new"} do |f| %>
 
-    <div>
+    <div class="field">
       <% bank_array = Bank.all.map { |bank| [bank.name, bank.id] } %>
       <%= select_tag :bank_id, options_for_select(bank_array) %>
     </div>
 
-    <div>
+    <div class="field">
       <%= f.label :number, "Введите номер счета" %> <br>
       <%= f.text_field :number %>
     </div>
 
-    <div>
+    <div class="field">
       <%= f.label :title, "Название счета" %> <br>
       <%= f.text_field :title %>
     </div>
 
     <div>
-      <%= f.submit "Cохранить" %>
+      <%= f.submit "Cохранить", class: 'btn btn-default navbar-btn'  %>
     </div>
 <% end %>
+</div>

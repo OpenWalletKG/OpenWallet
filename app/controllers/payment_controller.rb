@@ -15,9 +15,10 @@ class PaymentController < WalletController
       @bank = Bank.all.map { |bank| [bank.name, bank.id] }
       @account.save
       BankAccount.create(account_id: @account.id, bank_id: params['bank_id'])
+    flash[:danger] = "Номер банковского счета успешно добавлен!"
     redirect_to '/wallet/payment/new'
     else
-      flash[:danger] = "Номер банковского счета не найден"
+      flash[:danger] = "Номер банковского счета не найден!"
       redirect_to :back
     end
   end
