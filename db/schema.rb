@@ -111,6 +111,7 @@ ActiveRecord::Schema.define(version: 20170213100601) do
     t.decimal  "sum"
     t.string   "target"
     t.string   "status"
+    t.string   "doc_type"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.integer  "operation_id"
@@ -146,6 +147,7 @@ ActiveRecord::Schema.define(version: 20170213100601) do
   create_table "operations", force: :cascade do |t|
     t.string   "description"
     t.string   "status"
+    t.string   "fold"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end

@@ -6,7 +6,8 @@ class CreateDocuments < ActiveRecord::Migration[5.0]
       t.string :account_id
       t.decimal :sum
       t.string :target
-      t.string :status
+      t.string :status, default: "new"
+      t.string :doc_type
 
       t.timestamps
     end
