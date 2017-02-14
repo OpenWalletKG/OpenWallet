@@ -8,7 +8,8 @@
 <%= form_for :account, url: {action: "new"} do |f| %>
 
     <div>
-      <%= select_tag :bank_id, options_for_select(@bank) %>
+      <% bank_array = Bank.all.map { |bank| [bank.name, bank.id] } %>
+      <%= select_tag :bank_id, options_for_select(bank_array) %>
     </div>
 
     <div>
