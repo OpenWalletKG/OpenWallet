@@ -29,5 +29,4 @@ role_fiz.actions << action_sell
 image_path = "#{Rails.root}/app/assets/images/fixtures/no_photo.jpg"
 image_file = File.new(image_path)
 
-Employee.create(position: 'Пусто' )
 Employee.create(position: 'Директор' )

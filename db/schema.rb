@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170213100601) do
+ActiveRecord::Schema.define(version: 20170214102042) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,6 +102,9 @@ ActiveRecord::Schema.define(version: 20170213100601) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.string   "full_name"
+    t.string   "legal_form"
+    t.string   "okpo"
   end
 
   create_table "documents", force: :cascade do |t|
@@ -110,10 +113,10 @@ ActiveRecord::Schema.define(version: 20170213100601) do
     t.string   "account_id"
     t.decimal  "sum"
     t.string   "target"
-    t.string   "status"
+    t.string   "status",       default: "new"
     t.string   "doc_type"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.integer  "operation_id"
     t.index ["operation_id"], name: "index_documents_on_operation_id", using: :btree
   end

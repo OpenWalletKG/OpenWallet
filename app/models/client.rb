@@ -68,10 +68,12 @@ class Client < ApplicationRecord
 
       when "Corporate"
         client_attributes = RegistrationParams.get_client_params( registration_params )
-        corporate_attributes = RegistrationParams.get_corporate_params( registration_params )
-        esb_corporate = EsbClient::RegCorporateAPI.new(corporate_attributes[:in], corporate_attributes[:registration_number])
+        corporate_attributes = RegistrationParams.get_corporate_params( registration_params ).to_h
+        esb_corporate = RegCorporateAPI.new(corporate_attributes[:in], corporate_attributes[:registration_number])
         role_id = esb_corporate.get_corporate_role_id
         director = esb_corporate.get_corporate_head
+        info = esb_corporate.get_corporate_info
+        corporate_attributes.merge!( info )
         client = Client.create(  mobile: client_attributes[:mobile],
                                  email: client_attributes[:email],
                                  password: client_attributes[:password],
@@ -80,7 +82,7 @@ class Client < ApplicationRecord
                                  image: client_attributes[:image],
                                  role_id: role_id,
                                  entity_type: 'Corporate',
-                                 entity_attributes: corporate_attributes.to_h,
+                                 entity_attributes: corporate_attributes,
                                  account_attributes: { number: corporate_attributes[:in] })
         director[:corporate_id] = client.entity_id
         CorporateIndividual.register_head(director)

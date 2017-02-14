@@ -21,3 +21,5 @@ role_agent.actions << action_buy
 role_agent.actions << action_sell
 role_fiz.actions << action_buy
 role_fiz.actions << action_sell
+
+Employee.create(position: 'Директор' )
