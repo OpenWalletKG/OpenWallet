@@ -6,6 +6,7 @@ role_fiz = Role.create(definition: "Физ.лицо")
 role_supplier = Role.create(definition: "Поставщик")
 
 Bank.create!(name: "Tengri", plugin: "EsbClient")
+Bank.create!(name: "Visa", plugin: "VisaClient")
 
 action_emission = Action.create(description: "Ввод денег на СЭД агента")
 action_buy = Action.create(description: "Покупка")
