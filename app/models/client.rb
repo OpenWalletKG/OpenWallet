@@ -3,6 +3,7 @@ class Client < ApplicationRecord
   belongs_to :account, dependent: :destroy
   accepts_nested_attributes_for :account
 
+
   belongs_to :role
 
   belongs_to :entity, polymorphic: true, dependent: :destroy
@@ -83,6 +84,10 @@ class Client < ApplicationRecord
                                  account_attributes: { number: corporate_attributes[:in] })
         director[:corporate_id] = client.entity_id
         CorporateIndividual.register_head(director)
+
+                                 if client.save
+                                   Account.last.update_attributes(client_id: client.id, type_money: 'sed')
+                                 end
       else
         raise "Получены неверные параметры"
     end

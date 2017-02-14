@@ -1,5 +1,15 @@
 <h1>Добавление банковского счета</h1>
+
+<% @accounts_all.each do |account| %>
+    <div><%= account.number %> <%= account.title %> <%= account.type_money %>
+    <%= link_to "Удалить", delete_path(account), method: :delete  %></div>
+<% end %>
+
 <%= form_for :account, url: {action: "new"} do |f| %>
+
+    <div>
+      <%= select_tag :bank_id, options_for_select(@bank) %>
+    </div>
 
     <div>
       <%= f.label :number, "Введите номер счета" %> <br>

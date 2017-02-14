@@ -51,6 +51,7 @@ Rails.application.routes.draw do
     get    '/payment/new'     => 'payment#new',          as: 'new_payment'
     post   '/payment/new'     => 'payment#create',       as: 'payment_create_path'
     get    '/history'         => 'history#show',         as: 'history'
+    delete '/payment/:id'     => 'payment#destroy',      as: 'delete'
   end
 
 end
