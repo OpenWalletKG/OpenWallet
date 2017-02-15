@@ -1,36 +1,45 @@
-  <div class="col-md-8 show-book">
+<div class="col-md-8 show-account">
 <% flash.each do |name, msg| %>
   <%= content_tag :div, msg, class: "alert alert-info" %>
 <% end %>
-
-<h1> Мои счета: </h1>
-
-<% @accounts_all.each do |account| %>
-  <div><%= account.number %> <%= account.title %> <%= account.type_money %>  
-  <%= link_to "Удалить", delete_path(account), method: :delete, class: 'btn btn-default navbar-btn'  %></div>
-<% end %>
-
-<h1>Добавление банковского счета</h1>
-
-<%= form_for :account, url: {action: "new"} do |f| %>
-
-    <div class="field">
-      <% bank_array = Bank.all.map { |bank| [bank.name, bank.id] } %>
-      <%= select_tag :bank_id, options_for_select(bank_array) %>
-    </div>
-
-    <div class="field">
-      <%= f.label :number, "Введите номер счета" %> <br>
-      <%= f.text_field :number %>
-    </div>
-
-    <div class="field">
-      <%= f.label :title, "Название счета" %> <br>
-      <%= f.text_field :title %>
-    </div>
-
-    <div>
-      <%= f.submit "Cохранить", class: 'btn btn-default navbar-btn'  %>
-    </div>
-<% end %>
 </div>
+<div class="row">
+
+  <div class="col-sm-6 col-md-6 ">
+    <h1> Мои счета: </h1>
+      <% @accounts_all.each do |account| %>
+    <div class="caption">
+      <p><h4>Номер Счета: <%= account.number %><h4></p>
+      <p><h4>Название Счета: <%= account.title %><h4></p> 
+        <%= link_to "Удалить счет", delete_path(account), method: :delete, class: 'btn btn-danger'  %>
+    </div>
+      <% end %>
+  </div>
+
+  <div class="col-sm-6 col-md-6 ">
+    <h1>Добавление банковского счета: </h1>
+    <div class="caption">
+    <%= form_for :account, url: {action: "new"} do |f| %>
+
+      <div class="field">
+        <% bank_array = Bank.all.map { |bank| [bank.name, bank.id] } %>
+        <%= select_tag :bank_id, options_for_select(bank_array) %>
+      </div>
+
+      <div class="field">
+        <%= f.label :number, "Введите номер счета" %> <br>
+        <%= f.text_field :number %>
+      </div>
+
+      <div class="field">
+        <%= f.label :title, "Название счета" %> <br>
+        <%= f.text_field :title %>
+      </div>
+
+      <div>
+        <%= f.submit "Cохранить", class: 'btn btn-success'  %>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</div><!-- /row -->

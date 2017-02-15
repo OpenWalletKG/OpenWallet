@@ -7,7 +7,6 @@ class PaymentController < WalletController
   end
 
   def create
-    byebug
     @account = Account.new(account_params)
     if current_client.entity_type == 'Corporate'
       type_face = '1'
@@ -16,7 +15,6 @@ class PaymentController < WalletController
     end
     request = EsbClient.findClient(current_client.entity.in, type_face)
     request_2 = EsbClient.findAccount(account_params['number'], request['clientId'])
-    request_3 = EsbClient.getAccounts(request['clientId'])
     if request_2['ErrCode'] == '0'
       @account.assign_attributes(client_id: current_client.id, type_money: 'bank')
       @bank = Bank.all.map { |bank| [bank.name, bank.id] }
