@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170214102042) do
+ActiveRecord::Schema.define(version: 20170215104746) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -107,6 +107,14 @@ ActiveRecord::Schema.define(version: 20170214102042) do
     t.string   "okpo"
   end
 
+  create_table "correspondent_accounts", force: :cascade do |t|
+    t.decimal  "balance"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "operation_id"
+    t.index ["operation_id"], name: "index_correspondent_accounts_on_operation_id", using: :btree
+  end
+
   create_table "documents", force: :cascade do |t|
     t.string   "agent_id"
     t.string   "client_id"
@@ -180,6 +188,14 @@ ActiveRecord::Schema.define(version: 20170214102042) do
     t.index ["role_id"], name: "index_roles_actions_on_role_id", using: :btree
   end
 
+  create_table "wallet_balances", force: :cascade do |t|
+    t.decimal  "balance"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "account_id"
+    t.index ["account_id"], name: "index_wallet_balances_on_account_id", using: :btree
+  end
+
   add_foreign_key "accounts", "clients"
   add_foreign_key "bank_accounts", "accounts"
   add_foreign_key "bank_accounts", "banks"
@@ -188,8 +204,10 @@ ActiveRecord::Schema.define(version: 20170214102042) do
   add_foreign_key "corporate_individuals", "corporates"
   add_foreign_key "corporate_individuals", "employees"
   add_foreign_key "corporate_individuals", "individuals"
+  add_foreign_key "correspondent_accounts", "operations"
   add_foreign_key "documents", "operations"
   add_foreign_key "otp_registrations", "draft_phone_registrations"
   add_foreign_key "roles_actions", "actions"
   add_foreign_key "roles_actions", "roles"
+  add_foreign_key "wallet_balances", "accounts"
 end

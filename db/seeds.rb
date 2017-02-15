@@ -31,3 +31,6 @@ image_path = "#{Rails.root}/app/assets/images/fixtures/no_photo.jpg"
 image_file = File.new(image_path)
 
 Employee.create(position: 'Директор' )
+
+# Корреспондентский счёт системы
+CorrespondentAccount.create(balance: 0.to_d)
