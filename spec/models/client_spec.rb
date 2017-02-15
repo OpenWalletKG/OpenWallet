@@ -5,11 +5,13 @@ RSpec.describe Client, :type => :model do
   role = Role.create(definition: 'Person')
   individual = Individual.create(first_name: 'Vasya', last_name: 'Tor', in: '121212', dob: Time.now)
   account = Account.create(number: '0557140446')
+  address = Address.create(country: 'KGZ', full_address: 'Bishkek and etc.')
 
   subject {
     described_class.create(mobile: '0556120732', country: 'Kyrgyzstan', account_id: role.id,
                            role_id: account.id, entity_type: individual.class.name, entity_id: individual.id,
-                           email: 'client@example.com', password: '123456', password_confirmation: '123456'
+                           email: 'client@example.com', password: '123456', password_confirmation: '123456',
+                           address_id: address.id
     )
   }
 
@@ -65,13 +67,15 @@ RSpec.describe Client, :type => :model do
   it "is invalid with a duplicate mobile" do
     Client.create(mobile: '0556120732', country: 'Kazakstan', account_id: role.id,
                   role_id: account.id, entity_type: individual.class.name, entity_id: individual.id,
-                  email: 'client@example.com', password: '123456', password_confirmation: '123456'
+                  email: 'client@example.com', password: '123456', password_confirmation: '123456',
+                  address_id: address.id
     )
     new_mobile = Client.create(mobile: '0556120732', country: 'Kyrgyzstan', account_id: role.id,
                                role_id: account.id, entity_type: individual.class.name,
                                entity_id: individual.id,
                                email: 'client@example.com', password: '123456',
-                               password_confirmation: '123456'
+                               password_confirmation: '123456',
+                               address_id: address.id
     )
     new_mobile.valid?
     expect(new_mobile.errors[:mobile]).to include("has already been taken")
@@ -85,5 +89,6 @@ RSpec.describe Client, :type => :model do
   it { should belong_to(:account) }
   it { should belong_to(:role) }
   it { should belong_to(:entity) }
+  it { should belong_to(:address) }
 
 end

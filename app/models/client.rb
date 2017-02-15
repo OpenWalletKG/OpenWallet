@@ -3,6 +3,10 @@ class Client < ApplicationRecord
   belongs_to :account, dependent: :destroy
   accepts_nested_attributes_for :account
 
+  has_many :contacts
+
+  belongs_to :address, dependent: :destroy
+  accepts_nested_attributes_for :address
 
   belongs_to :role
 
@@ -39,6 +43,7 @@ class Client < ApplicationRecord
       when "Individual"
         client_attributes = RegistrationParams.get_client_params( registration_params )
         individual_attributes = RegistrationParams.get_individual_params( registration_params )
+        address_attributes = RegistrationParams.get_address_params( registration_params )
         if CorporateIndividual.is_employee?( individual_attributes[:in] )
           individual = Individual.find_by_in( individual_attributes[:in] )
           client = Client.create( mobile: client_attributes[:mobile],
@@ -50,7 +55,8 @@ class Client < ApplicationRecord
                                   role: Role.get_individual,
                                   entity_type: 'Individual',
                                   entity_id: individual.id,
-                                  account_attributes: { number: individual_attributes[:in] })
+                                  account_attributes: { number: individual_attributes[:in] },
+                                  address_attributes: address_attributes.to_h )
           raise "Ошибка регистрации/валидации" if defined?(client) && client.errors.messages.size != 0
           individual.update_attributes( individual_attributes.to_h )
         else
@@ -63,7 +69,8 @@ class Client < ApplicationRecord
                                    role: Role.get_individual,
                                    entity_type: 'Individual',
                                    entity_attributes: individual_attributes.to_h,
-                                   account_attributes: { number: individual_attributes[:in] })
+                                   account_attributes: { number: individual_attributes[:in] },
+                                   address_attributes: address_attributes.to_h )
         end
 
       when "Corporate"
@@ -74,6 +81,7 @@ class Client < ApplicationRecord
         director = esb_corporate.get_corporate_head
         info = esb_corporate.get_corporate_info
         corporate_attributes.merge!( info )
+        address_attributes = RegistrationParams.get_address_params( registration_params )
         client = Client.create(  mobile: client_attributes[:mobile],
                                  email: client_attributes[:email],
                                  password: client_attributes[:password],
@@ -83,7 +91,8 @@ class Client < ApplicationRecord
                                  role_id: role_id,
                                  entity_type: 'Corporate',
                                  entity_attributes: corporate_attributes,
-                                 account_attributes: { number: corporate_attributes[:in] })
+                                 account_attributes: { number: corporate_attributes[:in] },
+                                 address_attributes: address_attributes.to_h )
         director[:corporate_id] = client.entity_id
         CorporateIndividual.register_head(director)
 
@@ -131,6 +140,10 @@ class RegistrationParams
     else
       registration_params[:registration].capitalize
     end
+  end
+
+  def self.get_address_params( registration_params )
+    registration_params.require("client").permit( :country )
   end
 end
 

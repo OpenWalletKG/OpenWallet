@@ -31,6 +31,13 @@ ActiveRecord::Schema.define(version: 20170215104746) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "addresses", force: :cascade do |t|
+    t.string   "country"
+    t.string   "full_address"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "bank_accounts", force: :cascade do |t|
     t.integer  "account_id"
     t.integer  "bank_id"
@@ -74,12 +81,23 @@ ActiveRecord::Schema.define(version: 20170215104746) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.integer  "address_id"
     t.index ["account_id"], name: "index_clients_on_account_id", using: :btree
+    t.index ["address_id"], name: "index_clients_on_address_id", using: :btree
     t.index ["confirmation_token"], name: "index_clients_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_clients_on_email", unique: true, using: :btree
     t.index ["entity_type", "entity_id"], name: "index_clients_on_entity_type_and_entity_id", using: :btree
     t.index ["reset_password_token"], name: "index_clients_on_reset_password_token", unique: true, using: :btree
     t.index ["role_id"], name: "index_clients_on_role_id", using: :btree
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.string   "type"
+    t.string   "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "client_id"
+    t.index ["client_id"], name: "index_contacts_on_client_id", using: :btree
   end
 
   create_table "corporate_individuals", force: :cascade do |t|
@@ -200,7 +218,9 @@ ActiveRecord::Schema.define(version: 20170215104746) do
   add_foreign_key "bank_accounts", "accounts"
   add_foreign_key "bank_accounts", "banks"
   add_foreign_key "clients", "accounts"
+  add_foreign_key "clients", "addresses"
   add_foreign_key "clients", "roles"
+  add_foreign_key "contacts", "clients"
   add_foreign_key "corporate_individuals", "corporates"
   add_foreign_key "corporate_individuals", "employees"
   add_foreign_key "corporate_individuals", "individuals"
