@@ -75,6 +75,10 @@ When(/^ввожу в поле номер телефона$/) do |table|
     end
   end
 end
+When(/^ввожу в поле счета "([^"]*)" текст "([^"]*)"$/) do |field, value|
+  fill_in field, with:value
+  sleep(0.5)
+end
 
 
 When(/^ввожу данные в поля форм$/) do |table|

@@ -13,7 +13,7 @@ class Account < ApplicationRecord
     account = new(account_params)
     account.client_id = current_client.id
     account.save
-    if BankAccount.add_account(bank_id, account.id, account_params[:number], current_client.entity.in, current_client.entity_type)
+    if account.save && BankAccount.add_account(bank_id, account.id, account_params[:number], current_client.entity.in, current_client.entity_type)
       account.save
     else
       account.destroy

@@ -79,6 +79,12 @@ end
 #   DatabaseCleaner.start
 #   load "#{Rails.root}/db/test_seeds.rb"
 # end
+# Before('@login') do
+#   visit new_client_session_path
+#   fill_in "Mobile", with:"996533121212"
+#   fill_in "Password",with: "123456"
+#   click_button "Log in"
+# end
 
 After do |scenario|
   DatabaseCleaner.clean

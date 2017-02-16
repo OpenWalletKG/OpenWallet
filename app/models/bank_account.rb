@@ -7,7 +7,7 @@ class BankAccount < ApplicationRecord
     bank_account_id = adapter.add_account(inn, iban, client_type)
     unless bank_account_id == false
       new_account = new(account_id:account_id, bank_id:bank_id, bank_account_id: bank_account_id)
-      new_account.save!
+        new_account.save!
     else
       false
     end
