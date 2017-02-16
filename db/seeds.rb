@@ -1,9 +1,9 @@
 p
 p "SEEDS STARTED:"
-role_agent0 = Role.create(definition: "Агент 0")
-role_agent = Role.create(definition: "Агент")
-role_fiz = Role.create(definition: "Физ.лицо")
-role_supplier = Role.create(definition: "Поставщик")
+role_agent0 = Role.create(definition: "Агент 0", permission: Role::ROLE_PERMISSIONS[Role::AGENT_0])
+role_agent = Role.create(definition: "Агент", permission: Role::ROLE_PERMISSIONS[Role::AGENT])
+role_fiz = Role.create(definition: "Физ.лицо", permission: Role::ROLE_PERMISSIONS[Role::INDIVIDUAL])
+role_supplier = Role.create(definition: "Поставщик", permission: Role::ROLE_PERMISSIONS[Role::SUPPLIER])
 
 Bank.create!(name: "Tengri", plugin: "EsbClient")
 Bank.create!(name: "Visa", plugin: "VisaClient")
