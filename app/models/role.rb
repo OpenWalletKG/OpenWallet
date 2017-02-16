@@ -6,59 +6,80 @@ class Role < ApplicationRecord
   validates :definition, presence: true, 
             uniqueness: true
 
-  AGENT_0     = 1
-  AGENT       = 2
-  INDIVIDUAL  = 3
-  SUPPLIER    = 4
+  validates :permission, presence: true
 
-  scope :get_agent_0,   -> { where(id: AGENT_0).first }
-  scope :get_agent,     -> { where(id: AGENT).first }
-  scope :get_individual,-> { where(id: INDIVIDUAL).first }
-  scope :get_supplier,  -> { where(id: SUPPLIER).first }
-
-  DO_EMISSION     = 0b0000001
-  BUY             = 0b0000010
-  SELL            = 0b0000100
-  ACCEPT_TRANSFER = 0b0001000
-  DO_TRANSFER     = 0b0010000
-  ACCEPT_PAYMENT  = 0b0100000
-  DO_PAYMENT      = 0b1000000
-
-
-
-  ROLE_PERMISSIONS = {
-      AGENT_0     => 0b0000101,  # [DO_EMISSION, SELL]
-      AGENT       => 0b0010101,  # [DO_EMISSION, SELL, DO_TRANSFER]
-      INDIVIDUAL  => 0b1011110,  # [BUY, SELL, ACCEPT_TRANSFER, DO_TRANSFER, DO_PAYMENT]
-      SUPPLIER    => 0b0100100,  # [SELL, ACCEPT_PAYMENT]
+  ROLES = {
+      :AGENT_0     => "Агент 0",
+      :AGENT       => "Агент",
+      :INDIVIDUAL  => "Физ.лицо",
+      :SUPPLIER    => "Поставщик"
   }
 
+  scope :get_agent_0,   -> { where(definition: ROLES[:AGENT_0]).first }
+  scope :get_agent,     -> { where(definition: ROLES[:AGENT]).first }
+  scope :get_individual,-> { where(definition: ROLES[:INDIVIDUAL]).first }
+  scope :get_supplier,  -> { where(definition: ROLES[:SUPPLIER]).first }
+
+
+  PERMISSIONS = {
+      :DO_EMISSION     => 0b0000001,
+      :BUY             => 0b0000010,
+      :SELL            => 0b0000100,
+      :ACCEPT_TRANSFER => 0b0001000,
+      :DO_TRANSFER     => 0b0010000,
+      :ACCEPT_PAYMENT  => 0b0100000,
+      :DO_PAYMENT      => 0b1000000
+  }
+
+
+  def init_permissions(*permissions)
+    @permission = 0
+    permissions.each do |permission|
+      @permission |= PERMISSIONS[permission]
+    end
+    @permission
+  end
+
+  def list_permissions
+    result = Array.new
+    PERMISSIONS.each_with_index do |(permission_key, permission_value)|
+      result << permission_key if (self.permission & permission_value) == permission_value
+    end
+    result
+  end
+
+  def register_role_as( role )
+    self.definition = ROLES[role]
+    self.permission = @permission
+    self.save!
+  end
+
   def can_do_emission?
-    (self.permission & DO_EMISSION) == DO_EMISSION
+    (self.permission & PERMISSIONS[:DO_EMISSION]) == PERMISSIONS[:DO_EMISSION]
   end
 
   def can_buy?
-    (self.permission & BUY) == BUY
+    (self.permission & PERMISSIONS[:BUY]) == PERMISSIONS[:BUY]
   end
 
   def can_sell?
-    (self.permission & SELL) == SELL
+    (self.permission & PERMISSIONS[:SELL]) == PERMISSIONS[:SELL]
   end
 
   def can_accept_transfer?
-    (self.permission & ACCEPT_TRANSFER) == ACCEPT_TRANSFER
+    (self.permission & PERMISSIONS[:ACCEPT_TRANSFER]) == PERMISSIONS[:ACCEPT_TRANSFER]
   end
 
   def can_do_transfer?
-    (self.permission & DO_TRANSFER) == DO_TRANSFER
+    (self.permission & PERMISSIONS[:DO_TRANSFER]) == PERMISSIONS[:DO_TRANSFER]
   end
 
   def can_accept_payment?
-    (self.permission & ACCEPT_PAYMENT) == ACCEPT_PAYMENT
+    (self.permission & PERMISSIONS[:ACCEPT_PAYMENT]) == PERMISSIONS[:ACCEPT_PAYMENT]
   end
 
   def can_do_payment?
-    (self.permission & DO_PAYMENT) == DO_PAYMENT
+    (self.permission & PERMISSIONS[:DO_PAYMENT]) == PERMISSIONS[:DO_PAYMENT]
   end
 
 end

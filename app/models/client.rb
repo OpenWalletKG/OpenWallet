@@ -77,7 +77,7 @@ class Client < ApplicationRecord
         client_attributes = RegistrationParams.get_client_params( registration_params )
         corporate_attributes = RegistrationParams.get_corporate_params( registration_params ).to_h
         esb_corporate = RegCorporateAPI.new(corporate_attributes[:in], corporate_attributes[:registration_number])
-        role_id = esb_corporate.get_corporate_role_id
+        role = esb_corporate.get_corporate_role
         director = esb_corporate.get_corporate_head
         info = esb_corporate.get_corporate_info
         corporate_attributes.merge!( info )
@@ -88,7 +88,7 @@ class Client < ApplicationRecord
                                  password_confirmation: client_attributes[:password_confirmation],
                                  country: client_attributes[:country],
                                  image: client_attributes[:image],
-                                 role_id: role_id,
+                                 role: role,
                                  entity_type: 'Corporate',
                                  entity_attributes: corporate_attributes,
                                  account_attributes: { number: corporate_attributes[:in] },

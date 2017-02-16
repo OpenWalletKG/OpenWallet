@@ -1,9 +1,55 @@
-p
-p "SEEDS STARTED:"
-role_agent0 = Role.create(definition: "Агент 0", permission: Role::ROLE_PERMISSIONS[Role::AGENT_0])
-role_agent = Role.create(definition: "Агент", permission: Role::ROLE_PERMISSIONS[Role::AGENT])
-role_fiz = Role.create(definition: "Физ.лицо", permission: Role::ROLE_PERMISSIONS[Role::INDIVIDUAL])
-role_supplier = Role.create(definition: "Поставщик", permission: Role::ROLE_PERMISSIONS[Role::SUPPLIER])
+RolesAction.destroy_all
+Action.destroy_all
+
+$line_width = 60
+$action_space = 3
+$action_symbol = "-> "
+
+def print_head(title)
+  title += " " if title.length % 2 != 0
+  lines = $line_width - 2 - title.length / 2
+  puts
+  print "-" * lines
+  print " #{ title } "
+  puts "-" * lines
+  puts
+end
+
+def print_action( title )
+  print " " * $action_space
+  print $action_symbol
+  puts "#{title}"
+  puts
+end
+
+print_head "SEEDS:"
+print_head "Роли:"
+
+Role.destroy_all
+
+role_agent0 = Role.new
+role_agent0.init_permissions( :DO_EMISSION, :SELL )
+role_agent0.register_role_as( :AGENT_0 )
+permissions = role_agent0.list_permissions.join(", ")
+print_action "Создана роль Агент 0 с правами:  [#{ permissions }]"
+
+role_agent = Role.new
+role_agent.init_permissions( :DO_EMISSION, :SELL, :DO_TRANSFER )
+role_agent.register_role_as( :AGENT )
+permissions = role_agent.list_permissions.join(", ")
+print_action "Создана роль Агент с правами:  [#{ permissions }]"
+
+role_fiz = Role.new
+role_fiz.init_permissions( :BUY, :SELL, :ACCEPT_TRANSFER, :DO_TRANSFER, :DO_PAYMENT )
+role_fiz.register_role_as( :INDIVIDUAL )
+permissions = role_fiz.list_permissions.join(", ")
+print_action "Создана роль Физ.лицо с правами:  [#{ permissions }]"
+
+role_supplier = Role.new
+role_supplier.init_permissions( :SELL, :ACCEPT_PAYMENT )
+role_supplier.register_role_as( :SUPPLIER )
+permissions = role_supplier.list_permissions.join(", ")
+print_action "Создана роль Поставщик с правами:  [#{ permissions }]"
 
 Bank.create!(name: "Tengri", plugin: "EsbClient")
 Bank.create!(name: "Visa", plugin: "VisaClient")

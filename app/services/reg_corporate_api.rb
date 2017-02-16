@@ -1,8 +1,8 @@
 class RegCorporateAPI < EsbClient
   ROLES_MAP = {
-      EsbClient::AGENT0   => Role::AGENT_0,
-      EsbClient::AGENT    => Role::AGENT,
-      EsbClient::SUPPLIER => Role::SUPPLIER
+      EsbClient::AGENT0   => Role.get_agent_0,
+      EsbClient::AGENT    => Role.get_agent,
+      EsbClient::SUPPLIER => Role.get_supplier
   }
 
   def initialize( inn, reg_number)
@@ -10,7 +10,7 @@ class RegCorporateAPI < EsbClient
     @reg_number = reg_number
   end
 
-  def get_corporate_role_id
+  def get_corporate_role
     @agent_id ||= EsbClient.findAgent( @inn, @reg_number )
     @agent    ||= EsbClient.getAgent(@agent_id)
     agent_type = @agent['agentType']
