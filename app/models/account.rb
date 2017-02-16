@@ -9,16 +9,15 @@ class Account < ApplicationRecord
     Base58.encode( unique_identifier )
   end
 
-  def self.add_account(current_client, account_params, type_account)
-    client = BankHandler.new
-    if client.add_account(current_client.entity.in, account_params[:number],current_client.entity_type)
-      account_params[:client_id] = current_client.id
-      account = new(account_params)
-      account.save!
-      account.build_bank_account(bank_id: type_account ).save!
+  def self.add_bank_account(current_client, account_params, bank_id)
+    account = new(account_params)
+    account.client_id = current_client.id
+    account.save
+    if BankAccount.add_account(bank_id, account.id, account_params[:number], current_client.entity.in, current_client.entity_type)
+      account.save
     else
+      account.destroy
       false
     end
   end
-
 end
