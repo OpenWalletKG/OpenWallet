@@ -8,17 +8,17 @@
     </div>
     <div class="col-md-6 move" >
       <div>
-        <input type="radio" name="regtype" value="fiz" id="fizik">Физическое лицо<Br>
-        <div class="table-bordered" id="description_area">Описание про физ лицо</div>
-        <input type="radio" name="regtype" value="jur" id="jurik">Юридическое лицо<Br>
-        <div class="table-bordered" id="description_area">Описание про юр лицо</div>
+        <input type="radio" name="regtype" value="fiz" id="fizik">Физическое лицо<br>
+        <div class="table-bordered home_page_description" id="description_area">Описание про физ лицо</div>
+        <input type="radio" name="regtype" value="jur" id="jurik">Юридическое лицо<br>
+        <div class="table-bordered home_page_description" id="description_area">Описание про юр лицо</div>
         <div class="actions">
-          <%= button_to "continue", show_registration_form_path, value: "Продолжить", id: "show", class: "registration_form_btn", method: 'get', remote: true %>
+          <%= button_to "Продолжить", show_registration_form_path, id: "show", class: "registration_form_btn", method: 'get', remote: true %>
         </div>
       </div>
     </div>
   </div>
-  <div class="col-md-5" id="otp_form">
+  <div class="col-md-6 col-md-offset-2" id="otp_form">
     <div id="otp_confirmation"></div>
   </div>
 </div>
@@ -112,7 +112,7 @@ $(document).on('submit', '#new_client', function(event){
       data: {mobile: mob},
       response: 'text',
       success: function(){
-        // testTimer (10);
+        testTimer (10);
       },
       error: function () {
         alert('Ошибка отправки');

@@ -12,12 +12,14 @@
                     <%= entity.text_field :first_name, class: "individual_form_control", placeholder: "First_name", label: "Имя"%>
                     <%= entity.text_field :last_name, class: "individual_form_control", placeholder: "Last_name", label: "Фамилия" %>
                     <%= entity.text_field :in, class: "individual_form_control", placeholder: "INN", label: "ИНН" %>
-                    <%= entity.date_field :dob, "data-provide" => 'datepicker', class: "individual_form_control", label: 'Дата рождения'%><br>
-                    <%= entity.label :Passport %>
-                    <%= entity.file_field :image, layout: :default, class: 'form-control image_form_control', hide_label: true %>
+                    <%= entity.date_field :dob, "data-provide" => 'datepicker', class: "individual_form_control", label: 'Дата рождения'%>
+                    <!-- <div class="form-group"> -->
+                      <%= entity.label :Passport, "Прикрепить паспорт", class: 'control-label col-sm-4' %>
+                      <%= entity.file_field :image, layout: :default, class: 'form-control image_form_control', hide_label: true %>
+                    <!-- </div> -->
               <% end %>
-              <%= client.password_field :password, class: "form-control individual_form_control", autocomplete: "off", placeholder: "Password" %>
-              <%= client.password_field :password_confirmation, class: "form-control individual_form_control", autocomplete: "off", placeholder: "Password_confirmation" %>
+              <%= client.password_field :password, class: "form-control individual_form_control", autocomplete: "off", placeholder: "Password", label: "Пароль" %>
+              <%= client.password_field :password_confirmation, class: "form-control individual_form_control", autocomplete: "off", placeholder: "Password_confirmation", label: "Повторить пароль" %>
             <h4>Перед регистрацией ознакомтесь с лицензионным соглашением</h4>
             <h4><%= link_to 'Лицензионное соглашение', show_licence_path, target: '_blank' %></h4>
             <div class="actions" id="form_registration_btn">
@@ -61,4 +63,4 @@
   //     return false;
   //   }
   // });
-<!-- </script> -->
+</script>

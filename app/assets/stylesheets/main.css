@@ -29,9 +29,7 @@ html {
     width: 100%;
 }
 
-.registration_form_btn {
-  
-}
+
 #otp_form {
     display: none;
 }
@@ -49,8 +47,12 @@ html {
 }
 
 .image_form_control {
-  margin-left: 200px;
+  margin-left: 210px;
+  margin-right: 30px;
   display: inline-block;
+  width: 359px;
+  height: 35px;
+  padding: 3px;
   /* width: 60%; */
 }
 
@@ -62,11 +64,46 @@ body {
   /*background: url('http://thecodeplayer.com/uploads/media/gs.png');*/
   /*background = gradient + image pattern combo*/
   /*background: #B1B2B4;*/
-  background: grey;
+  background: #fff;
          /* linear-gradient(rgba(196, 102, 0, 0.2), rgba(155, 89, 182, 0.2)),
           url('http://thecodeplayer.com/uploads/media/gs.png');*/
 
 }
+
+.navbar {
+  background: #8B3E9A;
+  min-height: 80px;
+}  
+
+.navbar .navbar-brand {
+  padding-top: 30px;
+  color: #fff;
+}
+
+.main_page_block h2, #registration_form h3 {
+  color: #8B3E9A;
+}
+
+#registration_form h3 {
+  text-align: center;
+  margin: 15px;
+}
+
+.navbar-nav .ow_btn {
+  background: #00ABD9;
+  margin-top: 20px;
+  margin-left: 5px;
+}
+
+.navbar-nav .ow_btn:hover {
+  box-shadow: 0 0 0 2px white, 0 0 0 3px #00ABD9;
+}
+
+.home_page_description {
+  border: 1px solid #00ABD9;
+  border-radius: 5px;
+}
+
 .main_page_block {
   margin: 0 auto;
   text-align: center;
@@ -122,22 +159,25 @@ body .main_page_img {
 
 /*buttons*/
 #msform .action-button, .registration_form_btn {
-  width: 100px;
-  background: #27AE60;
+  /*width: 100px;*/
+  /*background: #27AE60;*/
+  background: #8B3E9A;
   font-weight: bold;
   color: white;
   border: 0 none;
   border-radius: 1px;
   cursor: pointer;
-  padding: 10px 5px;
+  padding: 10px 20px;
   margin: 10px 5px;
 }
 .registration_form_btn:hover, .registration_form_btn:focus {
-  box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+  /*box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;*/
+  box-shadow: 0 0 0 2px white, 0 0 0 3px #8B3E9A;
 }
 
 .sign_up_btn:hover, .sign_up_btn:focus {
-  box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+  /*box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;*/
+  box-shadow: 0 0 0 2px white, 0 0 0 3px #8B3E9A;
 }
 #msform .action-button:hover, #msform .action-button:focus {
   box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
@@ -213,7 +253,8 @@ body .main_page_img {
 
 .sign_up_btn {
   width: 250px;
-  background: #27AE60;
+  /*background: #27AE60;*/
+  background: #8B3E9A;
   font-weight: bold;
   color: white;
   border: 0 none;
@@ -221,4 +262,17 @@ body .main_page_img {
   cursor: pointer;
   padding: 10px 5px;
   margin: 10px 5px;
+}
+
+#otp_confirmation {
+  border: 1px solid #8B3E9A;
+  padding: 20px;
+  box-shadow: 10px 10px 5px #888888;
+}
+
+#registration_form {
+  border: 1px solid #8B3E9A;
+  padding: 50px;
+  box-shadow: 10px 10px 5px #888888;
+  margin-bottom: 20px;
 }

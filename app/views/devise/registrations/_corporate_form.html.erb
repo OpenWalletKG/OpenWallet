@@ -6,18 +6,18 @@
         <%= devise_error_messages! %>
           <%= f.fields_for :client do |client| %>
               <%= client.text_field :mobile, class: "form-control corporate_form_control", autofocus: true, placeholder: "Mobile", label: "Номер моб.телефона" %>
-              <%= client.text_field :country, class: "form-control corporate_form_control", placeholder: "Country" %>
+              <%= client.text_field :country, class: "form-control corporate_form_control", placeholder: "Country", label: 'Страна'%>
               <%= client.email_field :email, class: "corporate_form_control", placeholder: "Email"%>
               <%= f.fields_for :corporate do |entity| %>
-                    <%= entity.text_field :registration_number, class: "corporate_form_control", placeholder: "Registration_number" %>
-                    <%= entity.text_field :in, class: "corporate_form_control", placeholder: "INN" %>
+                    <%= entity.text_field :registration_number, class: "corporate_form_control", placeholder: "Registration_number", label: "Регистрационный номер" %>
+                    <%= entity.text_field :in, class: "corporate_form_control", placeholder: "INN", label: "ИНН" %>
                     <div class='form-group' >
-                    <%= entity.label :Passport, class: 'form-label' %>
-                    <%= entity.file_field :image, class: 'form-control image_form_control', hide_label: true, style: 'col-sm-8' %>
+                      <%= entity.label :Passport,'Прикрепить паспорт', class: 'control-label col-sm-4'%>
+                      <%= entity.file_field :image, class: 'form-control image_form_control', hide_label: true %>
                     </div>
               <% end %>
-              <%= client.password_field :password, class: "corporate_form_control", autocomplete: "off", placeholder: "Password" %>
-              <%= client.password_field :password_confirmation, class: "corporate_form_control", autocomplete: "off", placeholder: "Password_confirmation" %>
+              <%= client.password_field :password, class: "corporate_form_control", autocomplete: "off", placeholder: "Password", label: "Пароль" %>
+              <%= client.password_field :password_confirmation, class: "corporate_form_control", autocomplete: "off", placeholder: "Password_confirmation", label: "Повторить пароль" %>
             <h4>Перед регистрацией ознакомтесь с лицензионным соглашением</h4>
             <h4><%= link_to 'Лицензионное соглашение', show_licence_path, target: '_blank' %></h4>
             <div class="actions" id="registr">

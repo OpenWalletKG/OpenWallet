@@ -3,10 +3,11 @@
   <p id = "time"></p>
   <p id = "rezult"></p>
   <p> Осталось попыток <%= 5-@try_counts %></p>
-  <input type="button" id="bot" name="otp" onclick="get_otp_again()" value="Получить ОТП повторно"/>
-  <%= text_field_tag :pin, nil, placeholder: "Введите код" %>
+  
+  <%= text_field_tag :pin, nil, placeholder: "Введите код", class: "form-control" %>
   <%= hidden_field_tag :mobile, @mobile  %>
-  <%= submit_tag "Подтвердить", name: 'confirm' %>
+  <input type="button" id="bot" name="otp" onclick="get_otp_again()" value="Получить ОТП повторно" class="registration_form_btn" >
+  <%= submit_tag "Подтвердить", name: 'confirm', class: 'registration_form_btn' %>
 <%end%>
 
 <script type="text/javascript">
@@ -18,7 +19,7 @@
       data: {mobile: mob},
       response: 'text',
       success: function(){
-            // testTimer (10);
+            testTimer (10);
            },
       error: function () {
         alert('Ошибка отправки');
