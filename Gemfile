@@ -10,6 +10,7 @@ gem 'dotenv-rails'
 gem 'pg'
 gem 'base58'
 gem 'httparty'
+gem 'aasm'
 
 # frontend
 gem 'bootstrap-validator-rails'

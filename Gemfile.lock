@@ -2,6 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     Ascii85 (1.0.2)
+    aasm (4.11.1)
     actioncable (5.0.1)
       actionpack (= 5.0.1)
       nio4r (~> 1.2)
@@ -325,6 +326,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aasm
   base58
   bootstrap-sass (~> 3.3.6)
   bootstrap-validator-rails
