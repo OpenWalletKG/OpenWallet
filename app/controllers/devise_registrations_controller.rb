@@ -1,6 +1,21 @@
 class DeviseRegistrationsController < Devise::RegistrationsController
 # before_action :configure_sign_up_params, only: [:create]
 # before_action :configure_account_update_params, only: [:update]
+  before_action :ensure_pin_verified, only: [:create]
+
+
+  def show
+    @client = Client.new
+    @client_type = params[:client_type]
+    if !@client_type.nil?
+      respond_to do |format|
+        format.js
+      end
+    else
+      flash[:error] = "Вам необходимо выбрать тип клиента."
+      redirect_to new_client_registration_path
+    end
+  end
 
   def create
     registration_params = params.require("client")
@@ -39,6 +54,20 @@ class DeviseRegistrationsController < Devise::RegistrationsController
               type: "application/pdf",
               disposition: "inline"
     )
+  end
+
+  private
+
+  def ensure_pin_verified
+    if pin_verified?
+      session.delete(:pin_verified)
+    else
+      render text: 'OTP has not been confirmed', status: 422 and return
+    end
+  end
+
+  def pin_verified?
+    !!session[:pin_verified]
   end
 
 end

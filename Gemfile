@@ -12,6 +12,8 @@ gem 'base58'
 gem 'httparty'
 
 # frontend
+gem 'bootstrap-validator-rails'
+gem 'bootstrap_form'
 gem 'bootstrap3-datetimepicker-rails'
 gem 'momentjs-rails'
 gem 'bootstrap-sass', '~> 3.3.6'

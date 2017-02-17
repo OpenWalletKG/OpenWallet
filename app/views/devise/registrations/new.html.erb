@@ -1,6 +1,6 @@
 <div class="container">
   <div id="client_messages"></div>
-  <div id="hiding">
+  <div id="main-content">
     <div class="col-md-5">
       <div class="row registration_form_image_area" id="registration_form_image_area">
         <%= image_tag "wallet.png" %>
@@ -13,128 +13,116 @@
         <input type="radio" name="regtype" value="jur" id="jurik">Юридическое лицо<Br>
         <div class="table-bordered" id="description_area">Описание про юр лицо</div>
         <div class="actions">
-          <button name="continue" value="continue" id="show" class="registration_form_btn">Продолжить</button>
+          <%= button_to "continue", show_registration_form_path, value: "Продолжить", id: "show", class: "registration_form_btn", method: 'get', remote: true %>
         </div>
       </div>
     </div>
   </div>
+  <div class="col-md-5" id="otp_form">
+    <div id="otp_confirmation"></div>
+  </div>
 </div>
-<div id="msform"></div>
-  
-  <div class="modal fade" tabindex="-1" role="dialog" id="otp_modal">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title">Проверка ОТП</h4>
-        </div>
-        <div class="modal-body">
-          <div id="otp_confirmation"> </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal" onclick="">Close</button>
-        </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
-
 
  <script type="text/javascript">
-//    $("#otp").click(function() {
-//      var mob = document.getElementById("client_client_mobile").value;
-//      $('#otp_modal').modal('show');
-//      $.ajax({
-//        type: 'get',
-//        url: "/otp_test",
-//        data: {mobile: mob},
-//        response: 'text',
-//        success: function(){
-//
-//             },
-//        error: function () {
-//          alert('Ошибка отправки');
-//        }
-//      });
-//    });
 
+  $(document).on('click','#show',function () {
+    var selected_regtype = $('input[name="regtype"]:checked').val();
+    if (selected_regtype == 'fiz' || selected_regtype == 'jur') {
+      $.ajax({
+        type: 'get',
+        url: "sign_up/client",
+        data: {client_type: selected_regtype},
+        response: 'text',
+        success: function() {
 
-    var radios = document.getElementsByName("regtype");
-    // var show = document.getElementsById("show");
-//    var cardpayment = document.getElementById("Individual_registration_block");
-//    var internetpayment = document.getElementById("Corporate_registration_block");
-    var show = document.getElementById("show");
-    var hiding = document.getElementById("hiding");
-
-    for (var i = 0; i < radios.length; i++) {
-      $(document).on('click','#show',function () {
-        var val = getRadioVal( 'regtype');
-        if (val == 'fiz') {  // Assuming your value for radio buttons is radio1, radio2 and radio3.
-          // cardpayment.style.display = 'block';   // show
-          hiding.style.display = 'none';// hide
-
-          $('#msform').html('<%=j render :partial => "individual_form" %>')
-          $("#send_otp_link").click(function() {
-            var mob = document.getElementById("client_client_mobile").value;
-            $('#otp_modal').modal('show');
-            $.ajax({
-              type: 'get',
-              url: "/otp_test",
-              data: {mobile: mob},
-              response: 'text',
-              success: function(){
-                // var reg = document.getElementById("registr");
-                // reg.style.display = 'block';
-                testTimer (20);
-              },
-              error: function () {
-                alert('Ошибка отправки');
-              }
-            });
-          });
-          // internetpayment.remove();
-          // internetpayment.style.display = 'none';// hide
-        }
-        else if (val == 'jur') {
-          hiding.style.display = 'none';
-          $('#msform').html('<%=j render :partial => "corporate_form" %>')
-          // // cardpayment.style.display = 'none';
-          // cardpayment.remove();
-          // internetpayment.style.display = 'block';
-          $("#send_otp_link").click(function() {
-            var mob = document.getElementById("client_client_mobile").value;
-            $('#otp_modal').modal('show');
-            $.ajax({
-              type: 'get',
-              url: "/otp_test",
-              data: {mobile: mob},
-              response: 'text',
-              success: function(){
-                // var reg = document.getElementById("registr");
-                // reg.style.display = 'block';
-                testTimer (20);
-              },
-              error: function () {
-                alert('Ошибка отправки');
-              }
-            });
-          });
-        }
-
-      })
+        },
+        error: function () {
+          alert('Ошибка получения формы регистрации');
+        },
+      });
     }
-    function getRadioVal(name) {
-      var val;
-      for (var i=0, len=radios.length; i<len; i++) {
-        if ( radios[i].checked ) {
-          val = radios[i].value;
-          break;
-        }
+  });
+
+  var pin_verified = false;
+  var form_validated = true;
+
+  // $(document).on('click', '#vadidate_reg_form_btn', function(event) {
+  //   console.log('form_validated', form_validated);
+  //   console.log('pin_verified', pin_verified);
+    
+    // $('#new_client').bootstrapValidator({
+
+    //   container: '#messages',
+    //   feedbackIcons: {
+    //       valid: 'glyphicon glyphicon-ok',
+    //       invalid: 'glyphicon glyphicon-remove',
+    //       validating: 'glyphicon glyphicon-refresh'
+    //   },
+    //   fields: {
+    //       "client[client][mobile]": {
+    //           validators: {
+    //               notEmpty: {
+    //                   message: 'The full name is required and cannot be empty'
+    //               }
+    //           }
+    //       },
+    //       "client[client][country]": {
+    //           validators: {
+    //               notEmpty: {
+    //                   message: 'The full name is required and cannot be empty'
+    //               }
+    //           }
+    //       }
+    //   },
+    // }).on('success.form.bv', function(event) {
+    //   form_validated = true;
+    //   console.log('success.form.bv')
+    //   // if (!pin_verified) {
+    //   //   return false;
+    //   // }
+    // });
+
+
+$(document).on('submit', '#new_client', function(event){
+
+   // return false;
+  // console.log('Im in submit');
+  // event.preventDefault();
+  // if (!form_validated) {
+  //   console.log('in form validated block');
+  //   return false;
+  // }
+
+  // if (!pin_verified) {
+  //   console.log('in pin block');
+  //   pin_verified = true;
+  //   return true;
+  // }
+
+  if (!pin_verified) {
+    console.log('pin not verified... openning otp');
+    console.log('form_validated', form_validated );
+    
+    var mob = $("#client_client_mobile").val();
+    $('#registration_form').hide();
+    $('#otp_form').show();
+    $.ajax({
+      type: 'get',
+      url: "/otp_test",
+      data: {mobile: mob},
+      response: 'text',
+      success: function(){
+        // testTimer (10);
+      },
+      error: function () {
+        alert('Ошибка отправки');
       }
-      return val;
-    }
+    });
 
-
-
-
+    return false;
+  }
+  return true;
+  console.log('im in the end');
+});
 
 </script>

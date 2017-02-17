@@ -1,39 +1,64 @@
-<div class="container" >
-   <div class="col-md-5">
-    <%= form_for(resource, as: resource_name,  url: registration_path(resource_name)) do |f| %>
+<div class="row" id="registration_form">  
+   <div class="col-md-6 col-md-offset-2">
+    <h3>Регистрация физического лица</h3>
+    <%= bootstrap_form_for(resource, as: resource_name,  url: registration_path(resource_name), layout: :horizontal, label_col: "col-sm-4", control_col: "col-sm-8" )  do |f| %>
         <%= f.hidden_field :registration, value: 'Individual' %>
         <%= devise_error_messages! %>
           <%= f.fields_for :client do |client| %>
-              <%= client.text_field :mobile, class: "corporate_form_control", autofocus: true, placeholder: "Mobile" %>
-              <%= client.text_field :country, class: "corporate_form_control", placeholder: "Country" %>
-              <%= client.email_field :email, class: "individual_form_control", placeholder: "Email" %>
+              <%= client.text_field :mobile, class: "form-control individual_form_control", autofocus: true, placeholder: "Mobile", label: "Номер моб.телефона" %>
+              <%= client.text_field :country, class: "form-control individual_form_control", placeholder: "Country", label: 'Страна' %>
+              <%= client.email_field :email, class: "form-control individual_form_control", placeholder: "Email" %>
               <%= f.fields_for :individual do |entity| %>
-                    <%= entity.text_field :first_name, class: "individual_form_control", placeholder: "First_name" %>
-                    <%= entity.text_field :last_name, class: "individual_form_control", placeholder: "Last_name" %>
-                    <%= entity.text_field :in, class: "individual_form_control", placeholder: "INN" %>
-                    <%= entity.label :Date_of_birth %>
-                    <%= entity.date_field :dob, "data-provide" => 'datepicker', class: "individual_form_control"%><br>
-                    <%= entity.label :Passport %><br>
-                    <%= entity.file_field :image, class: 'image_form_control' %>
+                    <%= entity.text_field :first_name, class: "individual_form_control", placeholder: "First_name", label: "Имя"%>
+                    <%= entity.text_field :last_name, class: "individual_form_control", placeholder: "Last_name", label: "Фамилия" %>
+                    <%= entity.text_field :in, class: "individual_form_control", placeholder: "INN", label: "ИНН" %>
+                    <%= entity.date_field :dob, "data-provide" => 'datepicker', class: "individual_form_control", label: 'Дата рождения'%><br>
+                    <%= entity.label :Passport %>
+                    <%= entity.file_field :image, layout: :default, class: 'form-control image_form_control', hide_label: true %>
               <% end %>
-              <%= client.password_field :password, class: "individual_form_control", autocomplete: "off", placeholder: "Password" %>
-              <%= client.password_field :password_confirmation, class: "individual_form_control", autocomplete: "off", placeholder: "Password_confirmation" %>
-            <h2>Перед регистрацией ознакомтесь с лицензионным соглашением</h2>
-            <h2><%= link_to 'Лицензионное соглашение', show_licence_path, target: '_blank' %></h2>
-            <div class="actions" id="registr">
-              <%= client.submit "Зарегистрироваться", class: "sign_up_btn"%>
+              <%= client.password_field :password, class: "form-control individual_form_control", autocomplete: "off", placeholder: "Password" %>
+              <%= client.password_field :password_confirmation, class: "form-control individual_form_control", autocomplete: "off", placeholder: "Password_confirmation" %>
+            <h4>Перед регистрацией ознакомтесь с лицензионным соглашением</h4>
+            <h4><%= link_to 'Лицензионное соглашение', show_licence_path, target: '_blank' %></h4>
+            <div class="actions" id="form_registration_btn">
+              <%= client.submit "Зарегистрироваться", class: "sign_up_btn", id: 'new_client_sign_up' %>
+             <!--  <input type="button" value="Зарегистрироваться" class="sign_up_btn" id='vadidate_reg_form_btn'> -->
             </div>
         <%end%>
-        <%= link_to "Получить OTP код", '#', class: "btn btn-primary", id: "send_otp_link", remote: true %>
-        <div class="col-md-12">
-          <%= render "devise/shared/links" %>
-        </div>
     <% end %>
   </div>
-</div>
+</div> 
 
-<script>
-<% if Rails.env=='test' %>
-      $('#registr').show();
-<% end %>
-</script>
+<script type="text/javascript">
+  // $('#new_client').bootstrapValidator({
+  //   container: '#messages',
+  //   feedbackIcons: {
+  //       valid: 'glyphicon glyphicon-ok',
+  //       invalid: 'glyphicon glyphicon-remove',
+  //       validating: 'glyphicon glyphicon-refresh'
+  //   },
+  //   fields: {
+  //       "client[client][mobile]": {
+  //           validators: {
+  //               notEmpty: {
+  //                   message: 'The full name is required and cannot be empty'
+  //               }
+  //           }
+  //       },
+  //       "client[client][country]": {
+  //           validators: {
+  //               notEmpty: {
+  //                   message: 'The full name is required and cannot be empty'
+  //               }
+  //           }
+  //       }
+  //   },
+  // }).on('success.form.bv', function(event) {
+  //   form_validated = true;
+  //   // console.log('success.form.bv')
+  //   // console.log(!pin_verified)
+  //   if (!pin_verified) {
+  //     return false;
+  //   }
+  // });
+<!-- </script> -->

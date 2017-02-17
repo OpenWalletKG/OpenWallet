@@ -1,7 +1,6 @@
 class OtpRegistrationController < ApplicationController
 
   def new
-    # byebug
     @mobile = params[:mobile]
     @phone = params[:mobile]
     @mobile.insert(0, "+")
@@ -29,8 +28,9 @@ class OtpRegistrationController < ApplicationController
     if @pin_verified
       @message = "Ваш номер телефона был подтвержден"
       # render js: "window.location = '#{root_path}'"
+      session[:pin_verified] = true
       respond_to do |format|
-        format.js {}
+        format.js {} 
       end
     elsif @try_counts < 5
       @message = <<-HEREDOC

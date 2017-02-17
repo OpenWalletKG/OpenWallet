@@ -1,8 +1,9 @@
-<% if @pin_verified %>send_otp_link
-$('#otp_modal').modal('hide');
-$('#send_otp_link').hide();
-$('#registr').show();
-$('#client_messages').html("<h4><%= @message %></h4>")
+console.log('confirm');
+<% if @pin_verified %>
+
+  pin_verified = true;
+  $('#new_client').submit();
+  $('#otp_form').hide();
 <% else %>
-$('#otp_confirmation').html("<%= escape_javascript(render partial: 'otp_confirm') %>");
-<% end %>
+  $('#otp_confirmation').html("<%= escape_javascript(render partial: 'otp_confirm') %>");
+<% end %> 

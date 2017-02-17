@@ -1,0 +1,6 @@
+<% if @client_type == 'fiz' %>
+  $('#main-content').html('');
+  $('#main-content').html("<%= escape_javascript(render partial: 'individual_form') %>");
+<% else %>
+  $('#main-content').html("<%= escape_javascript(render partial: 'corporate_form') %>");
+<% end %>

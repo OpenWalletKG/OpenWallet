@@ -52,8 +52,12 @@ GEM
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
+    bootstrap-validator-rails (0.5.3)
+      jquery-rails (>= 3.0)
+      railties (>= 3.0)
     bootstrap3-datetimepicker-rails (4.17.43)
       momentjs-rails (>= 2.8.1)
+    bootstrap_form (2.6.0)
     builder (3.2.3)
     byebug (9.0.6)
     capistrano (3.7.1)
@@ -323,7 +327,9 @@ PLATFORMS
 DEPENDENCIES
   base58
   bootstrap-sass (~> 3.3.6)
+  bootstrap-validator-rails
   bootstrap3-datetimepicker-rails
+  bootstrap_form
   byebug
   capistrano
   capistrano-bundler
