@@ -109,3 +109,11 @@ When(/^открываю pdf "([^"]*)"$/) do |arg|
   sleep(3)
   switch_to_window(windows.first)
 end
+
+When(/^пользователь вводит не существующий счет в поле "([^"]*)" текст "([^"]*)"$/) do |field, value|
+  fill_in field, with:value
+end
+
+When /^обновляю страницу$/ do
+  page.evaluate_script("window.location.reload()");
+end
