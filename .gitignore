@@ -29,7 +29,6 @@
 !/log/.keep
 !/tmp/.keep
 /public/assets
-/public/system/*
 *.idea
 .rvmrc
 
