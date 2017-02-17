@@ -23,7 +23,5 @@ RSpec.describe Role, :type => :model do
   end
 
   it { should have_many(:clients) }
-  it { should have_many(:roles_actions) }
-  it { should have_many(:actions) }
 
 end

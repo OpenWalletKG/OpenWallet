@@ -25,12 +25,6 @@ ActiveRecord::Schema.define(version: 20170216122336) do
     t.index ["client_id"], name: "index_accounts_on_client_id", using: :btree
   end
 
-  create_table "actions", force: :cascade do |t|
-    t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
   create_table "addresses", force: :cascade do |t|
     t.string   "country"
     t.string   "full_address"
@@ -198,15 +192,6 @@ ActiveRecord::Schema.define(version: 20170216122336) do
     t.integer  "permission"
   end
 
-  create_table "roles_actions", force: :cascade do |t|
-    t.integer  "role_id"
-    t.integer  "action_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["action_id"], name: "index_roles_actions_on_action_id", using: :btree
-    t.index ["role_id"], name: "index_roles_actions_on_role_id", using: :btree
-  end
-
   create_table "wallet_balances", force: :cascade do |t|
     t.decimal  "balance"
     t.datetime "created_at", null: false
@@ -228,7 +213,5 @@ ActiveRecord::Schema.define(version: 20170216122336) do
   add_foreign_key "correspondent_accounts", "operations"
   add_foreign_key "documents", "operations"
   add_foreign_key "otp_registrations", "draft_phone_registrations"
-  add_foreign_key "roles_actions", "actions"
-  add_foreign_key "roles_actions", "roles"
   add_foreign_key "wallet_balances", "accounts"
 end
