@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20170216122336) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "title"
-    t.string   "type_money"
+    t.string   "type"
     t.integer  "client_id"
     t.index ["client_id"], name: "index_accounts_on_client_id", using: :btree
   end
@@ -54,7 +54,6 @@ ActiveRecord::Schema.define(version: 20170216122336) do
     t.string   "country"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.integer  "account_id"
     t.integer  "role_id"
     t.string   "entity_type"
     t.integer  "entity_id"
@@ -76,7 +75,6 @@ ActiveRecord::Schema.define(version: 20170216122336) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.integer  "address_id"
-    t.index ["account_id"], name: "index_clients_on_account_id", using: :btree
     t.index ["address_id"], name: "index_clients_on_address_id", using: :btree
     t.index ["confirmation_token"], name: "index_clients_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_clients_on_email", unique: true, using: :btree
@@ -203,7 +201,6 @@ ActiveRecord::Schema.define(version: 20170216122336) do
   add_foreign_key "accounts", "clients"
   add_foreign_key "bank_accounts", "accounts"
   add_foreign_key "bank_accounts", "banks"
-  add_foreign_key "clients", "accounts"
   add_foreign_key "clients", "addresses"
   add_foreign_key "clients", "roles"
   add_foreign_key "contacts", "clients"

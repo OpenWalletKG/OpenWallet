@@ -3,7 +3,7 @@ class PaymentController < WalletController
 
   def new
     @account = Account.new
-    @bank_accounts = Account.where(client_id: current_client.id, type_money: 'bank')
+    @bank_accounts = Account.where(client_id: current_client.id, type: 'PaymentSystem')
   end
 
   def create
@@ -25,6 +25,6 @@ class PaymentController < WalletController
 
 
   def account_params
-    params.require(:account).permit(:number, :type_money, :title, :client_id)
+    params.require(:account).permit(:number, :type, :title, :client_id)
   end
 end

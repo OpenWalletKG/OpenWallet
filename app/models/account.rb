@@ -1,5 +1,7 @@
 class Account < ApplicationRecord
-  has_one :client
+
+  belongs_to :client
+
   has_one :bank_account, dependent: :destroy
 
   validates :number, presence: true, 

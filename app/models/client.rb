@@ -1,7 +1,8 @@
 class Client < ApplicationRecord
   ENTITY = [:individual, :corporate]
-  belongs_to :account, dependent: :destroy
-  accepts_nested_attributes_for :account
+
+  has_many :accounts
+  has_one :sed, :class_name => Account::Sed
 
   has_many :contacts
 
@@ -55,9 +56,9 @@ class Client < ApplicationRecord
                                   role: Role.get_individual,
                                   entity_type: 'Individual',
                                   entity_id: individual.id,
-                                  account_attributes: { number: individual_attributes[:in] },
                                   address_attributes: address_attributes.to_h )
           raise "Ошибка регистрации/валидации" if defined?(client) && client.errors.messages.size != 0
+          Sed.register( client )
           individual.update_attributes( individual_attributes.to_h )
         else
           client = Client.create(  mobile: client_attributes[:mobile],
@@ -69,8 +70,8 @@ class Client < ApplicationRecord
                                    role: Role.get_individual,
                                    entity_type: 'Individual',
                                    entity_attributes: individual_attributes.to_h,
-                                   account_attributes: { number: individual_attributes[:in] },
                                    address_attributes: address_attributes.to_h )
+          Sed.register( client )
         end
 
       when "Corporate"
@@ -91,8 +92,8 @@ class Client < ApplicationRecord
                                  role: role,
                                  entity_type: 'Corporate',
                                  entity_attributes: corporate_attributes,
-                                 account_attributes: { number: corporate_attributes[:in] },
                                  address_attributes: address_attributes.to_h )
+        Sed.register( client )
         director[:corporate_id] = client.entity_id
         CorporateIndividual.register_head(director)
       else
@@ -101,6 +102,7 @@ class Client < ApplicationRecord
     raise "Ошибка регистрации/валидации" if defined?(client) && client.errors.messages.size != 0
     client
   end
+
 end
 
 

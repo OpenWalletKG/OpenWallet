@@ -1,0 +1,3 @@
+class PaymentSystem < Account
+
+end

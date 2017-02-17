@@ -21,7 +21,7 @@
     <div class="caption">
       <%= form_for :account, url: {action: "new"} do |f| %>
           <div class="field">
-            <%= f.hidden_field :type_money, value: 'bank' %>
+            <%= f.hidden_field :type, value: 'PaymentSystem' %>
           </div>
 
           <div class="field">
