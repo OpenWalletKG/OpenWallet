@@ -18,6 +18,13 @@ class EsbClient
     CORPORATE
   end
 
+  CLIENT_TYPE = {'Corporate'=> '1', 'Individual' => '2'}
+
+  def self.add_account(account_params, client_params)
+    client_id = findClient(client_params[:inn], CLIENT_TYPE[client_params[:client_type]])
+    bank_account_id = findAccount(account_params[:iban], client_id)
+  end
+
   def self.getClient(client_id)
     raise ArgumentError.new("Аргумент client_id не задан") if client_id.empty?
     response = post('/client/v1/getClient',
@@ -40,6 +47,8 @@ class EsbClient
           }.to_json
         }
       )
+    raise ESBError.new(response) if ESBError.hasError(response)
+    response['clientId']
   end
 
   def self.findAccount(num, client_id)
@@ -51,6 +60,8 @@ class EsbClient
           }.to_json
         }
       )
+    raise ESBError.new(response) if ESBError.hasError(response)
+    response['accountId']
   end
 
   def self.getAccountSaldo(account_id)

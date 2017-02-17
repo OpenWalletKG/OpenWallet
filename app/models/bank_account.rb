@@ -2,14 +2,23 @@ class BankAccount < ApplicationRecord
   belongs_to :account
   belongs_to :bank
 
-  def self.add_account(bank_id, account_id, iban, inn, client_type)
-    adapter = BankAdapter.new
-    bank_account_id = adapter.add_account(inn, iban, client_type)
-    unless bank_account_id == false
-      new_account = new(account_id:account_id, bank_id:bank_id, bank_account_id: bank_account_id)
-        new_account.save!
-    else
+   ADAPTERS = {
+       'Tengri' => EsbClient
+   }
+
+  def self.add_account(account_id, account_params, client_params)
+    begin
+      plugin = get_bank_name(account_params[:bank_id])
+      bank_account_id = ADAPTERS[plugin].add_account(account_params, client_params)
+      new_account = new(account_id: account_id, bank_id: account_params[:bank_id], bank_account_id: bank_account_id)
+      new_account.save!
+    rescue ESBError => e
+      raise Exception.new('Что-т пошло не так')
       false
     end
+  end
+
+  def self.get_bank_name(bank_id)
+    Bank.find(bank_id)[:name]
   end
 end

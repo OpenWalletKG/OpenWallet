@@ -10,12 +10,24 @@ class Account < ApplicationRecord
   end
 
   def self.add_bank_account(current_client, account_params, bank_id)
+    bank_account_params = {
+        bank_id: bank_id,
+        iban: account_params[:number]
+    }
+
+    client_params = {
+        inn: current_client.entity.in,
+        client_type: current_client.entity_type
+    }
+
+
+
+    begin
     account = new(account_params)
     account.client_id = current_client.id
     account.save
-    if account.save && BankAccount.add_account(bank_id, account.id, account_params[:number], current_client.entity.in, current_client.entity_type)
-      account.save
-    else
+    BankAccount.add_account(account.id, bank_account_params, client_params)
+    rescue  Exception =>  e
       account.destroy
       false
     end
