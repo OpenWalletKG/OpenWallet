@@ -22,8 +22,6 @@ end
 print_head "SEEDS:"
 print_head "Роли:"
 
-Role.destroy_all
-
 role_agent0 = Role.new
 role_agent0.init_permissions( :DO_EMISSION, :SELL )
 role_agent0.register_role_as( :AGENT_0 )

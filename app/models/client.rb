@@ -95,10 +95,6 @@ class Client < ApplicationRecord
                                  address_attributes: address_attributes.to_h )
         director[:corporate_id] = client.entity_id
         CorporateIndividual.register_head(director)
-
-                                 if client.save
-                                   Account.last.update_attributes(client_id: client.id, type_money: 'sed')
-                                 end
       else
         raise "Получены неверные параметры"
     end
