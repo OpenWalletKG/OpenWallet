@@ -50,3 +50,16 @@ Bank.create!(name: "Tengri", plugin: "EsbClient")
 Bank.create!(name: "Visa", plugin: "VisaClient")
 
 Employee.create(position: 'Директор' )
+
+# Корреспондентский счёт системы
+CorrespondentAccount.create(balance: 0.to_d)
+
+
+# Создание агента
+# Address.create!(id: '1', country: 'KGZ', full_address: nil)
+# Client.create!(mobile: '558126394', country: 'KGZ', role_id: '2', entity_type: 'Corporate',
+#                entity_id: '1', email: 'karamba999@mail.ru', address_id: '1', password: '123456',
+#                password_confirmation: '123456')
+# Account.create!(id: '1', number: 'NwHwrt', title: nil, type: "Sed", client_id: 1)
+# Corporate.create!(id: '1', registration_number: '16585812', in: '030540008197',
+#                   full_name: "(Stub) ТОО \"Каскад LLC\"", legal_form: "ТОО", okpo: "123456")

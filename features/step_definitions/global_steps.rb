@@ -61,6 +61,7 @@ end
 
 When(/^выбираю в радио батон "([^"]*)"$/) do |value|
   choose(value)
+  (0.5)
 end
 
 When(/^пользователь вводит номер телефона$/) do |table|
@@ -75,6 +76,7 @@ When(/^ввожу в поле номер телефона$/) do |table|
     end
   end
 end
+
 When(/^ввожу в поле счета "([^"]*)" текст "([^"]*)"$/) do |field, value|
   fill_in field, with:value
   sleep(0.5)
@@ -88,12 +90,6 @@ When(/^ввожу данные в поля форм$/) do |table|
     end
   end
 end
-
-
-When(/^вижу на странице "([^"]*)"$/) do |message|
-  page.assert_text message
-end
-
 
 When(/^нажимает на кнопку "([^"]*)"$/) do |button|
   click_link(button)
@@ -116,4 +112,5 @@ end
 
 When /^обновляю страницу$/ do
   page.evaluate_script("window.location.reload()");
+  sleep(0.5)
 end
