@@ -32,14 +32,14 @@ RSpec.describe EsbClient do
   describe '.findClient' do
     it 'should return clientId' do
       response = EsbClient.findClient('030540008197', '1')
-      expect(response['clientId']).to eq('1602991289')
+      expect(response).to eq('1602991289')
     end
   end
 
   describe '.findAccount' do
     it 'should return accountId' do
       response = EsbClient.findAccount('KZ026200818600000031', '1597737773')
-      expect(response['accountId']).to eq('1597753309')
+      expect(response).to eq('1597753309')
     end
   end
 
