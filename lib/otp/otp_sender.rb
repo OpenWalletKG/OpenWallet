@@ -27,7 +27,7 @@ class OtpSender
       OtpRegistration.create( draft_phone_registration_id: @phone_registration.id, 
                               pin: @otp_code, 
                               try_count: @try_counts)
-      twilio_response = MessageSender.send_otp_code(@phone_number, @otp_code)
+      twilio_response = ENV.fetch('MESSAGES_ADAPTER', TwilioMessageSender).constantize.send_otp_code(@phone_number, @otp_code)
       puts twilio_response.status
       success_message = "A PIN code was successfully sent to your phone."
       # flash[:success] = success_message

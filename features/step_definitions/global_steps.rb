@@ -114,3 +114,9 @@ When /^обновляю страницу$/ do
   page.evaluate_script("window.location.reload()");
   sleep(0.5)
 end
+
+
+When(/^ввожу пин в поле счета "([^"]*)" текст "([^"]*)"$/) do |code, secret_code|
+  secret_code = SMS::Client.messages.last 
+  fill_in :code, with: secret_code
+end
