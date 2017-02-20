@@ -16,13 +16,15 @@
       | client_client_mobile                        | 77085434234            |
       | client_client_country                       |  KAZ                   |
       | client_client_email                         | info@tengri.kz         |
-      | client_corporate_registration_number        |  16585812          |
-      | client_corporate_in                         |  950740000130         |
+      | client_corporate_registration_number        |  16585812              |
+      | client_corporate_in                         |  950740000130          |
       | client_client_password                      | 1515151515             |
       | client_client_password_confirmation         | 1515151515             |
     И прикрепляю скан паспорта юр.лица
     И открываю pdf "Лицензионное соглашение"
     И кликаю на кнопку "Зарегистрироваться"
+    И ввожу в поле счета "pin" текст "1234"
+    И кликаю на кнопку "Подтвердить"
     И вижу на странице "Выход"
     И кликаю на ссылку "Настройки аккаунта"
     И должен увидеть текст "Ваша почта не подтверждена"
