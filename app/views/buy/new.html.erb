@@ -1,0 +1,16 @@
+<h1>Buy#new</h1>
+<p>Find me in app/views/buy/new.html.erb</p>
+<%= form_tag("new", method: "post") do %>
+
+  <%= label_tag(:account_id, "account_id") %>
+  <%= text_field_tag(:account_id) %> <br>
+
+  <%= label_tag(:client_id, "client_id") %>
+  <%= text_field_tag(:client_id) %> <br>
+  
+  <%= label_tag(:sum, "сумма") %>
+  <%= text_field_tag(:sum) %> <br>
+
+  <%= submit_tag("Купить") %>
+<% end %>
+  

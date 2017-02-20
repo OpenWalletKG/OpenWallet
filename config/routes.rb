@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'buy/new'
+
+  get 'buy/create'
+
   get 'otp_test', to: 'otp_registration#new', as: 'otp_registration'
   post 'confirm_otp', to: 'otp_registration#confirm', as: 'confirm_otp'
 
@@ -40,7 +44,7 @@ Rails.application.routes.draw do
 
   scope '/wallet' do
     get    '/buy/new'         => 'buy#new',              as: 'new_buy'
-    post   '/buy'             => 'buy#create',           as: 'buy'
+    post   '/buy/new'         => 'buy#create',           as: 'buy'
     get    '/sell/new'        => 'sell#new',             as: 'new_sell'
     post   '/sell'            => 'sell#create',          as: 'sell'
     get    '/withdraw/new'    => 'withdraw#new',         as: 'new_withdraw'
