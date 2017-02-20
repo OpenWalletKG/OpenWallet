@@ -4,7 +4,7 @@
   <p id = "rezult"></p>
   <p> Осталось попыток <%= 5-@try_counts %></p>
   
-  <%= text_field_tag :pin, 'otp_confirmation_text_field', placeholder: "Введите код", class: "form-control" %>
+  <%= text_field_tag :pin, nil, placeholder: "Введите код", class: "form-control" %>
   <%= hidden_field_tag :mobile, @mobile  %>
   <input type="button" id="bot" name="otp" onclick="get_otp_again()" value="Получить ОТП повторно" class="registration_form_btn" >
   <%= submit_tag "Подтвердить", name: 'confirm', class: 'registration_form_btn' %>
