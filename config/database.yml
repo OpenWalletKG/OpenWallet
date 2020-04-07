@@ -1,24 +1,17 @@
-development:
+development: &development
   adapter: postgresql
   encoding: utf8
   database: ow_development
   pool: 5
   timeout: 5000
-  username: openwallet
-  password: ow2017
+  username: <%= ENV.fetch('POSTGRES_USER', 'postgres') %>
+  password: <%= ENV.fetch('POSTGRES_PWD', 'password') %>
   host: localhost
   port: 5432
 
 test: &test
-  adapter: postgresql
-  encoding: utf8
+  <<: *development
   database: ow_test
-  pool: 5
-  timeout: 5000
-  username: openwallet
-  password: ow2017
-  host: localhost
-  port: 5432
 
 production:
   adapter: postgresql
