@@ -17,7 +17,7 @@ gem 'bootstrap-validator-rails'
 gem 'bootstrap_form'
 gem 'bootstrap3-datetimepicker-rails'
 gem 'momentjs-rails'
-gem 'bootstrap-sass', '~> 3.3.6'
+gem 'bootstrap-sass', '~> 3.4.1'
 gem 'pry-byebug'
 
 gem 'bootsnap', '>= 1.1.0', require: false
