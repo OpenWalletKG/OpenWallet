@@ -2,7 +2,7 @@ class Client < ApplicationRecord
   ENTITY = [:individual, :corporate]
 
   has_many :accounts
-  has_one :sed, :class_name => Account::Sed
+  has_one :sed, :class_name => 'Account::Sed'
 
   has_many :contacts
 

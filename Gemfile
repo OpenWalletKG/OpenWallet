@@ -20,7 +20,8 @@ gem 'momentjs-rails'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'pry-byebug'
 
-gem 'rails', '~> 5.0.1'
+gem 'bootsnap', '>= 1.1.0', require: false
+gem 'rails', '~> 5.2.4.2'
 gem 'sqlite3'
 gem 'puma', '~> 3.0'
 gem 'sass-rails', '~> 5.0'
